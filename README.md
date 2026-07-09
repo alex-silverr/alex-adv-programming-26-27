@@ -21,3 +21,5 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://www.w3schools.com/python/ref_string_isnumeric.asp
 - https://www.w3schools.com/Python/python_try_except.asp
 - https://www.geeksforgeeks.org/python/python-try-except/
+- https://www.geeksforgeeks.org/python/python-flask-redirect-and-errors/
+- https://stackoverflow.com/questions/14343812/redirecting-to-url-in-flask

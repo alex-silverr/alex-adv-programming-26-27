@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response, request
+from flask import Flask, render_template, make_response, request, redirect
 from flask_restful import Resource, Api
 
 app = Flask(__name__)
@@ -12,10 +12,22 @@ class Index(Resource):
     """
     def get(self):
         return make_response(render_template("home.html"))
+    
+class MakeThings(Resource):
+    """
+    Barebones API: CREATE
+    Page that creates a new "thing"
+    """
+    def post(self):
+        info = request.json
+        app.logger.debut(info)
+        things.append(info.get("thing"))
+        return redirect("/things")
 
 class ShowThings(Resource):
     """
-    Barebones API: page that shows "things" list
+    Barebones API: READ
+    Page that shows "things" list
     """
     def get(self):
         index = request.args.get('thing')
@@ -26,6 +38,8 @@ class ShowThings(Resource):
                 app.logger.error(e)
                 return make_response(render_template("error_placeholder.html"))
         return things
+    
+
 
 
 api.add_resource(Index, "/")
