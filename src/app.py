@@ -4,7 +4,7 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
-Things = []
+Things = ["thing 1", "thing 2", "thing 3"]
 
 class Index(Resource):
     """
