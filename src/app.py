@@ -19,10 +19,13 @@ class MakeThings(Resource):
     Page that creates a new "thing"
     """
     def post(self):
-        info = request.json
-        app.logger.debug(info)
-        things.append(info.get("thing"))
-        return redirect("/things")
+        thing = request.json.get("thing")
+        if thing:
+            things.append(thing)
+            return redirect("/things")
+        else:
+            app.logger.error("no thing to add")
+            return make_response(render_template("error_placeholder.html"))
 
 class ShowThings(Resource):
     """
