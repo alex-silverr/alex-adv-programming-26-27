@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response
+from flask import Flask, render_template, make_response, request
 from flask_restful import Resource, Api
 
 app = Flask(__name__)
@@ -18,6 +18,9 @@ class ShowThings(Resource):
     Barebones API: page that shows "things" list
     """
     def get(self):
+        index = request.args.get('thing')
+        if index:
+            return things[index]
         return things
 
 
