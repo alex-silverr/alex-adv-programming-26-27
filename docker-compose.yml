@@ -1,9 +1,8 @@
 services:
   app:
     build: .
-    container_name: visa-tracker
+    container_name: app
     tty: true
     ports:
-      - 8501:8501
-    restart: always
+      - 8080:8080
     

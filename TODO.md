@@ -7,9 +7,9 @@
 
 ## Step-by-Step
 - [x] Understand and set up Postman
-- [ ] Create the most barebones API possible, executing natively (if no problems with that)
+- [x] Dockerize flask 
+- [ ] Create the most barebones API possible, execute on Docker
 - [ ] Test interaction of barebones API and Postman for testing
-- [ ] Dockerize said barebones API
 - [ ] Make a simple database container
 - [ ] Connect backend and database containter
 - [ ] Test saving barebones backend stuff to database
