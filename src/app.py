@@ -4,7 +4,7 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
-Things = ["thing 1", "thing 2", "thing 3"]
+things = ["thing 1", "thing 2", "thing 3"]
 
 class Index(Resource):
     """
@@ -17,12 +17,12 @@ class ShowThings(Resource):
     """
     Barebones API: page that shows "things" list
     """
-    def get(self, index=None):
-        return Things[index] if index else Things
+    def get(self):
+        return things
 
 
 api.add_resource(Index, "/")
-api.add_resource(ShowThings, "/things/<int:num>")
+api.add_resource(ShowThings, "/things")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port='8080')
