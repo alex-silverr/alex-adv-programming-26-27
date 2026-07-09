@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    container_name: app
+    tty: true
+    ports:
+      - 8080:8080
+    
