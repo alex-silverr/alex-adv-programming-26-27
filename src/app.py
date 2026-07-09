@@ -13,7 +13,7 @@ class Index(Resource):
     def get(self):
         return make_response(render_template("home.html"))
     
-class Things():
+class Things(Resource):
     """
     Barebones API: list resource
     """
@@ -150,7 +150,7 @@ class Thing(Resource):
 
 api.add_resource(Index, "/")
 api.add_resource(Things, "/things", methods=['GET', 'POST'])
-api.add_resource(Thing, "/thing/<int:index>")
+api.add_resource(Thing, "/thing/<int:index>", methods=['GET', 'PUT', 'DELETE'])
 # api.add_resource(ShowThings, "/things")
 # api.add_resource(MakeThings, "/newthing")
 # api.add_resource(UpdateThings, "/changething")
