@@ -6,7 +6,7 @@
 - [ ] OPTIONAL: Javascript/Angular/some other sort of frontend thing if I have time
 
 ## Step-by-Step
-- [ ] Understand and set up Postman
+- [x] Understand and set up Postman
 - [ ] Create the most barebones API possible, executing natively (if no problems with that)
 - [ ] Test interaction of barebones API and Postman for testing
 - [ ] Dockerize said barebones API
