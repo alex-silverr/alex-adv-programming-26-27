@@ -20,7 +20,7 @@ class MakeThings(Resource):
     """
     def post(self):
         info = request.json
-        app.logger.debut(info)
+        app.logger.debug(info)
         things.append(info.get("thing"))
         return redirect("/things")
 
