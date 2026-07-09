@@ -15,3 +15,5 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://docs.docker.com/engine/install/ubuntu/
 - https://stackoverflow.com/questions/19315567/returning-rendered-template-with-flask-restful-shows-html-in-browser
 - https://www.geeksforgeeks.org/python/default-arguments-in-python/
+- https://stackoverflow.com/questions/44405708/flask-doesnt-print-to-console
+- https://flask.palletsprojects.com/en/stable/logging/

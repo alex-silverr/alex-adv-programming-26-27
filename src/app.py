@@ -19,7 +19,7 @@ class ShowThings(Resource):
     """
     def get(self):
         index = request.args.get('thing')
-        print(index)
+        app.logger.debug(index)
         if index:
             return things[index]
         return things
