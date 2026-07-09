@@ -17,3 +17,7 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://www.geeksforgeeks.org/python/default-arguments-in-python/
 - https://stackoverflow.com/questions/44405708/flask-doesnt-print-to-console
 - https://flask.palletsprojects.com/en/stable/logging/
+- https://circleci.com/blog/application-logging-with-flask/
+- https://www.w3schools.com/python/ref_string_isnumeric.asp
+- https://www.w3schools.com/Python/python_try_except.asp
+- https://www.geeksforgeeks.org/python/python-try-except/

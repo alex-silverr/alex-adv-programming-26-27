@@ -19,12 +19,12 @@ class ShowThings(Resource):
     """
     def get(self):
         index = request.args.get('thing')
-        app.logger.debug(index)
-        app.logger.debug(index.isnumeric())
         if index:
-            if index.isnumeric():
+            try:
                 return things[int(index)]
-            return things[index]
+            except Exception as e:
+                app.logger.error(e)
+                return make_response(render_template("error_placeholder.html"))
         return things
 
 
