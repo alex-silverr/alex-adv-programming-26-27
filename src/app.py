@@ -1,14 +1,23 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
+from flask_restful import Resource, Api
 
 app = Flask(__name__)
+api = Api(app)
 
-@app.route("/")
-def home():
+class Index(Resource):
     """
-    This is a default/placeholder page to test if I understood how Flask works.
+    Default/placeholder index
     """
-    return render_template("home.html")
+    def get(self):
+        return render_template("home.html")
+
+api.add_resource(Index, "/")
+# @app.route("/")
+# def home():
+#     """
+#     This is a default/placeholder page to test if I understood how Flask works.
+#     """
+#     return render_template("home.html")
 
 # This is from the Flask tutorial given in class
 if __name__ == "__main__":
