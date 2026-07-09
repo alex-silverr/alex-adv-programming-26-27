@@ -50,7 +50,7 @@ class UpdateThings(Resource):
     def post(self):
         which = request.json.get("which")
         thing = request.json.get("thing")
-        if thing and which.isnumeric() and 0 <= which <= len(things):
+        if thing and which.isnumeric() and 0 <= int(which) <= len(things):
             things[int(which)] = thing
         else:
             app.logger.error("No thing to change or no changed value to thing")
@@ -65,7 +65,7 @@ class RemoveThings(Resource):
     """
     def post(self):
         which = request.json.get("which")
-        if which.isnumeric() and 0 <= which <= len(things):
+        if which.isnumeric() and 0 <= int(which) <= len(things):
             things.pop(int(which))
         else:
             app.logger.error("No thing to change or no changed value to thing")
