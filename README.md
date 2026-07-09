@@ -11,3 +11,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://www.w3schools.com/html/html_basic.asp
 - https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/
 - https://docs.docker.com/compose/gettingstarted/
+- https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
