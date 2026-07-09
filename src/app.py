@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response
 from flask_restful import Resource, Api
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ class Index(Resource):
     Default/placeholder index
     """
     def get(self):
-        return render_template("home.html")
+        return make_response(render_template("home.html"))
 
 api.add_resource(Index, "/")
 # @app.route("/")
