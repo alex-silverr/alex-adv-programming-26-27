@@ -14,3 +14,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
 - https://docs.docker.com/engine/install/ubuntu/
 - https://stackoverflow.com/questions/19315567/returning-rendered-template-with-flask-restful-shows-html-in-browser
+- https://www.geeksforgeeks.org/python/default-arguments-in-python/
