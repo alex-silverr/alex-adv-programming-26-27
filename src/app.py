@@ -22,10 +22,10 @@ class MakeThings(Resource):
         thing = request.json.get("thing")
         if thing:
             things.append(thing)
-            return redirect("/things")
         else:
-            app.logger.error("no thing to add")
+            app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
+        return redirect("/things")
 
 class ShowThings(Resource):
     """
@@ -42,12 +42,44 @@ class ShowThings(Resource):
                 return make_response(render_template("error_placeholder.html"))
         return things
     
+class UpdateThings(Resource):
+    """
+    Barebones API: UPDATE
+    Page that updates a "thing"
+    """
+    def post(self):
+        which = request.json.get("which")
+        thing = request.json.get("thing")
+        if thing and which.isnumber() and 0 <= which <= len(things):
+            things[int(which)] = thing
+        else:
+            app.logger.error("No thing to change or no changed value to thing")
+            return make_response(render_template("error_placeholder.html"))
+        return redirect("/things")
+    
+
+class RemoveThings(Resource):
+    """
+    Barebones API: DELETE
+    Page that removes a "thing"
+    """
+    def post(self):
+        which = request.json.get("which")
+        if which.isnumber() and 0 <= which <= len(things):
+            things.pop(int(which))
+        else:
+            app.logger.error("No thing to change or no changed value to thing")
+            return make_response(render_template("error_placeholder.html"))
+        return redirect("/things")
+    
 
 
 
 api.add_resource(Index, "/")
 api.add_resource(ShowThings, "/things")
 api.add_resource(MakeThings, "/newthing")
+api.add_resource(UpdateThings, "/changething")
+api.add_resource(RemoveThings, "/removething")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port='8080', debug=True)
