@@ -20,7 +20,10 @@ class ShowThings(Resource):
     def get(self):
         index = request.args.get('thing')
         app.logger.debug(index)
+        app.logger.debug(index.isnumeric())
         if index:
+            if index.isnumeric():
+                return things[int(index)]
             return things[index]
         return things
 
