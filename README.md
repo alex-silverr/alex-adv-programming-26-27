@@ -23,3 +23,6 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://www.geeksforgeeks.org/python/python-try-except/
 - https://www.geeksforgeeks.org/python/python-flask-redirect-and-errors/
 - https://stackoverflow.com/questions/14343812/redirecting-to-url-in-flask
+- https://medium.com/@ritika.atal.work/crud-mapping-to-http-verbs-354a3c0009f5
+- https://medium.com/yellowant/rest-api-calls-made-easy-7e620e4d3e82
+- https://github.com/flask-restful/flask-restful/issues/114
