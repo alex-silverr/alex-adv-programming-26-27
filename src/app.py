@@ -35,14 +35,15 @@ class Things(Resource):
         """
         return things
     
-    def post(self):
+    async def post(self):
         """
         Barebones API: CREATE
         Creates new thing
         """
         thing = request.json.get("thing")
         if thing:
-            things.append(thing)
+            # things.append(thing)
+            await Thing.create(thing=thing)
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
