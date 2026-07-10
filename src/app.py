@@ -68,7 +68,12 @@ class Thing(Resource):
         """
         try:
             index = int(index)
-            return things[index]
+            with Session(dbeng) as session:
+                thing = session.scalars(
+                    select(models.Thing)
+                    .where(models.Thing.id==index)
+                ).all()
+            return jsonify([t.serialize() for t in thing])
         except Exception as e:
             app.logger.error(e)
             return make_response(render_template("error_placeholder.html"))
