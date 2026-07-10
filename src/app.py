@@ -73,8 +73,6 @@ class Thing(Resource):
                     select(models.Thing)
                     .where(models.Thing.id==index)
                 ).one()
-            app.logger.debug(thing)
-            app.logger.debug(thing.serialize())
             return jsonify(thing.serialize())
         except Exception as e:
             app.logger.error(e)
