@@ -35,7 +35,7 @@ class Things(Resource):
         """
         with Session(dbeng) as session:
             things = session.execute(
-                select(models.Thing.all())
+                select(models.Thing).all()
             )
             app.logger.debug(things)
             app.logger.debug(type(things))
