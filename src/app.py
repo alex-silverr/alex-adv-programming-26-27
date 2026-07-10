@@ -38,7 +38,7 @@ class Things(Resource):
         thing = request.json.get("thing")
         if thing:
             with Session(dbeng) as session:
-                newthing = Thing(thing=thing)
+                newthing = models.Thing(thing=thing)
                 session.ass(newthing)
                 session.commit()
         else:
