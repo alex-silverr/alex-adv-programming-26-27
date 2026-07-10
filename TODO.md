@@ -2,7 +2,7 @@
 ## Structure:
 - [ ] CRUD API on Python container
 - [ ] Persistent database on container (MySQL? Postgres?)
-- [ ] Postman
+- [x] Postman
 - [ ] OPTIONAL: Javascript/Angular/some other sort of frontend thing if I have time
 
 ## Step-by-Step
@@ -13,6 +13,10 @@
 - [x] Make a simple database container
 - [x] Connect backend and database containter
 - [x] Test saving barebones backend stuff to database
+- [ ] Set up database persistence
+- [ ] Setup Alembic migrations and database setup on creation
+- [ ] Make db user and password safe
+- [ ] Organize and separate files for better visibility
 - [ ] Design ticket objects
 - [ ] Change barebones API to use ticket objects instead
 - [ ] Create ticket tables

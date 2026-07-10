@@ -11,12 +11,11 @@ api = Api(app)
 dbeng = create_engine("postgresql+psycopg2://usr:pwd@db:5432/db") 
 models.Base.metadata.create_all(dbeng)
 
-things = ["thing 1", "thing 2", "thing 3"]
 with Session(dbeng) as session:
-    thing1 = models.Thing(thing="thing 1")
-    thing2 = models.Thing(thing="thing 2")
-    thing3 = models.Thing(thing="thing 3")
-    session.add_all([thing1, thing2, thing3])
+    session.add_all([models.Thing(thing="thing 1"), 
+                     models.Thing(thing="thing 2"), 
+                     models.Thing(thing="thing 3")
+                     ])
     session.commit()
 
 class Index(Resource):
