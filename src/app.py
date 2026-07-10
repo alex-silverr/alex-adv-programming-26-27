@@ -1,19 +1,21 @@
 from flask import Flask, render_template, make_response, request, redirect
 from flask_restful import Resource, Api
-from tortoise import Tortoise, run_async
+from sqlalchemy import create_engine
 from . import *
 
 app = Flask(__name__)
 api = Api(app)
 
-async def startdb():
-    await Tortoise.init(
-        db_url='asyncpg://usr:pwd@db:5432/db',
-        modules ={'app':["src.models"]}
-    )
-    await Tortoise.generate_schemas()
+# async def startdb():
+#     await Tortoise.init(
+#         db_url='asyncpg://usr:pwd@db:5432/db',
+#         modules ={'app':["src.models"]}
+#     )
+#     await Tortoise.generate_schemas()
 
-run_async(startdb())
+# run_async(startdb())
+
+dbeng = create_engine("postgresql+psycopg2://usr:pwd@db:5432/db") 
 
 things = ["thing 1", "thing 2", "thing 3"]
 
@@ -42,8 +44,7 @@ class Things(Resource):
         """
         thing = request.json.get("thing")
         if thing:
-            # things.append(thing)
-            await Thing.create(thing=thing)
+            things.append(thing)
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
