@@ -16,6 +16,7 @@ with Session(dbeng) as session:
     thing2 = models.Thing(thing="thing 2")
     thing3 = models.Thing(thing="thing 3")
     session.add_all([thing1, thing2, thing3])
+    session.commit()
 
 class Index(Resource):
     """
