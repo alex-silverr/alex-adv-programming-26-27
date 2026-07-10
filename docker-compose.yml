@@ -20,7 +20,7 @@ services:
       - POSTGRES_PASSWORD=${PG_PASSWORD}
       - POSTGRES_PORT=5432
     volumes:
-      - dbdata:/var/lib/postgresql
+      - ./dbdata:/var/lib/postgresql
     ports:
       - "5432:5432"
     healthcheck:
@@ -31,6 +31,3 @@ services:
       start_period: 80s
     env_file:
       - ./.env
-
-volumes:
-  dbdata:
