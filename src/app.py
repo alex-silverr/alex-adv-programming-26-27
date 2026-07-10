@@ -35,7 +35,7 @@ class Things(Resource):
         Returns all things
         """
         with Session(dbeng) as session:
-            things = session.execute(
+            things = session.scalars(
                 select(models.Thing)
             ).all()
             app.logger.debug(things)
