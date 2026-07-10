@@ -1,6 +1,6 @@
 from flask import Flask, render_template, make_response, request, redirect
 from flask_restful import Resource, Api
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from . import models
 
@@ -11,6 +11,11 @@ dbeng = create_engine("postgresql+psycopg2://usr:pwd@db:5432/db")
 models.Base.metadata.create_all(dbeng)
 
 things = ["thing 1", "thing 2", "thing 3"]
+with Session(dbeng) as session:
+    thing1 = models.Thing(thing="thing 1")
+    thing2 = models.Thing(thing="thing 2")
+    thing3 = models.Thing(thing="thing 3")
+    session.add_all([thing1, thing2, thing3])
 
 class Index(Resource):
     """
@@ -28,6 +33,12 @@ class Things(Resource):
         Barebones API: list READ
         Returns all things
         """
+        with Session(dbeng) as session:
+            things = session.execute(
+                select(models.Thing.all())
+            )
+            app.logger.debug(things)
+            app.logger.debug(type(things))
         return things
     
     def post(self):

@@ -46,3 +46,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://flask-sqlalchemy.readthedocs.io/en/stable/models/
 - https://medium.com/@programersign/sqlalchemy-data-model-creation-333937341671
 - https://docs.sqlalchemy.org/en/21/orm/session_api.html
+- https://docs.sqlalchemy.org/en/21/orm/queryguide/select.html
