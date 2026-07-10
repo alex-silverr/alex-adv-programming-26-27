@@ -72,7 +72,7 @@ class Thing(Resource):
                 thing = session.scalars(
                     select(models.Thing)
                     .where(models.Thing.id==index)
-                ).all()
+                ).one()
             return jsonify([t.serialize() for t in thing])
         except Exception as e:
             app.logger.error(e)
