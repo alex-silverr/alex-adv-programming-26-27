@@ -85,12 +85,18 @@ class Thing(Resource):
         """
         try:
             index = int(index)
-            thing = request.json.get("thing")
-            if not thing:
+            thingv = request.json.get("thing")
+            if not thingv:
                 app.logger.error("No update value for instance given")
                 return make_response(render_template("error_placeholder.html"))
             else:
-                things[index] = thing
+                with Session(dbeng) as session:
+                    thing = session.scalars(
+                        select(models.Thing)
+                        .where(models.Thing.id==index)
+                    ).one()
+                    thing.thing = thingv
+                    session.commit()
                 return redirect("/things")
         except Exception as e:
             app.logger.error(e)
