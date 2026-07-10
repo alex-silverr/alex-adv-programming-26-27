@@ -1,7 +1,7 @@
 # TODO
 ## Structure:
 - [ ] CRUD API on Python container
-- [ ] Persistent database on container (MySQL? Postgres?)
+- [x] Persistent Postgres database on container
 - [x] Postman
 - [ ] OPTIONAL: Javascript/Angular/some other sort of frontend thing if I have time
 
@@ -14,11 +14,11 @@
 - [x] Connect backend and database containter
 - [x] Test saving barebones backend stuff to database
 - [x] Set up database persistence
-- [ ] Make db user and password safe
-- [ ] Organize and separate files for better visibility
+- [x] Make db user and password safe
 - [ ] Design ticket objects
 - [ ] Change barebones API to use ticket objects instead
 - [ ] Create ticket tables
+- [ ] Organize and separate files for better visibility
 - [ ] OPTIONAL: create frontend
 	- Angular?????
 	- Honestly I don't know. TODO: look into that when I get to it

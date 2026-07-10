@@ -9,7 +9,6 @@ from .settings import SQLALCHEMY_DATABASE_URL
 app = Flask(__name__)
 api = Api(app)
 
-# dbeng = create_engine("postgresql+psycopg2://usr:pwd@db:5432/db") 
 dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
 models.Base.metadata.create_all(dbeng)
 
