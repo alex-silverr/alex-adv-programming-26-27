@@ -19,6 +19,8 @@ services:
       - POSTGRES_USER=usr
       - POSTGRES_PASSWORD=pwd
       - POSTGRES_PORT=5432
+    volumes:
+      - dbdata:/var/lib/postgresql
     ports:
       - "5432:5432"
     healthcheck:
@@ -27,3 +29,6 @@ services:
       timeout: 60s
       retries: 5
       start_period: 80s
+
+volumes:
+  dbdata:

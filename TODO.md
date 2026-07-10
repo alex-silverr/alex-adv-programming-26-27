@@ -13,8 +13,7 @@
 - [x] Make a simple database container
 - [x] Connect backend and database containter
 - [x] Test saving barebones backend stuff to database
-- [ ] Set up database persistence
-- [ ] Setup Alembic migrations and database setup on creation
+- [x] Set up database persistence
 - [ ] Make db user and password safe
 - [ ] Organize and separate files for better visibility
 - [ ] Design ticket objects
