@@ -10,6 +10,7 @@ Jinja2==3.1.6
 MarkupSafe==3.0.3
 mysql-connector-python==9.7.0
 psycopg2==2.9.12
+python-dotenv==1.2.2
 pytz==2026.2
 six==1.17.0
 SQLAlchemy==2.0.51
