@@ -1,8 +1,8 @@
 import os
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
-load_dotenv()  # Load environment variables from .env file if it exists
+load_dotenv(find_dotenv())  # Load environment variables from .env file if it exists
 
 
 class _NoArg:
@@ -23,13 +23,11 @@ def get_env_var(key: str, default: str | _NoArg = NO_ARG) -> str:
         return default
 
 
-PG_HOST = get_env_var("PG_HOST")
-PG_PORT = get_env_var("PG_PORT")
 PG_USER = get_env_var("PG_USER")
 PG_PASSWORD = get_env_var("PG_PASSWORD")
-PG_DB = get_env_var("PG_DB")
 
 SQLALCHEMY_DATABASE_URL = (
-    f"postgresql+asyncpg://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB}"
+    # f"postgresql+asyncpg://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DB}"
+    f"postgresql+psycopg2://{PG_USER}:{PG_PASSWORD}@db:5432/db"
 )
-SQLALCHEMY_ECHO = get_env_var("SQLALCHEMY_ECHO", "") == "true"
+# SQLALCHEMY_ECHO = get_env_var("SQLALCHEMY_ECHO", "") == "true"

@@ -16,8 +16,8 @@ services:
     restart: always
     environment:
       - POSTGRES_DB=db
-      - POSTGRES_USER=usr
-      - POSTGRES_PASSWORD=pwd
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
       - POSTGRES_PORT=5432
     volumes:
       - dbdata:/var/lib/postgresql
@@ -29,6 +29,8 @@ services:
       timeout: 60s
       retries: 5
       start_period: 80s
+    env_file:
+      - ./.env
 
 volumes:
   dbdata:

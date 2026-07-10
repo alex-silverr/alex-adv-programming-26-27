@@ -4,11 +4,13 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from . import models
+from .settings import SQLALCHEMY_DATABASE_URL
 
 app = Flask(__name__)
 api = Api(app)
 
-dbeng = create_engine("postgresql+psycopg2://usr:pwd@db:5432/db") 
+# dbeng = create_engine("postgresql+psycopg2://usr:pwd@db:5432/db") 
+dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
 models.Base.metadata.create_all(dbeng)
 
 with Session(dbeng) as session:
