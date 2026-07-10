@@ -72,10 +72,9 @@ class Thing(Resource):
         try:
             index = int(index)
             with Session(dbeng) as session:
-                thing = session.scalars(
-                    select(models.Thing)
-                    .where(models.Thing.id==index)
-                ).one()
+                thing = session.get(
+                    models.Thing, index
+                )
             return jsonify(thing.serialize())
         except Exception as e:
             app.logger.error(e)
@@ -94,10 +93,9 @@ class Thing(Resource):
                 return make_response(render_template("error_placeholder.html"))
             else:
                 with Session(dbeng) as session:
-                    thing = session.scalars(
-                        select(models.Thing)
-                        .where(models.Thing.id==index)
-                    ).one()
+                    thing = session.get(
+                        models.Thing, index
+                    )
                     thing.thing = thingv
                     session.commit()
                 return redirect("/things")

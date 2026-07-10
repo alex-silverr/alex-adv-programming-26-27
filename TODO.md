@@ -10,9 +10,9 @@
 - [x] Dockerize flask 
 - [x] Create the most barebones API possible, execute on Docker
 - [x] Test interaction of barebones API and Postman for testing
-- [ ] Make a simple database container
-- [ ] Connect backend and database containter
-- [ ] Test saving barebones backend stuff to database
+- [x] Make a simple database container
+- [x] Connect backend and database containter
+- [x] Test saving barebones backend stuff to database
 - [ ] Design ticket objects
 - [ ] Change barebones API to use ticket objects instead
 - [ ] Create ticket tables
