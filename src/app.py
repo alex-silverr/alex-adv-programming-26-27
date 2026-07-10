@@ -39,7 +39,7 @@ class Things(Resource):
         if thing:
             with Session(dbeng) as session:
                 newthing = models.Thing(thing=thing)
-                session.ass(newthing)
+                session.add(newthing)
                 session.commit()
         else:
             app.logger.error("No thing to add")
