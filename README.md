@@ -37,3 +37,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://medium.com/@johnidouglasmarangon/using-migrations-in-python-sqlalchemy-with-alembic-docker-solution-bd79b219d6a
 - https://tortoise.github.io/databases.html
 - https://forums.docker.com/t/how-to-reach-localhost-on-host-from-docker-container/113321
+- https://docs.docker.com/compose/how-tos/networking/

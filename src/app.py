@@ -8,7 +8,7 @@ api = Api(app)
 
 async def startdb():
     await Tortoise.init(
-        db_url='asyncpg://usr:pwd@host.docker.internal:5432/db',
+        db_url='asyncpg://usr:pwd@db:5432/db',
         modules ={'app':["src.models"]}
     )
     await Tortoise.generate_schemas()
