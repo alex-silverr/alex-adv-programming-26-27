@@ -1,10 +1,23 @@
-from flask import Flask, render_template, make_response, request, redirect
+from flask import (Flask, render_template, make_response, 
+                   request, redirect, jsonify)
 from flask_restful import Resource, Api
+from sqlalchemy import create_engine, select
+from sqlalchemy.orm import Session
+from . import models
+from .settings import SQLALCHEMY_DATABASE_URL
 
 app = Flask(__name__)
 api = Api(app)
 
-things = ["thing 1", "thing 2", "thing 3"]
+dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
+models.Base.metadata.create_all(dbeng)
+
+with Session(dbeng) as session:
+    session.add_all([models.Thing(thing="thing 1"), 
+                     models.Thing(thing="thing 2"), 
+                     models.Thing(thing="thing 3")
+                     ])
+    session.commit()
 
 class Index(Resource):
     """
@@ -17,12 +30,18 @@ class Things(Resource):
     """
     Barebones API: list resource
     """
+
     def get(self):
         """
         Barebones API: list READ
         Returns all things
         """
-        return things
+        with Session(dbeng) as session:
+            things = session.scalars(
+                select(models.Thing)
+                .order_by(models.Thing.id)
+            ).all()
+        return jsonify([t.serialize() for t in things])
     
     def post(self):
         """
@@ -31,7 +50,10 @@ class Things(Resource):
         """
         thing = request.json.get("thing")
         if thing:
-            things.append(thing)
+            with Session(dbeng) as session:
+                newthing = models.Thing(thing=thing)
+                session.add(newthing)
+                session.commit()
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
@@ -41,6 +63,7 @@ class Thing(Resource):
     """
     Barebones API: instance resource
     """
+
     def get(self, index=None):
         """
         Barebones API: instance READ
@@ -48,7 +71,11 @@ class Thing(Resource):
         """
         try:
             index = int(index)
-            return things[index]
+            with Session(dbeng) as session:
+                thing = session.get(
+                    models.Thing, index
+                )
+            return jsonify(thing.serialize())
         except Exception as e:
             app.logger.error(e)
             return make_response(render_template("error_placeholder.html"))
@@ -60,12 +87,17 @@ class Thing(Resource):
         """
         try:
             index = int(index)
-            thing = request.json.get("thing")
-            if not thing:
+            thingv = request.json.get("thing")
+            if not thingv:
                 app.logger.error("No update value for instance given")
                 return make_response(render_template("error_placeholder.html"))
             else:
-                things[index] = thing
+                with Session(dbeng) as session:
+                    thing = session.get(
+                        models.Thing, index
+                    )
+                    thing.thing = thingv
+                    session.commit()
                 return redirect("/things")
         except Exception as e:
             app.logger.error(e)
@@ -78,7 +110,12 @@ class Thing(Resource):
         """
         try:
             index = int(index)
-            things.pop(index)
+            with Session(dbeng) as session:
+                thing = session.get(
+                    models.Thing, index
+                )
+                session.delete(thing)
+                session.commit()
             return redirect("/things")
         except Exception as e:
             app.logger.error(e)
