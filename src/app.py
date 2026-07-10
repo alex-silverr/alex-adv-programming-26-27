@@ -30,7 +30,7 @@ class Things(Resource):
         """
         return things
     
-    async def post(self):
+    def post(self):
         """
         Barebones API: CREATE
         Creates new thing
