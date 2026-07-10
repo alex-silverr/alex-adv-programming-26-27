@@ -39,9 +39,7 @@ class Things(Resource):
             things = session.scalars(
                 select(models.Thing)
             ).all()
-            app.logger.debug(things)
-            app.logger.debug(type(things))
-        return jsonify(things)
+        return jsonify([t.serialize() for t in things])
     
     def post(self):
         """

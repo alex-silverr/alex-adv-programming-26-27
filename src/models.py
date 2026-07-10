@@ -16,3 +16,6 @@ class Thing(Base):
 
     def __repr__(self):
         return "thing " + str(self.id) + " : " + self.thing
+    
+    def serialize(self):
+        return {"thing" : self.thing}
