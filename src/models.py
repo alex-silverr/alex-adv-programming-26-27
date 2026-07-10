@@ -1,10 +1,11 @@
-from sqlalchemy.ext.delarative import declarative_base
 from sqlalchemy import String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import (DeclarativeBase, Mapped, 
+                            mapped_column)
 
-# From https://medium.com/@programersign/sqlalchemy-data-model-creation-333937341671
+# From https://docs.sqlalchemy.org/en/20/orm/quickstart.html
 # Seems to be an SQLAlchemy thing but I don't understand the workings of it super well
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 # ---
 
 class Thing(Base):

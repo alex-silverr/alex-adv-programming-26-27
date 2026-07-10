@@ -38,3 +38,11 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://tortoise.github.io/databases.html
 - https://forums.docker.com/t/how-to-reach-localhost-on-host-from-docker-container/113321
 - https://docs.docker.com/compose/how-tos/networking/
+- https://medium.com/@johnidouglasmarangon/using-migrations-in-python-sqlalchemy-with-alembic-docker-solution-bd79b219d6a
+- https://docs.sqlalchemy.org/en/20/tutorial/metadata.html#declaring-mapped-classes
+- https://berkkaraal.com/blog/2024/09/19/setup-fastapi-project-with-async-sqlalchemy-2-alembic-postgresql-and-docker/
+- https://medium.com/@johnidouglasmarangon/using-migrations-in-python-sqlalchemy-with-alembic-docker-solution-bd79b219d6a
+- https://docs.sqlalchemy.org/en/21/core/connections.html
+- https://flask-sqlalchemy.readthedocs.io/en/stable/models/
+- https://medium.com/@programersign/sqlalchemy-data-model-creation-333937341671
+- https://docs.sqlalchemy.org/en/21/orm/session_api.html
