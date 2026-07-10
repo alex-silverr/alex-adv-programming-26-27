@@ -26,3 +26,14 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://medium.com/@ritika.atal.work/crud-mapping-to-http-verbs-354a3c0009f5
 - https://medium.com/yellowant/rest-api-calls-made-easy-7e620e4d3e82
 - https://github.com/flask-restful/flask-restful/issues/114
+- https://tortoise.github.io/getting_started.html
+- https://stackoverflow.com/questions/57092632/accessing-a-database-in-a-container
+- https://stackoverflow.com/questions/44001225/connect-to-postgresql-container-from-another-container-docker
+- https://github.com/RassieDotDev/FastAPI-Tortoise-ORM/blob/main/docker-compose.yaml
+- https://blog.codewithtemi.com/production-ready-docker-setup-for-full-stack-apps-nextjs-fastapi-postgresql-with-tortoise-orm
+- https://betterstack.com/community/guides/scaling-python/tortoiseorm-vs-sqlalchemy/
+- https://stackoverflow.com/questions/55311465/what-url-can-docker-container-a-use-to-access-another-docker-container-b-same-d
+- https://berkkaraal.com/blog/2024/09/19/setup-fastapi-project-with-async-sqlalchemy-2-alembic-postgresql-and-docker/
+- https://medium.com/@johnidouglasmarangon/using-migrations-in-python-sqlalchemy-with-alembic-docker-solution-bd79b219d6a
+- https://tortoise.github.io/databases.html
+- https://forums.docker.com/t/how-to-reach-localhost-on-host-from-docker-container/113321

@@ -1,8 +1,19 @@
 from flask import Flask, render_template, make_response, request, redirect
 from flask_restful import Resource, Api
+from tortoise import Tortoise, run_async
+from . import *
 
 app = Flask(__name__)
 api = Api(app)
+
+async def startdb():
+    await Tortoise.init(
+        db_url='asyncpg://usr:pwd@host.docker.internal:5432/db',
+        modules ={'app':["src.models"]}
+    )
+    await Tortoise.generate_schemas()
+
+run_async(startdb())
 
 things = ["thing 1", "thing 2", "thing 3"]
 
