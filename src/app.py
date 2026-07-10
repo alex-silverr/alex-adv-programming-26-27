@@ -30,6 +30,7 @@ class Things(Resource):
     """
     Barebones API: list resource
     """
+
     def get(self):
         """
         Barebones API: list READ
@@ -62,6 +63,7 @@ class Thing(Resource):
     """
     Barebones API: instance resource
     """
+
     def get(self, index=None):
         """
         Barebones API: instance READ
@@ -110,7 +112,12 @@ class Thing(Resource):
         """
         try:
             index = int(index)
-            things.pop(index)
+            with Session(dbeng) as session:
+                thing = session.get(
+                    models.Thing, index
+                )
+                session.delete(thing)
+                session.commit()
             return redirect("/things")
         except Exception as e:
             app.logger.error(e)
