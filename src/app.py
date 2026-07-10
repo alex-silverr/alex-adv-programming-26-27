@@ -38,6 +38,7 @@ class Things(Resource):
         with Session(dbeng) as session:
             things = session.scalars(
                 select(models.Thing)
+                .order_by(models.Thing.id)
             ).all()
         return jsonify([t.serialize() for t in things])
     
