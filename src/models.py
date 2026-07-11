@@ -191,55 +191,108 @@ class Event(Base):
 #  Priority Level
 # -------------------------
 class PriorityLevel(Base):
+    """
+    MODEL: PriorityLevel
+    TABLE: priority_levels
+    """
     __tablename__ = "priority_levels"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
+
+    # Desc: str(200)
+    desc = mapped_column(String(200))
 
 # -------------------------
 #  Ticket Type
 # -------------------------
 class TicketType(Base):
+    """
+    MODEL: TicketType
+    TALBE: ticket_types
+    """
     __tablename__ = "ticket_types"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
+
+    # Desc: str(200)
+    desc = mapped_column(String(200))
 
 # -------------------------
 #  Ticket Status
 # -------------------------
 class TicketStatus(Base):
+    """
+    MODEL: TicketStatus
+    TABLE: ticket_statuses
+    """
     __tablename__ = "ticket_statuses"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
+
+    # Desc: str(200)
+    desc = mapped_column(String(200))
 
 # -------------------------
 #  Event Type
 # -------------------------
 class EventType(Base):
+    """
+    MODEL: EventType
+    TABLE: event_types
+    """
     __tablename__ = "event_types"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
+
+    # Desc: str(200)
+    desc = mapped_column(String(200))
 
 # -------------------------
 #  Edited Field
 # -------------------------
 class EditedField(Base):
+    """
+    MODEL: EditedField
+    TABLE: edited_fields
+    """
     __tablename__ = "edited_fields"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
+
+    # Desc: str(200)
+    desc = mapped_column(String(200))
 
 # -------------------------
 #  User
 # -------------------------
 class User(Base):
+    """
+    MODEL: User
+    TABLE: users
+    """
     __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
 
 # -------------------------
 #  User Role
 # -------------------------
 class UserRole(Base):
+    """
+    MODEL: UserRole
+    TABLE: user_roles
+    """
     __tablename__ = "user_roles"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
+
+    # Desc: str(200)
+    desc = mapped_column(String(200))
 
