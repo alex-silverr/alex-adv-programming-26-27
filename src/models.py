@@ -3,13 +3,14 @@ from typing import List
 from sqlalchemy import (Integer, String, DateTime, Text, 
                         ForeignKey, func)
 from sqlalchemy.orm import (DeclarativeBase, Mapped, 
-                            mapped_column, relationship)
+                            mapped_column, relationship,
+                            MappedAsDataclass)
 from sqlalchemy.ext.associationproxy import association_proxy
 
 # -------------------------------
 # Base from https://docs.sqlalchemy.org/en/20/orm/quickstart.html
 # Seems to be an SQLAlchemy thing but I don't understand the workings of it super well
-class Base(DeclarativeBase):
+class Base(DeclarativeBase, MappedAsDataclass):
     pass
 # --------------------------------
 
