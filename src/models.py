@@ -72,7 +72,8 @@ class Ticket(Base):
         Integer, ForeignKey("users.id")
     )
     created_by_user = relationship(
-        "User", uselist=False
+        "User", uselist=False, 
+        foreign_keys=[created_by_user_id]
     )
 
     # Assigned To User: fk
@@ -86,7 +87,8 @@ class Ticket(Base):
         Integer, ForeignKey("users.id"), nullable=True
     )
     assigned_to_user = relationship(
-        "User", uselist=False
+        "User", uselist=False,
+        foreign_keys=[assigned_to_user_id]
     )
 
     # Priority: fk
