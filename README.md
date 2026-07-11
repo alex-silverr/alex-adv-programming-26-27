@@ -51,4 +51,6 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://stackoverflow.com/questions/23600578/python-sql-alchemy-how-to-jsonify-a-class-object-result-from-a-database-query
 - https://dev.to/lovestaco/running-postgresql-in-docker-with-persistent-volume-4joe
 - https://docs.docker.com/get-started/docker-concepts/running-containers/persisting-container-data/
-- 
+- https://support.liveagent.com/public/article/3286/attachment/71xoqqspy89yhw74c79u6kqwt3k78qvx/view
+- https://www.dnsstuff.com/wp-content/uploads/2024/11/web_help_desk-1.png
+- https://zen-marketing-documentation.s3.amazonaws.com/docs/en/SLA_group_ticket.png

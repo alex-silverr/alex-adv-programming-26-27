@@ -22,3 +22,158 @@
 - [ ] OPTIONAL: create frontend
 	- Angular?????
 	- Honestly I don't know. TODO: look into that when I get to it
+
+# Database
+
+## Endpoints
+### Ticket
+- [ ] CREATE: Create new
+- [ ] READ: Read all
+- [ ] READ: Search by filter
+- [ ] READ: Get by ID
+- [ ] UPDATE: Edit info (Title, Description, Priority)
+- [ ] UPDATE: Add Subtasks
+- [ ] UPDATE: Assign to task group
+- [ ] UPDATE: Add history item
+- [ ] UPDATE: Assign to user
+- [ ] UPDATE: Change estimated time
+- [ ] UPDATE: Change status ("DELETE": Removed status)
+
+### Event
+- [ ] CREATE: Create new history item
+- [ ] CREATE: Create from editing info (Title, Description, Priority)
+- [ ] CREATE: Create from adding subtask
+- [ ] CREATE: Create from adding to group task
+- [ ] CREATE: Create from assign to user
+- [ ] CREATE: Create from change estimated time
+- [ ] CREATE: Create from change status
+- [ ] READ: Read all
+- [ ] READ: Search by user
+- [ ] READ: Get by ID
+
+### User
+- [ ] CREATE: Create new
+- [ ] READ: Read all
+- [ ] READ: Search by filter
+- [ ] READ: Get by ID
+- [ ] UPDATE: Edit info (Display name, Full name, E-mail, GitHub, Role)
+- [ ] DELETE: Delete user by ID
+
+### Priority Level
+- [ ] READ: Read all
+- [ ] READ: Get by ID
+
+### Ticket Type
+- [ ] READ: Read all
+- [ ] READ: Get by ID
+
+### Ticket Status
+- [ ] READ: Read all
+- [ ] READ: Get by ID
+
+### Event Type
+- [ ] READ: Read all
+- [ ] READ: Get by ID
+
+### Edited Field
+- [ ] READ: Read all
+- [ ] READ: Get by ID
+
+### User Role
+- [ ] READ: Read all
+- [ ] READ: Get by ID
+
+## Design
+### Ticket
+- ID (auto generated)
+- Title
+- Created on (date)
+- Description
+- History -- *Event, list of*
+- Created by -- *User, one*
+- Assigned to -- *User, list of*
+- Priority -- *Priority Level, one*
+- Ticket Type -- *Ticket Type, one*
+- Estimated time
+- Status -- *Ticket Status, one*
+- Subtasks -- *Ticket, list of*
+- Task group -- *Ticket, one*
+
+### Event
+- ID (auto generated)
+- Actor -- *User, one*
+- Ticket -- *Ticket, one*
+- Date of (date)
+- Event Type -- *Event Type, one*
+- Description (if type is "New history item")
+- Edited field (if type is not "New history item") -- *Edited Field, one*
+- Former value (if type is not "New history item")
+- New value (if type is not "New history item")
+
+### Priority Level
+- ID (auto generated)
+- Description:
+	- Urgent 
+	- High priority
+	- Medium priority
+	- Low priority
+	- Background task
+
+### Ticket Type
+- ID (auto generated)
+- Description:
+	- Error - A problem that breaks functionality
+	- Issue - A problem that hampers, but do not break, software use
+	- Vulnerability - An issue invisible to software use, but potential point of exploit
+	- Feature - A new feature to be developed. 
+	- Requirements - A new change to be developed that will affect the system beyond a single feature.
+
+### Ticket Status
+- ID (auto generated)
+- Description:
+	- New
+	- Approved
+	- Assigned
+	- In Progress
+	- On Hold
+	- Resolved
+	- Removed
+
+### Event Type
+- ID (auto generated)
+- Description:
+	- Change details (Title, Description, Priority)
+	- Assign person to ticket
+	- Change estimated time
+	- Change Status
+	- New history item
+
+### Edited Field
+- ID (auto generated)
+- Description:
+	- Title
+	- Description
+	- Priority
+	- Assigned to
+	- Estimated time
+	- Status
+
+### User
+- ID (auto generated)
+- Display name
+- Full name
+- Registered on (date)
+- E-mail
+- GitHub
+- Role -- *User Role, one*
+
+### User Role
+- ID (auto generated)
+- Description:
+	- Developer
+	- Analyst
+	- Manager
+	- Designer
+	- Owner
+	- QA
+	- Tester
