@@ -65,3 +65,5 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://docs.sqlalchemy.org/en/21/orm/relationship_api.html#sqlalchemy.orm.relationship
 - https://soumendrak.medium.com/autoincrement-id-support-in-sqlalchemy-6a1383520ce3
 - https://docs.sqlalchemy.org/en/21/orm/join_conditions.html#handling-multiple-join-paths
+- https://docs.sqlalchemy.org/en/21/orm/self_referential.html
+- https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#many-to-many

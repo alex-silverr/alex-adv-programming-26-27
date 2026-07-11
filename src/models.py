@@ -1,7 +1,7 @@
 import datetime
 from typing import List
 from sqlalchemy import (Integer, String, DateTime, Text, 
-                        ForeignKey, func)
+                        ForeignKey, Table, Column, func)
 from sqlalchemy.orm import (DeclarativeBase, Mapped, 
                             mapped_column, relationship,
                             MappedAsDataclass)
@@ -77,19 +77,26 @@ class Ticket(Base):
     )
 
     # Assigned To User: fk
-    # TODO: for now only maps to one user
-    # TODO: change to many-to-many in the future
+    # - table goes through aux table {users_to_tickets}
+    # - on db, only aux table exists
+    # - assigned_to_user is the logical field
+    assigned_to_user: Mapped[List["User"]] = relationship(
+        secondary="users_to_tickets"
+    )
+    # -----OLD-----
+    # Assigned To User: fk
     # - table fk field mapped to {users.id}
     # - backpopulates field {tickets_created}
     # - assigned_to_user_id exists on db
     # - assigned_to_user is the logical field
-    assigned_to_user_id = mapped_column(
-        Integer, ForeignKey("users.id"), nullable=True
-    )
-    assigned_to_user = relationship(
-        "User", uselist=False,
-        foreign_keys=[assigned_to_user_id]
-    )
+    # assigned_to_user_id = mapped_column(
+    #     Integer, ForeignKey("users.id"), nullable=True
+    # )
+    # assigned_to_user = relationship(
+    #     "User", uselist=False,
+    #     foreign_keys=[assigned_to_user_id]
+    # )
+    # ------------
 
     # Priority: fk
     # - table fk field mapped to {priority_levels.id}
@@ -146,8 +153,15 @@ class Ticket(Base):
         "r_status", "desc"
     )
 
-    # - TODO: subtickets: fk
-    # - TODO: superticket: fk
+    # In retrospect I don't like the sub/supertickets idea
+
+# aux table for users assigned to a ticket
+users_to_tickets = Table(
+    "users_to_tickets",
+    Base.metadata,
+    Column("ticket_id", ForeignKey("tickets.id")),
+    Column("user_id", ForeignKey("users.id"))
+)
 
 
 # -------------------------
@@ -213,11 +227,7 @@ class Event(Base):
     # - only when event type is "History item"
     description = mapped_column(Text, nullable=True)
     
-    # TODO: Edited Field: fk
-    # - for now only text fields
-    # - until I figure out how to do new/former properly
-    # TODO: Former Value: ?
-    # TODO: New Value: ?
+    # Edits can be registered in description honestly
 
 # -------------------------
 #  Priority Level
