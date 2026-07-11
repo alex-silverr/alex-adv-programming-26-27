@@ -1,7 +1,7 @@
 import datetime
 from typing import List
-from sqlalchemy import (Integer, String, DateTime, func, 
-                        ForeignKey)
+from sqlalchemy import (Integer, String, DateTime, Text, 
+                        ForeignKey, func)
 from sqlalchemy.orm import (DeclarativeBase, Mapped, 
                             mapped_column, relationship)
 
@@ -28,48 +28,98 @@ class Thing(Base):
 #  Tickets
 # -------------------------
 class Ticket(Base):
+    """
+    MODEL: Ticket
+    TABLE: tickets
+    """
     __tablename__ = "tickets"
 
+    # ID: int, pk, auto generated
     id = mapped_column(Integer, primary_key=True)
+    
+    # Title: str(350)
     title = mapped_column(String(350))
+    
+    # Created On: datetime, date on creation
     created_on = mapped_column(
         DateTime, server_default=func.now()
     )
-    description = mapped_column(String(2000))
-    # populates field "ticket" on Event instance
-    # does not actually exist on ticket table
-    # TODO: equal declaration on event object
+
+    # Description: text
+    description = mapped_column(Text)
+    
+    # History: Event list
+    # - backpopulates field {ticket} on Event
+    # - does not actually create a column
+    # - can be empty: create empty list as default
     history = relationship(
-        "Event", back_populates="ticket"
+        "Event", back_populates="ticket",
+        default_factory=list
     )
-    # "created by user id" is the actual table column
+
+    # Created By User: fk
+    # - table fk field mapped to {users.id}
+    # - backpopulates field {tickets_assigned} on User
+    # - created_by_user_id exists on db
+    # - created_by_user is the logical field
+    # TODO: create backpopulated field on User
     created_by_user_id = mapped_column(
         Integer, ForeignKey("users.id")
     )
-    # TODO: create this
     created_by_user = relationship(
         "User", back_populates="tickets_assigned"
     )
-    # "assigned to user id" is the actual table column
+
+    # Assigned To User: fk
+    # TODO: for now only maps to one user
+    # TODO: change to many-to-many in the future
+    # - table fk field mapped to {users.id}
+    # - backpopulates field {tickets_created}
+    # - assigned_to_user_id exists on db
+    # - assigned_to_user is the logical field
+    # TODO: create backpopulated field on User
     assigned_to_user_id = mapped_column(
-        Integer, ForeignKey("users.id")
+        Integer, ForeignKey("users.id"), nullable=True
     )
-    # TODO: create this
     assigned_to_user = relationship(
         "User", back_populates="tickets_created"
     )
+
+    # Priority: fk
+    # - table fk field mapped to {priority_levels.id}
+    # - doesn't backpopulate a field
+    # - priority_id is the db field
+    # - priority is the logical field
+    # - TODO: check if this will actually work
     priority_id = mapped_column(
         Integer, ForeignKey("priority_levels.id")
     )
-    # FIXME: this may break, not sure I got it correct
     priority = relationship("PriorityLevels")
+    
+    # Ticket type: fk
+    # - table fk mapped to {ticket_types.id}
+    # - doesn't backpopulate to a field
+    # - ticket_type_id is the db field
+    # - ticket_type is the logical field
     ticket_type_id = mapped_column(
         Integer, ForeignKey("ticket_types.id")
     )
-    # TODO: change to datetime? timestamp?? time elapsed??
+    ticket_type = relationship("TicketType")
+
+    # Estimated Time: ???
+    # - string for now
+    # - need a better format
+    # - datetime? some sort of timestamp?
+    # - I want the time delta represented in text
     estimated_time = mapped_column(
         String(350)
     )
+
+    # Status: fk
+    # - table fk mapped to {ticket_statuses.id}
+    # - doesn't backpopulate to a field
+    # - status_id is the db field
+    # - status is the logical field
     status_id = mapped_column(
         Integer, ForeignKey("ticket_statuses.id")
     )
@@ -80,9 +130,62 @@ class Ticket(Base):
 #  Events
 # -------------------------
 class Event(Base):
+    """
+    MODEL: Event
+    TABLE: events
+    """
     __tablename__ = "events"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    # ID: int, pk, auto generated
+    id = mapped_column(Integer, primary_key=True)
+
+    # Created By: fk
+    # - table fk mapped to {users.id}
+    # - does not backpopulate to a field
+    # - created_by_id is the db field
+    # - created_by is the logical field
+    created_by_id = mapped_column(
+        Integer, ForeignKey("users.id")
+    )
+    created_by = relationship("User")
+    
+    # Ticket: fk
+    # - table fk mapped to {tickets.id}
+    # - backpopulates field {history} on Ticket
+    # - {history} is a list field of Events
+    # - ticket_id is the db field
+    # - ticket is the logical field
+    ticket_id = mapped_column(
+        Integer, ForeignKey("tickets.id")
+    )
+    ticket = relationship(
+        "Ticket", back_populates="history"
+    )
+
+    # Created On: datetime, date on creation
+    created_on = mapped_column(
+        DateTime, server_default=func.now()
+    )
+
+    # Event Type: fk
+    # - table fk mapped to {event_types.id}
+    # - does not backpopulate to a field
+    # - event_type_id is the db field
+    # - event_type is the logical field
+    event_type_id = mapped_column(
+        Integer, ForeignKey("event_types.id")
+    )
+    event_type = relationship("EventType")
+
+    # Description: text
+    # - only when event type is "History item"
+    description = mapped_column(Text, nullable=True)
+    
+    # TODO: Edited Field: fk
+    # - for now only text fields
+    # - until I figure out how to do new/former properly
+    # TODO: Former Value: ?
+    # TODO: New Value: ?
 
 # -------------------------
 #  Priority Level

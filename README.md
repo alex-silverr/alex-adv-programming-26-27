@@ -59,3 +59,5 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://stackoverflow.com/questions/76498857/what-is-the-difference-between-mapped-column-and-column-in-sqlalchemy
 - https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#declarative-table-with-mapped-column
 - https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html
+- https://docs.sqlalchemy.org/en/21/core/types.html
+- https://stackoverflow.com/questions/26613459/sqlalchemy-how-to-map-single-column-of-one-to-one-relationship-using-declarative
