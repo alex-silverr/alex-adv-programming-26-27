@@ -17,7 +17,7 @@ class Base(DeclarativeBase, MappedAsDataclass):
 class Thing(Base):
     __tablename__= "things" 
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     thing: Mapped[str] = mapped_column(String(200))
 
     def __repr__(self):
@@ -38,7 +38,7 @@ class Ticket(Base):
     __tablename__ = "tickets"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
     
     # Title: str(350)
     title = mapped_column(String(350))
@@ -156,7 +156,7 @@ class Event(Base):
     __tablename__ = "events"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Created By: fk
     # - table fk mapped to {users.id}
@@ -225,7 +225,7 @@ class PriorityLevel(Base):
     __tablename__ = "priority_levels"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Desc: str(200)
     desc = mapped_column(String(200))
@@ -241,7 +241,7 @@ class TicketType(Base):
     __tablename__ = "ticket_types"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Desc: str(200)
     desc = mapped_column(String(200))
@@ -257,7 +257,7 @@ class TicketStatus(Base):
     __tablename__ = "ticket_statuses"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Desc: str(200)
     desc = mapped_column(String(200))
@@ -273,7 +273,7 @@ class EventType(Base):
     __tablename__ = "event_types"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Desc: str(200)
     desc = mapped_column(String(200))
@@ -289,7 +289,7 @@ class EditedField(Base):
     __tablename__ = "edited_fields"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Desc: str(200)
     desc = mapped_column(String(200))
@@ -305,7 +305,7 @@ class User(Base):
     __tablename__ = "users"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Display Name: str(200)
     display_name = mapped_column(String(200))
@@ -350,7 +350,7 @@ class UserRole(Base):
     __tablename__ = "user_roles"
 
     # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
+    id = mapped_column(Integer, primary_key=True, autoincrement=True)
 
     # Desc: str(200)
     desc = mapped_column(String(200))
