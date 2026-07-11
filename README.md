@@ -62,3 +62,6 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://docs.sqlalchemy.org/en/21/core/types.html
 - https://stackoverflow.com/questions/26613459/sqlalchemy-how-to-map-single-column-of-one-to-one-relationship-using-declarative
 - https://docs.sqlalchemy.org/en/21/orm/extensions/associationproxy.html
+- https://docs.sqlalchemy.org/en/21/orm/relationship_api.html#sqlalchemy.orm.relationship
+- https://soumendrak.medium.com/autoincrement-id-support-in-sqlalchemy-6a1383520ce3
+- https://docs.sqlalchemy.org/en/21/orm/join_conditions.html#handling-multiple-join-paths

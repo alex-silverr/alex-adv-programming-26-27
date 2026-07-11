@@ -101,7 +101,7 @@ class Ticket(Base):
         Integer, ForeignKey("priority_levels.id")
     )
     r_priority = relationship(
-        "PriorityLevels", uselist=False
+        "PriorityLevel", uselist=False
     )
     priority = association_proxy("r_priority", "desc")
     
