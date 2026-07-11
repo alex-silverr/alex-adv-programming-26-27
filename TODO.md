@@ -15,9 +15,9 @@
 - [x] Test saving barebones backend stuff to database
 - [x] Set up database persistence
 - [x] Make db user and password safe
-- [ ] Design ticket objects
+- [x] Design ticket objects
+- [ ] Create persistent tabless
 - [ ] Change barebones API to use ticket objects instead
-- [ ] Create ticket tables
 - [ ] Organize and separate files for better visibility
 - [ ] OPTIONAL: create frontend
 	- Angular?????
