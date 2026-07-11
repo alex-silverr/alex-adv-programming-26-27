@@ -11,12 +11,12 @@ api = Api(app)
 
 dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
 models.Base.metadata.create_all(dbeng)
+thing1 = models.Thing(thing="thing 1")
+thing2 = models.Thing(thing="thing 2")
+thing3 = models.Thing(thing="thing 3")
 
 with Session(dbeng) as session:
-    session.add_all([models.Thing(thing="thing 1"), 
-                     models.Thing(thing="thing 2"), 
-                     models.Thing(thing="thing 3")
-                     ])
+    session.add_all([thing1, thing2, thing3])
     session.commit()
 
 class Index(Resource):
