@@ -54,3 +54,8 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://support.liveagent.com/public/article/3286/attachment/71xoqqspy89yhw74c79u6kqwt3k78qvx/view
 - https://www.dnsstuff.com/wp-content/uploads/2024/11/web_help_desk-1.png
 - https://zen-marketing-documentation.s3.amazonaws.com/docs/en/SLA_group_ticket.png
+- https://docs.sqlalchemy.org/en/21/orm/declarative_tables.html
+- https://stackoverflow.com/questions/75363733/sqlalchemy-2-0-orm-model-datetime-insertion
+- https://stackoverflow.com/questions/76498857/what-is-the-difference-between-mapped-column-and-column-in-sqlalchemy
+- https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#declarative-table-with-mapped-column
+- https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html

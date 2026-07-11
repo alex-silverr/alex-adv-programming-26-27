@@ -32,8 +32,8 @@
 - [ ] READ: Search by filter
 - [ ] READ: Get by ID
 - [ ] UPDATE: Edit info (Title, Description, Priority)
-- [ ] UPDATE: Add Subtasks
-- [ ] UPDATE: Assign to task group
+- [ ] UPDATE: Add Subtasks << start without
+- [ ] UPDATE: Assign to task group << start without
 - [ ] UPDATE: Add history item
 - [ ] UPDATE: Assign to user
 - [ ] UPDATE: Change estimated time
@@ -91,13 +91,13 @@
 - Description
 - History -- *Event, list of*
 - Created by -- *User, one*
-- Assigned to -- *User, list of*
+- Assigned to -- *User, list of* << start with one
 - Priority -- *Priority Level, one*
 - Ticket Type -- *Ticket Type, one*
 - Estimated time
 - Status -- *Ticket Status, one*
-- Subtasks -- *Ticket, list of*
-- Task group -- *Ticket, one*
+- Subtasks -- *Ticket, list of* << start without
+- Task group -- *Ticket, one* << start without
 
 ### Event
 - ID (auto generated)
