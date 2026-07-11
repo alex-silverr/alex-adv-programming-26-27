@@ -4,12 +4,14 @@ from sqlalchemy import (Integer, String, DateTime, Text,
                         ForeignKey, func)
 from sqlalchemy.orm import (DeclarativeBase, Mapped, 
                             mapped_column, relationship)
+from sqlalchemy.ext.associationproxy import association_proxy
 
-# From https://docs.sqlalchemy.org/en/20/orm/quickstart.html
+# -------------------------------
+# Base from https://docs.sqlalchemy.org/en/20/orm/quickstart.html
 # Seems to be an SQLAlchemy thing but I don't understand the workings of it super well
 class Base(DeclarativeBase):
     pass
-# ---
+# --------------------------------
 
 class Thing(Base):
     __tablename__= "things" 
@@ -62,12 +64,11 @@ class Ticket(Base):
     # - backpopulates field {tickets_assigned} on User
     # - created_by_user_id exists on db
     # - created_by_user is the logical field
-    # TODO: create backpopulated field on User
     created_by_user_id = mapped_column(
         Integer, ForeignKey("users.id")
     )
     created_by_user = relationship(
-        "User", back_populates="tickets_assigned"
+        "User", uselist=False
     )
 
     # Assigned To User: fk
@@ -77,34 +78,42 @@ class Ticket(Base):
     # - backpopulates field {tickets_created}
     # - assigned_to_user_id exists on db
     # - assigned_to_user is the logical field
-    # TODO: create backpopulated field on User
     assigned_to_user_id = mapped_column(
         Integer, ForeignKey("users.id"), nullable=True
     )
     assigned_to_user = relationship(
-        "User", back_populates="tickets_created"
+        "User", uselist=False
     )
 
     # Priority: fk
     # - table fk field mapped to {priority_levels.id}
     # - doesn't backpopulate a field
     # - priority_id is the db field
-    # - priority is the logical field
-    # - TODO: check if this will actually work
+    # - r_priority is the logical field
+    # - priority is the direct logical field by "desc"
     priority_id = mapped_column(
         Integer, ForeignKey("priority_levels.id")
     )
-    priority = relationship("PriorityLevels")
+    r_priority = relationship(
+        "PriorityLevels", uselist=False
+    )
+    priority = association_proxy("r_priority", "desc")
     
     # Ticket type: fk
     # - table fk mapped to {ticket_types.id}
     # - doesn't backpopulate to a field
     # - ticket_type_id is the db field
-    # - ticket_type is the logical field
+    # - r_ticket_type is the logical field
+    # - ticket_type is the direct logical field by "desc"
     ticket_type_id = mapped_column(
         Integer, ForeignKey("ticket_types.id")
     )
-    ticket_type = relationship("TicketType")
+    r_ticket_type = relationship(
+        "TicketType", uselist=False
+    )
+    ticket_type = association_proxy(
+        "r_ticket_type", "desc"
+    )
 
     # Estimated Time: ???
     # - string for now
@@ -119,11 +128,20 @@ class Ticket(Base):
     # - table fk mapped to {ticket_statuses.id}
     # - doesn't backpopulate to a field
     # - status_id is the db field
-    # - status is the logical field
+    # - r_status is the logical field
+    # - status is the direct logical field by "desc"
     status_id = mapped_column(
         Integer, ForeignKey("ticket_statuses.id")
     )
-    status = relationship("TicketStatus")
+    r_status = relationship(
+        "TicketStatus", uselist=False
+    )
+    status = association_proxy(
+        "r_status", "desc"
+    )
+
+    # - TODO: subtickets: fk
+    # - TODO: superticket: fk
 
 
 # -------------------------
@@ -147,7 +165,9 @@ class Event(Base):
     created_by_id = mapped_column(
         Integer, ForeignKey("users.id")
     )
-    created_by = relationship("User")
+    created_by = relationship(
+        "User", uselist=False
+    )
     
     # Ticket: fk
     # - table fk mapped to {tickets.id}
@@ -171,11 +191,17 @@ class Event(Base):
     # - table fk mapped to {event_types.id}
     # - does not backpopulate to a field
     # - event_type_id is the db field
-    # - event_type is the logical field
+    # - r_event_type is the logical field
+    # - event_type is the direct logical field by "desc"
     event_type_id = mapped_column(
         Integer, ForeignKey("event_types.id")
     )
-    event_type = relationship("EventType")
+    r_event_type = relationship(
+        "EventType", uselist=False
+    )
+    event_type = association_proxy(
+        "r_event_type", "desc"
+    )
 
     # Description: text
     # - only when event type is "History item"
@@ -301,11 +327,15 @@ class User(Base):
     # - table fk mapped to {user_roles.id}
     # - does not backpopulate to a field
     # - role_id is the db field
-    # - role is the logical field
+    # - r_role is the logical field
+    # - role is the direct logical field by "desc"
     role_id = mapped_column(
         Integer, ForeignKey("user_roles.id")
     )
-    role = relationship("UserRole")
+    r_role = relationship(
+        "UserRole", uselist=False
+    )
+    role = association_proxy("r_role", "desc")
 
 
 # -------------------------

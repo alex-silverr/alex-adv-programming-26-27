@@ -61,3 +61,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html
 - https://docs.sqlalchemy.org/en/21/core/types.html
 - https://stackoverflow.com/questions/26613459/sqlalchemy-how-to-map-single-column-of-one-to-one-relationship-using-declarative
+- https://docs.sqlalchemy.org/en/21/orm/extensions/associationproxy.html
