@@ -113,7 +113,7 @@ class ManageTicket(Resource):
                         TicketType, data.get("ticket_type_id")
                     )
                 if "status_id" in data:
-                    ticket.r_stats = session.get(
+                    ticket.r_status = session.get(
                         TicketStatus, data.get("status_id")
                     )
                 session.commit()
