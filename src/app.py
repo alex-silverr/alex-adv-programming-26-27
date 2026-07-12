@@ -12,6 +12,7 @@ from .models.options import (PriorityLevel, TicketType, TicketStatus,
 from .endpoints.testthing import ManageThing, ManageThings
 from .endpoints.manageticket import ManageTicket, ManageTickets
 from .endpoints.manageuser import ManageUser, ManageUsers
+from .endpoints.manageevent import ManageEvent, ManageEvents
 from .endpoints.utils import Index, ErrorLanding
 from .settings import SQLALCHEMY_DATABASE_URL
 
@@ -32,6 +33,10 @@ api.add_resource(ManageTicket, "/ticket/<int:id>", methods=['GET', 'PATCH', 'DEL
 # Basic CRUD endpoints for User objects
 api.add_resource(ManageUsers, "/users", methods=['GET', 'POST'])
 api.add_resource(ManageUser, "/user/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+
+# Basic CRUD endpoints for Event objects
+api.add_resource(ManageEvents, "/events", methods=['GET', 'POST'])
+api.add_resource(ManageEvent, "/event/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
 
 # Test CRUD endpoints for "Thing"
 api.add_resource(ManageThings, "/things", methods=['GET', 'POST'])
