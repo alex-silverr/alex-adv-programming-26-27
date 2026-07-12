@@ -50,12 +50,10 @@ class User(Base):
     role = association_proxy("r_role", "desc")
 
     def serialize(self):
-        with Session(dbeng) as session:
-            j = {
+        return {
                 "display name": self.display_name,
                 "full name": self.full_name,
                 "e-mail": self.email,
                 "github": self.github,
                 "user role": self.role
             }
-        return j
