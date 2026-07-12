@@ -6,7 +6,7 @@ from sqlalchemy.orm import (DeclarativeBase, Mapped,
                             mapped_column, relationship,
                             MappedAsDataclass)
 from sqlalchemy.ext.associationproxy import association_proxy
-from ..database import Base
+from src import Base
 
 # -------------------------
 #  Priority Level

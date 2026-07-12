@@ -4,12 +4,8 @@ from flask import (Flask, render_template, make_response,
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
-from ..database import Base, Thing, dbeng
-from ..models.ticket import Ticket
-from ..models.event import Event
-from ..models.user import User
-from ..models.options import UserRole
-from ..settings import SQLALCHEMY_DATABASE_URL
+from src.models import User, UserRole
+from src import dbeng
 
 class ManageUsers(Resource):
     """

@@ -5,12 +5,9 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from src.connect import makeTicket, getAllTickets, getTicket
-from ..database import Base, Thing, dbeng
-from ..models.ticket import Ticket
-from ..models.event import Event
-from ..models.user import User
-from ..models.options import (TicketType, TicketStatus, PriorityLevel)
-from ..settings import SQLALCHEMY_DATABASE_URL
+from src import dbeng, SQLALCHEMY_DATABASE_URL
+from src.models import (Ticket, Event, User, TicketType,
+                        TicketStatus, PriorityLevel)
 
 class ManageTickets(Resource):
     """

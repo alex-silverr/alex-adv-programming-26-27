@@ -6,7 +6,7 @@ from sqlalchemy.orm import (DeclarativeBase, Mapped,
                             mapped_column, relationship,
                             MappedAsDataclass, Session)
 from sqlalchemy.ext.associationproxy import association_proxy
-from ..database import Base, dbeng
+from src import Base
 
 class User(Base):
     """
