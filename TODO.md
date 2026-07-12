@@ -17,7 +17,7 @@
 - [x] Make db user and password safe
 - [x] Design ticket objects
 - [x] Create persistent tables
-- [ ] Create basic CRUD API for Ticket, Event and User
+- [x] Create basic CRUD API for Ticket, Event and User
 - [ ] Create basic READ API for option tables
 - [ ] Create extra entrypoints for Ticket, Event and User
 - [ ] Organize and separate files for better visibility
