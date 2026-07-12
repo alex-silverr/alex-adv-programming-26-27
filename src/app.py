@@ -13,6 +13,12 @@ from .endpoints.testthing import ManageThing, ManageThings
 from .endpoints.manageticket import ManageTicket, ManageTickets
 from .endpoints.manageuser import ManageUser, ManageUsers
 from .endpoints.manageevent import ManageEvent, ManageEvents
+from .endpoints.readoptions import (PriorityReadList, PriorityReadInstance,
+                                    TicketTypeReadList, TicketTypeReadInstance,
+                                    TicketStatusReadList, TicketStatusReadInstance,
+                                    EventTypeReadList, EventTypeReadInstance,
+                                    EditedFieldReadList, EditedFieldReadInstance,
+                                    UserRoleReadList, UserRoleReadInstance)
 from .endpoints.utils import Index, ErrorLanding
 from .settings import SQLALCHEMY_DATABASE_URL
 
@@ -37,6 +43,20 @@ api.add_resource(ManageUser, "/user/<int:id>", methods=['GET', 'PATCH', 'DELETE'
 # Basic CRUD endpoints for Event objects
 api.add_resource(ManageEvents, "/events", methods=['GET', 'POST'])
 api.add_resource(ManageEvent, "/event/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+
+# READ endpoints for options
+api.add_resource(PriorityReadList, "/priority", methods=['GET'])
+api.add_resource(PriorityReadInstance, "/priority/<int:id>", methods=['GET'])
+api.add_resource(TicketTypeReadList, "/ticket-type", methods=['GET'])
+api.add_resource(TicketTypeReadInstance, "/ticket-type/<int:id>", methods=['GET'])
+api.add_resource(TicketStatusReadList, "/ticket-status", methods=['GET'])
+api.add_resource(TicketStatusReadInstance, "/ticket-status/<int:id>", methods=['GET'])
+api.add_resource(EventTypeReadList, "/event-type", methods=['GET'])
+api.add_resource(EventTypeReadInstance, "/event-type/<int:id>", methods=['GET'])
+api.add_resource(EditedFieldReadList, "/edited-field", methods=['GET'])
+api.add_resource(EditedFieldReadInstance, "/edited-field/<int:id>", methods=['GET'])
+api.add_resource(UserRoleReadList, "/role", methods=['GET'])
+api.add_resource(UserRoleReadInstance, "/role/<int:id>", methods=['GET'])
 
 # Test CRUD endpoints for "Thing"
 api.add_resource(ManageThings, "/things", methods=['GET', 'POST'])
