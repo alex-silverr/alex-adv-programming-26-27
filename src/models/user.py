@@ -48,3 +48,12 @@ class User(Base):
         "UserRole", uselist=False
     )
     role = association_proxy("r_role", "desc")
+
+    def serialize(self):
+        return {
+            "display name": self.display_name,
+            "full name": self.full_name,
+            "e-mail": self.email,
+            "github": self.github,
+            "user role": self.role
+        }

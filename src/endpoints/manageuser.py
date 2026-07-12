@@ -27,7 +27,7 @@ class ManageUsers(Resource):
                     select(User)
                     .order_by(User.id)
                 ).all()
-            return jsonify(users)
+            return jsonify([user.serialize() for user in users])
         
         except Exception as e:
             current_app.logger.error(e)
@@ -75,7 +75,7 @@ class ManageUser(Resource):
                 user = session.get(
                     User, id
                 )
-            return jsonify(user)
+            return jsonify(user.serialize())
         
         except Exception as e:
             current_app.logger.error(e)
