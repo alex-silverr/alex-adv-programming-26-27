@@ -91,7 +91,7 @@ class ManageUser(Resource):
             data = request.json
             with Session(dbeng) as session:
                 user = session.get(
-                    Ticket, id
+                    User, id
                 )
                 if "display_name" in data: user.display_name = data.get("display_name")
                 if "full_name" in data: user.full_name = data.get("full_name")
@@ -101,7 +101,7 @@ class ManageUser(Resource):
                     UserRole, data.get("role_id")
                 )
                 session.commit()
-            return redirect("/tickets")
+            return redirect("/users")
 
         except Exception as e:
             current_app.logger.error(e)
@@ -120,7 +120,7 @@ class ManageUser(Resource):
                 )
                 session.delete(user)
                 session.commit()
-            return redirect ("/things")
+            return redirect ("/users")
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
