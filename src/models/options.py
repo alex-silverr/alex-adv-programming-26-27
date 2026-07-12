@@ -24,6 +24,12 @@ class PriorityLevel(Base):
     # Desc: str(200)
     desc = mapped_column(String(200))
 
+    def serialize(self):
+        """
+        Creates readable text
+        """
+        return {"Priority Level" : self.desc}
+
 # -------------------------
 #  Ticket Type
 # -------------------------
@@ -39,6 +45,12 @@ class TicketType(Base):
 
     # Desc: str(200)
     desc = mapped_column(String(200))
+
+    def serialize(self):
+        """
+        Creates readable text
+        """
+        return {"Ticket Type" : self.desc}
 
 # -------------------------
 #  Ticket Status
@@ -56,6 +68,12 @@ class TicketStatus(Base):
     # Desc: str(200)
     desc = mapped_column(String(200))
 
+    def serialize(self):
+        """
+        Creates readable text
+        """
+        return {"Ticket Status" : self.desc}
+
 # -------------------------
 #  Event Type
 # -------------------------
@@ -71,6 +89,12 @@ class EventType(Base):
 
     # Desc: str(200)
     desc = mapped_column(String(200))
+
+    def serialize(self):
+        """
+        Creates readable text
+        """
+        return {"Event Type" : self.desc}
 
 # -------------------------
 #  Edited Field
@@ -88,6 +112,12 @@ class EditedField(Base):
     # Desc: str(200)
     desc = mapped_column(String(200))
 
+    def serialize(self):
+        """
+        Creates readable text
+        """
+        return {"Edited Field" : self.desc}
+
 # -------------------------
 #  User Role
 # -------------------------
@@ -103,3 +133,9 @@ class UserRole(Base):
 
     # Desc: str(200)
     desc = mapped_column(String(200))
+
+    def serialize(self):
+        """
+        Creates readable text
+        """
+        return {"User Role" : self.desc}
