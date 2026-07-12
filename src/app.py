@@ -152,7 +152,7 @@ class MakePriority(Resource):
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
-        return redirect("/index")
+        return redirect("/priority")
 
 # -------------------------
 #  Ticket Type Make
@@ -176,7 +176,7 @@ class MakeTicketType(Resource):
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
-        return redirect("/index")
+        return redirect("/ttype")
 
 # -------------------------
 #  Ticket Status Make
@@ -200,7 +200,7 @@ class MakeTicketStatus(Resource):
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
-        return redirect("/index")
+        return redirect("/tstatus")
 
 # -------------------------
 #  Event Type Make
@@ -224,7 +224,7 @@ class MakeEventType(Resource):
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
-        return redirect("/index")
+        return redirect("/evtype")
 
 # -------------------------
 #  Edited Field Make
@@ -248,7 +248,7 @@ class MakeEditedField(Resource):
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
-        return redirect("/index")
+        return redirect("/edfield")
 
 # -------------------------
 #  User Role Make
@@ -272,7 +272,7 @@ class MakeUserRole(Resource):
         else:
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
-        return redirect("/index")
+        return redirect("/urole")
 
 
 api.add_resource(Index, "/")
