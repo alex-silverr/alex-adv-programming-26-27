@@ -11,7 +11,7 @@ from ..models.user import User
 from ..models.options import (TicketType, TicketStatus, PriorityLevel)
 from ..settings import SQLALCHEMY_DATABASE_URL
 
-class ManageTicket(Resource):
+class ManageTickets(Resource):
     """
     MANAGE API
     MODEL: Ticket List
@@ -67,7 +67,7 @@ class ManageTicket(Resource):
             current_app.logger(e)
             return redirect("/oops")
 
-class ManageTickets(Resource):
+class ManageTicket(Resource):
     """
     MANAGE API
     MODEL: Ticket Instance
