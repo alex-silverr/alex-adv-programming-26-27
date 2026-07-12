@@ -30,7 +30,7 @@ class ManageUsers(Resource):
             return jsonify(users)
         
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
     
     def post(self):
@@ -56,7 +56,7 @@ class ManageUsers(Resource):
             return redirect("/users")
 
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
 
 class ManageUser(Resource):
@@ -78,7 +78,7 @@ class ManageUser(Resource):
             return jsonify(user)
         
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
         
     def patch(self, id):
@@ -104,7 +104,7 @@ class ManageUser(Resource):
             return redirect("/tickets")
 
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
 
     def delete(self, id):
@@ -122,5 +122,5 @@ class ManageUser(Resource):
                 session.commit()
             return redirect ("/things")
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
