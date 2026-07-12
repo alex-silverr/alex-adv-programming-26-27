@@ -52,7 +52,8 @@ class Ticket(Base):
     )
     created_by_user = relationship(
         "User", uselist=False, 
-        foreign_keys=[created_by_user_id]
+        foreign_keys=[created_by_user_id],
+        lazy="selectin"
     )
 
     # Assigned To User: fk
@@ -62,20 +63,6 @@ class Ticket(Base):
     assigned_to_user: Mapped[List["User"]] = relationship(
         secondary="users_to_tickets"
     )
-    # -----OLD-----
-    # Assigned To User: fk
-    # - table fk field mapped to {users.id}
-    # - backpopulates field {tickets_created}
-    # - assigned_to_user_id exists on db
-    # - assigned_to_user is the logical field
-    # assigned_to_user_id = mapped_column(
-    #     Integer, ForeignKey("users.id"), nullable=True
-    # )
-    # assigned_to_user = relationship(
-    #     "User", uselist=False,
-    #     foreign_keys=[assigned_to_user_id]
-    # )
-    # ------------
 
     # Priority: fk
     # - table fk field mapped to {priority_levels.id}
@@ -87,7 +74,7 @@ class Ticket(Base):
         Integer, ForeignKey("priority_levels.id")
     )
     r_priority = relationship(
-        "PriorityLevel", uselist=False
+        "PriorityLevel", uselist=False, lazy="selectin"
     )
     priority = association_proxy("r_priority", "desc")
     
@@ -101,7 +88,7 @@ class Ticket(Base):
         Integer, ForeignKey("ticket_types.id")
     )
     r_ticket_type = relationship(
-        "TicketType", uselist=False
+        "TicketType", uselist=False, lazy="selectin"
     )
     ticket_type = association_proxy(
         "r_ticket_type", "desc"
@@ -126,7 +113,7 @@ class Ticket(Base):
         Integer, ForeignKey("ticket_statuses.id")
     )
     r_status = relationship(
-        "TicketStatus", uselist=False
+        "TicketStatus", uselist=False, lazy="selectin"
     )
     status = association_proxy(
         "r_status", "desc"
@@ -141,3 +128,14 @@ users_to_tickets = Table(
     Column("ticket_id", ForeignKey("tickets.id")),
     Column("user_id", ForeignKey("users.id"))
 )
+
+def serialize(self):
+        return {
+                "title": self.title,
+                "description": self.description,
+                "created by": self.created_by_user.display_name,
+                "priority": self.priority,
+                "ticket type": self.ticket_type,
+                "estimated_time": self.estimated_time,
+                "status": self.status
+            }

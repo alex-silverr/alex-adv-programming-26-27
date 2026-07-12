@@ -27,7 +27,7 @@ class Event(Base):
         Integer, ForeignKey("users.id")
     )
     created_by = relationship(
-        "User", uselist=False
+        "User", uselist=False, lazy="selectin"
     )
     
     # Ticket: fk
@@ -40,7 +40,7 @@ class Event(Base):
         Integer, ForeignKey("tickets.id")
     )
     ticket = relationship(
-        "Ticket", back_populates="history"
+        "Ticket", back_populates="history", lazy="selectin"
     )
 
     # Created On: datetime, date on creation
@@ -58,7 +58,7 @@ class Event(Base):
         Integer, ForeignKey("event_types.id")
     )
     r_event_type = relationship(
-        "EventType", uselist=False
+        "EventType", uselist=False, lazy="selectin"
     )
     event_type = association_proxy(
         "r_event_type", "desc"
@@ -69,3 +69,12 @@ class Event(Base):
     description = mapped_column(Text, nullable=True)
     
     # Edits can be registered in description honestly
+
+    def serialize(self):
+        return {
+                "created on": self.created_on,
+                "created by": self.created_by.display_name,
+                "ticket": self.ticket.title,
+                "event type": self.event_type,
+                "description": self.description
+            }
