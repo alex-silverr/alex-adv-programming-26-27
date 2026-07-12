@@ -225,6 +225,30 @@ class MakeEventType(Resource):
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
         return redirect("/evtype")
+    
+class EditEventType(Resource):
+    def put(self, index=None):
+        """
+        Barebones API: UPDATE
+        Changes content of a thing
+        """
+        try:
+            index = int(index)
+            thingv = request.json.get("thing")
+            if not thingv:
+                app.logger.error("No update value for instance given")
+                return make_response(render_template("error_placeholder.html"))
+            else:
+                with Session(dbeng) as session:
+                    thing = session.get(
+                        EventType, index
+                    )
+                    thing.desc = thingv
+                    session.commit()
+                return redirect("/things")
+        except Exception as e:
+            app.logger.error(e)
+            return make_response(render_template("error_placeholder.html"))
 
 # -------------------------
 #  Edited Field Make
