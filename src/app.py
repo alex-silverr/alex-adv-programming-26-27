@@ -250,6 +250,7 @@ class MakeEditedField(Resource):
             return make_response(render_template("error_placeholder.html"))
         return redirect("/edfield")
     
+class EditEditedFields(Resource):
     def put(self, index=None):
         """
         Barebones API: UPDATE
@@ -297,6 +298,7 @@ class MakeUserRole(Resource):
             return make_response(render_template("error_placeholder.html"))
         return redirect("/urole")
     
+class EditUserRole(Resource):
     def put(self, index=None):
         """
         Barebones API: UPDATE
@@ -331,6 +333,9 @@ api.add_resource(MakeTicketStatus, "/tstatus", methods=['GET', 'POST'])
 api.add_resource(MakeEventType, "/evtype", methods=['GET', 'POST'])
 api.add_resource(MakeEditedField, "/edfield", methods=['GET', 'POST'])
 api.add_resource(MakeUserRole, "/urole", methods=['GET', 'POST'])
+api.add_resource(MakeEditedField, "/eedfield/<int:index>", methods=['PUT'])
+api.add_resource(MakeUserRole, "/eurole/<int:index>", methods=['PUT'])
+
 
 
 if __name__ == "__main__":
