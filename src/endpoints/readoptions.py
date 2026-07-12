@@ -12,6 +12,7 @@ from ..models.options import (PriorityLevel, TicketType,
                               EditedField, TicketStatus, 
                               UserRole, EventType)
 from ..settings import SQLALCHEMY_DATABASE_URL
+
 # ------------------------
 # Priority Level
 # ------------------------
