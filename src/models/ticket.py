@@ -119,17 +119,7 @@ class Ticket(Base):
         "r_status", "desc"
     )
 
-    # In retrospect I don't like the sub/supertickets idea
-
-# aux table for users assigned to a ticket
-users_to_tickets = Table(
-    "users_to_tickets",
-    Base.metadata,
-    Column("ticket_id", ForeignKey("tickets.id")),
-    Column("user_id", ForeignKey("users.id"))
-)
-
-def serialize(self):
+    def serialize(self):
         return {
                 "title": self.title,
                 "description": self.description,
@@ -139,3 +129,11 @@ def serialize(self):
                 "estimated_time": self.estimated_time,
                 "status": self.status
             }
+
+# aux table for users assigned to a ticket
+users_to_tickets = Table(
+    "users_to_tickets",
+    Base.metadata,
+    Column("ticket_id", ForeignKey("tickets.id")),
+    Column("user_id", ForeignKey("users.id"))
+)
