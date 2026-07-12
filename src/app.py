@@ -357,6 +357,7 @@ api.add_resource(MakeTicketStatus, "/tstatus", methods=['GET', 'POST'])
 api.add_resource(MakeEventType, "/evtype", methods=['GET', 'POST'])
 api.add_resource(MakeEditedField, "/edfield", methods=['GET', 'POST'])
 api.add_resource(MakeUserRole, "/urole", methods=['GET', 'POST'])
+api.add_resource(EditEventType, "/eevtype/<int:index>", methods=['PUT'])
 api.add_resource(EditEditedFields, "/eedfield/<int:index>", methods=['PUT'])
 api.add_resource(EditUserRole, "/eurole/<int:index>", methods=['PUT'])
 
