@@ -30,7 +30,7 @@ class ManageTickets(Resource):
             return jsonify(tickets)
         
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
     
     def post(self):
@@ -64,7 +64,7 @@ class ManageTickets(Resource):
             return redirect("/tickets")
 
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
 
 class ManageTicket(Resource):
@@ -86,7 +86,7 @@ class ManageTicket(Resource):
             return jsonify(ticket)
         
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
         
     def patch(self, id):
@@ -120,7 +120,7 @@ class ManageTicket(Resource):
             return redirect("/tickets")
 
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
 
     def delete(self, id):
@@ -138,5 +138,5 @@ class ManageTicket(Resource):
                 session.commit()
             return redirect ("/things")
         except Exception as e:
-            current_app.logger(e)
+            current_app.logger.error(e)
             return redirect("/oops")
