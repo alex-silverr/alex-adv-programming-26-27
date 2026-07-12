@@ -16,8 +16,10 @@
 - [x] Set up database persistence
 - [x] Make db user and password safe
 - [x] Design ticket objects
-- [ ] Create persistent tabless
-- [ ] Change barebones API to use ticket objects instead
+- [x] Create persistent tables
+- [ ] Create basic CRUD API for Ticket, Event and User
+- [ ] Create basic READ API for option tables
+- [ ] Create extra entrypoints for Ticket, Event and User
 - [ ] Organize and separate files for better visibility
 - [ ] OPTIONAL: create frontend
 	- Angular?????
@@ -32,8 +34,6 @@
 - [ ] READ: Search by filter
 - [ ] READ: Get by ID
 - [ ] UPDATE: Edit info (Title, Description, Priority)
-- [ ] UPDATE: Add Subtasks << start without
-- [ ] UPDATE: Assign to task group << start without
 - [ ] UPDATE: Add history item
 - [ ] UPDATE: Assign to user
 - [ ] UPDATE: Change estimated time
@@ -91,13 +91,11 @@
 - Description
 - History -- *Event, list of*
 - Created by -- *User, one*
-- Assigned to -- *User, list of* << start with one
+- Assigned to -- *User, list of*
 - Priority -- *Priority Level, one*
 - Ticket Type -- *Ticket Type, one*
 - Estimated time
 - Status -- *Ticket Status, one*
-- Subtasks -- *Ticket, list of* << start without
-- Task group -- *Ticket, one* << start without
 
 ### Event
 - ID (auto generated)
@@ -107,8 +105,6 @@
 - Event Type -- *Event Type, one*
 - Description (if type is "New history item")
 - Edited field (if type is not "New history item") -- *Edited Field, one*
-- Former value (if type is not "New history item")
-- New value (if type is not "New history item")
 
 ### Priority Level
 - ID (auto generated)

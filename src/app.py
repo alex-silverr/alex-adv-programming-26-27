@@ -3,21 +3,30 @@ from flask import (Flask, render_template, make_response,
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
-from . import models
+from .database import Base, Thing
+from .models.ticket import Ticket
+from .models.event import Event
+from .models.user import User
+from .models.options import *
 from .settings import SQLALCHEMY_DATABASE_URL
 
 app = Flask(__name__)
 api = Api(app)
 
 dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
-models.Base.metadata.create_all(dbeng)
-thing1 = models.Thing(thing="thing 1")
-thing2 = models.Thing(thing="thing 2")
-thing3 = models.Thing(thing="thing 3")
+Base.metadata.create_all(dbeng)
+# thing1 = Thing(thing="thing 1")
+# thing2 = Thing(thing="thing 2")
+# thing3 = Thing(thing="thing 3")
 
-with Session(dbeng) as session:
-    session.add_all([thing1, thing2, thing3])
-    session.commit()
+# with Session(dbeng) as session:
+#     session.add_all([thing1, thing2, thing3])
+#     session.commit()
+
+
+# -------------------------
+#  Thing and Things
+# -------------------------
 
 class Index(Resource):
     """
@@ -38,8 +47,8 @@ class Things(Resource):
         """
         with Session(dbeng) as session:
             things = session.scalars(
-                select(models.Thing)
-                .order_by(models.Thing.id)
+                select(Thing)
+                .order_by(Thing.id)
             ).all()
         return jsonify([t.serialize() for t in things])
     
@@ -51,7 +60,7 @@ class Things(Resource):
         thing = request.json.get("thing")
         if thing:
             with Session(dbeng) as session:
-                newthing = models.Thing(thing=thing)
+                newthing = Thing(thing=thing)
                 session.add(newthing)
                 session.commit()
         else:
@@ -73,7 +82,7 @@ class Thing(Resource):
             index = int(index)
             with Session(dbeng) as session:
                 thing = session.get(
-                    models.Thing, index
+                    Thing, index
                 )
             return jsonify(thing.serialize())
         except Exception as e:
@@ -94,7 +103,7 @@ class Thing(Resource):
             else:
                 with Session(dbeng) as session:
                     thing = session.get(
-                        models.Thing, index
+                        Thing, index
                     )
                     thing.thing = thingv
                     session.commit()
@@ -112,7 +121,7 @@ class Thing(Resource):
             index = int(index)
             with Session(dbeng) as session:
                 thing = session.get(
-                    models.Thing, index
+                    Thing, index
                 )
                 session.delete(thing)
                 session.commit()
@@ -120,11 +129,14 @@ class Thing(Resource):
         except Exception as e:
             app.logger.error(e)
             return make_response(render_template("error_placeholder.html"))
+        
 
 
 api.add_resource(Index, "/")
 api.add_resource(Things, "/things", methods=['GET', 'POST'])
 api.add_resource(Thing, "/thing/<int:index>", methods=['GET', 'PUT', 'DELETE'])
+
+
 
 
 if __name__ == "__main__":
