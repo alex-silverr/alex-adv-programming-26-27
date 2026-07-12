@@ -15,13 +15,13 @@ api = Api(app)
 
 dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
 Base.metadata.create_all(dbeng)
-thing1 = Thing(thing="thing 1")
-thing2 = Thing(thing="thing 2")
-thing3 = Thing(thing="thing 3")
+# thing1 = Thing(thing="thing 1")
+# thing2 = Thing(thing="thing 2")
+# thing3 = Thing(thing="thing 3")
 
-with Session(dbeng) as session:
-    session.add_all([thing1, thing2, thing3])
-    session.commit()
+# with Session(dbeng) as session:
+#     session.add_all([thing1, thing2, thing3])
+#     session.commit()
 
 
 # -------------------------
@@ -249,6 +249,29 @@ class MakeEditedField(Resource):
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
         return redirect("/edfield")
+    
+    def put(self, index=None):
+        """
+        Barebones API: UPDATE
+        Changes content of a thing
+        """
+        try:
+            index = int(index)
+            thingv = request.json.get("thing")
+            if not thingv:
+                app.logger.error("No update value for instance given")
+                return make_response(render_template("error_placeholder.html"))
+            else:
+                with Session(dbeng) as session:
+                    thing = session.get(
+                        EditedField, index
+                    )
+                    thing.desc = thingv
+                    session.commit()
+                return redirect("/things")
+        except Exception as e:
+            app.logger.error(e)
+            return make_response(render_template("error_placeholder.html"))
 
 # -------------------------
 #  User Role Make
@@ -273,6 +296,29 @@ class MakeUserRole(Resource):
             app.logger.error("No thing to add")
             return make_response(render_template("error_placeholder.html"))
         return redirect("/urole")
+    
+    def put(self, index=None):
+        """
+        Barebones API: UPDATE
+        Changes content of a thing
+        """
+        try:
+            index = int(index)
+            thingv = request.json.get("thing")
+            if not thingv:
+                app.logger.error("No update value for instance given")
+                return make_response(render_template("error_placeholder.html"))
+            else:
+                with Session(dbeng) as session:
+                    thing = session.get(
+                        UserRole, index
+                    )
+                    thing.desc = thingv
+                    session.commit()
+                return redirect("/things")
+        except Exception as e:
+            app.logger.error(e)
+            return make_response(render_template("error_placeholder.html"))
 
 
 api.add_resource(Index, "/")
