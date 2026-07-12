@@ -1,3 +1,2 @@
-from .database import dbeng, Base
+from .database import dbeng, Base, Thing
 from .settings import SQLALCHEMY_DATABASE_URL
-from .app import Thing

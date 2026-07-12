@@ -3,24 +3,18 @@ from flask import (Flask, render_template, make_response,
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
-from .database import Base, Thing, dbeng
-from .models.ticket import Ticket
-from .models.event import Event
-from .models.user import User
-from .models.options import (PriorityLevel, TicketType, TicketStatus,
-                             EventType, EditedField, UserRole)
-from .endpoints.testthing import ManageThing, ManageThings
-from .endpoints.manageticket import ManageTicket, ManageTickets
-from .endpoints.manageuser import ManageUser, ManageUsers
-from .endpoints.manageevent import ManageEvent, ManageEvents
-from .endpoints.readoptions import (PriorityReadList, PriorityReadInstance,
-                                    TicketTypeReadList, TicketTypeReadInstance,
-                                    TicketStatusReadList, TicketStatusReadInstance,
-                                    EventTypeReadList, EventTypeReadInstance,
-                                    EditedFieldReadList, EditedFieldReadInstance,
-                                    UserRoleReadList, UserRoleReadInstance)
-from .endpoints.utils import Index, ErrorLanding
-from .settings import SQLALCHEMY_DATABASE_URL
+from src import Base, dbeng
+from src.endpoints import (Index, ErrorLanding, 
+                           ManageThing, ManageThings,
+                           ManageTicket, ManageTickets,
+                           ManageUser, ManageUsers,
+                           ManageEvent, ManageEvents,
+                           PriorityReadList, PriorityReadInstance,
+                           TicketTypeReadList, TicketTypeReadInstance,
+                           TicketStatusReadList, TicketStatusReadInstance,
+                           EventTypeReadList, EventTypeReadInstance,
+                           EditedFieldReadList, EditedFieldReadInstance,
+                           UserRoleReadList, UserRoleReadInstance)
 
 app = Flask(__name__)
 api = Api(app)
