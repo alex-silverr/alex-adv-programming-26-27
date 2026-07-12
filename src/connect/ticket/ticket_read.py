@@ -66,7 +66,7 @@ def searchTicket(args={}):
 
     with Session(dbeng) as session:
         tickets = session.scalars(tickets_query).all()
-    return [ticket.serialize() for ticket in tickets]
+    return tickets
 
 def getAllTickets():
     """
@@ -78,7 +78,7 @@ def getAllTickets():
             select(Ticket)
             .order_by(Ticket.id)
         ).all()
-    return [ticket.serialize() for ticket in tickets]
+    return tickets
 
 def getTicket(id=None):
     """
@@ -96,4 +96,4 @@ def getTicket(id=None):
     
     if not ticket:
         raise ValueError("Incorrect ticket identification!")
-    return ticket.serialize()
+    return ticket

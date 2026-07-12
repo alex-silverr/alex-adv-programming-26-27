@@ -11,7 +11,7 @@ def makeTicket(args={}):
 
     # Checks presence of mandatory arguments
     for arg in ["title", "user_id", "priority_id", 
-                "ticket_type_id", "status_id"]:
+                "ticket_type_id"]:
         if arg not in args:
             raise ValueError(f"Could not create ticket: {arg} argument missing.")
         
@@ -48,4 +48,4 @@ def makeTicket(args={}):
         session.add(newticket)
         session.commit()
 
-    return newticket.serialize()
+    return newticket
