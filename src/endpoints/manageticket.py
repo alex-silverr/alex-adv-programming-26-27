@@ -4,6 +4,7 @@ from flask import (Flask, render_template, make_response,
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
+from src.connect import makeTicket, getAllTickets, getTicket
 from ..database import Base, Thing, dbeng
 from ..models.ticket import Ticket
 from ..models.event import Event
@@ -22,13 +23,7 @@ class ManageTickets(Resource):
         READ all
         """
         try:
-            with Session(dbeng) as session:
-                tickets = session.scalars(
-                    select(Ticket)
-                    .order_by(Ticket.id)
-                ).all()
-            return jsonify([ticket.serialize() for ticket in tickets])
-        
+            return jsonify(getAllTickets())
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
@@ -39,30 +34,11 @@ class ManageTickets(Resource):
         CREATE new
         """
         try:
-            data = request.json
-
-            with Session(dbeng) as session:
-                newticket = Ticket(
-                    title = data.get("title"),
-                    description = data.get("description"),
-                    created_by_user = session.get(
-                        User, data.get("user_id")
-                    ),
-                    r_priority = session.get(
-                        PriorityLevel, data.get("priority_id")
-                    ),
-                    r_ticket_type = session.get(
-                        TicketType, data.get("ticket_type_id")
-                    ),
-                    estimated_time = data.get("estimated_time"),
-                    r_status = session.get(
-                        TicketStatus, data.get("status_id")
-                    )
-                )
-                session.add(newticket)
-                session.commit()
-            return redirect("/tickets")
-
+            newticket = makeTicket(request.json)
+            if newticket:
+                return redirect("/tickets")
+            else:
+                raise Exception("Ticket not created.")
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
@@ -78,13 +54,7 @@ class ManageTicket(Resource):
         READ one
         """
         try:
-            id = int(id)
-            with Session(dbeng) as session:
-                ticket = session.get(
-                    Ticket, id
-                )
-            return jsonify(ticket.serialize())
-        
+            return jsonify(getTicket(id))    
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")

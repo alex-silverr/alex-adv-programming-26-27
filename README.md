@@ -69,3 +69,5 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#many-to-many
 - https://codesignal.com/learn/courses/introduction-to-flask-basics/lessons/working-with-url-query-parameters
 - https://www.geeksforgeeks.org/python/how-to-get-specific-columns-in-sqlalchemy-with-filter/
+- https://stackoverflow.com/questions/10995172/check-if-list-of-keys-exist-in-dictionary
+- https://docs.python.org/2/library/functions.html#all
