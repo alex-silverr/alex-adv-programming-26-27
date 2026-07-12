@@ -55,5 +55,5 @@ class User(Base):
             "full name": self.full_name,
             "e-mail": self.email,
             "github": self.github,
-            "user role": self.role
+            "user role": self.role_id
         }
