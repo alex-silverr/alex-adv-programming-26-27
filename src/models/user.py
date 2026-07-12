@@ -56,6 +56,6 @@ class User(Base):
                 "full name": self.full_name,
                 "e-mail": self.email,
                 "github": self.github,
-                "user role": self.r_role
+                "user role": self.role
             }
         return j
