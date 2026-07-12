@@ -45,7 +45,7 @@ class User(Base):
         Integer, ForeignKey("user_roles.id")
     )
     r_role = relationship(
-        "UserRole", uselist=False
+        "UserRole", uselist=False, lazy="selectin"
     )
     role = association_proxy("r_role", "desc")
 
