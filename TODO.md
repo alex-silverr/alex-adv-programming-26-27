@@ -29,15 +29,15 @@
 
 ## Endpoints
 ### Ticket
-- [ ] CREATE: Create new
-- [ ] READ: Read all
-- [ ] READ: Search by filter
-- [ ] READ: Get by ID
-- [ ] UPDATE: Edit info (Title, Description, Priority)
+- [x] CREATE: Create new
+- [x] READ: Read all
+- [x] READ: Search by filter
+- [x] READ: Get by ID
+- [x] UPDATE: Edit info (Title, Description, Priority)
 - [ ] UPDATE: Add history item
 - [ ] UPDATE: Assign to user
-- [ ] UPDATE: Change estimated time
-- [ ] UPDATE: Change status ("DELETE": Removed status)
+- [x] UPDATE: Change estimated time
+- [x] UPDATE: Change status ("DELETE": Removed status)
 
 ### Event
 - [ ] CREATE: Create new history item

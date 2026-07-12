@@ -1,8 +1,7 @@
 import logging
-from flask import (Flask, render_template, make_response, 
-                   request, redirect, jsonify, current_app)
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine, select
+from flask import redirect, jsonify, current_app
+from flask_restful import Resource
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src.models import (PriorityLevel, TicketType, 
                         EditedField, TicketStatus, 

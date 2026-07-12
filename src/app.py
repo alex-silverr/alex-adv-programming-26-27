@@ -23,6 +23,14 @@ api.add_resource(UpdateTicketAssignUser, "/tickets/add-user/<int:id>", methods=[
 api.add_resource(UpdateTicketEstimatedTime, "/tickets/change-time/<int:id>", methods=['POST'])
 api.add_resource(UpdateTicketChangeStatus, "/tickets/change-status/<int:id>", methods=['POST'])
 
+# User Endpoints
+api.add_resource(CreateUser, "/users/new", methods=['POST'])
+api.add_resource(ReadUserList, "/users", methods=['GET'])
+api.add_resource(ReadUserInstance, "/users/<int:id>", methods=['GET'])
+api.add_resource(UpdateUserInfo, "/users/change-info/<int:id>", methods=['POST'])
+api.add_resource(DeleteUser, "/users/delete/<int:id>", methods=['POST'])
+
+# Event Endpoints
 
 # Basic/Management CRUD endpoints for Ticket objects
 api.add_resource(ManageTickets, "/manage-tickets", methods=['GET', 'POST'])

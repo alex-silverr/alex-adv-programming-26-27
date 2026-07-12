@@ -12,4 +12,6 @@ from .ticket import (CreateTicket, ReadTicketList, ReadTicketInstance,
                      UpdateTicketUpdateInfo, UpdateTicketAddHistoryEvent,
                      UpdateTicketAssignUser, UpdateTicketEstimatedTime,
                      UpdateTicketChangeStatus)
+from .user import (CreateUser, ReadUserList, ReadUserInstance,
+                   UpdateUserInfo, DeleteUser)
 from .utils import Index, ErrorLanding
