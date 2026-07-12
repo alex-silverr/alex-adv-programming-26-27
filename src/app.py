@@ -35,7 +35,7 @@ class Index(Resource):
     def get(self):
         return make_response(render_template("home.html"))
     
-class Things(Resource):
+class ManageThings(Resource):
     """
     Barebones API: list resource
     """
@@ -68,7 +68,7 @@ class Things(Resource):
             return make_response(render_template("error_placeholder.html"))
         return redirect("/things")
     
-class Thing(Resource):
+class ManageThing(Resource):
     """
     Barebones API: instance resource
     """
@@ -133,8 +133,8 @@ class Thing(Resource):
 
 
 api.add_resource(Index, "/")
-api.add_resource(Things, "/things", methods=['GET', 'POST'])
-api.add_resource(Thing, "/thing/<int:index>", methods=['GET', 'PUT', 'DELETE'])
+api.add_resource(ManageThings, "/things", methods=['GET', 'POST'])
+api.add_resource(ManageThing, "/thing/<int:index>", methods=['GET', 'PUT', 'DELETE'])
 
 
 
