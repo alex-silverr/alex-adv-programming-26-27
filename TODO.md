@@ -18,7 +18,7 @@
 - [x] Design ticket objects
 - [x] Create persistent tables
 - [x] Create basic CRUD API for Ticket, Event and User
-- [ ] Create basic READ API for option tables
+- [x] Create basic READ API for option tables
 - [ ] Create extra entrypoints for Ticket, Event and User
 - [ ] Organize and separate files for better visibility
 - [ ] OPTIONAL: create frontend
@@ -60,28 +60,28 @@
 - [ ] DELETE: Delete user by ID
 
 ### Priority Level
-- [ ] READ: Read all
-- [ ] READ: Get by ID
+- [x] READ: Read all
+- [x] READ: Get by ID
 
 ### Ticket Type
-- [ ] READ: Read all
-- [ ] READ: Get by ID
+- [x] READ: Read all
+- [x] READ: Get by ID
 
 ### Ticket Status
-- [ ] READ: Read all
-- [ ] READ: Get by ID
+- [x] READ: Read all
+- [x] READ: Get by ID
 
 ### Event Type
-- [ ] READ: Read all
-- [ ] READ: Get by ID
+- [x] READ: Read all
+- [x] READ: Get by ID
 
 ### Edited Field
-- [ ] READ: Read all
-- [ ] READ: Get by ID
+- [x] READ: Read all
+- [x] READ: Get by ID
 
 ### User Role
-- [ ] READ: Read all
-- [ ] READ: Get by ID
+- [x] READ: Read all
+- [x] READ: Get by ID
 
 ## Design
 ### Ticket
