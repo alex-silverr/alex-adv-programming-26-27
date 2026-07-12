@@ -8,5 +8,8 @@ from .readoptions import (PriorityReadList, PriorityReadInstance,
                                     EventTypeReadList, EventTypeReadInstance,
                                     EditedFieldReadList, EditedFieldReadInstance,
                                     UserRoleReadList, UserRoleReadInstance)
-from .ticket import (MakeTicket, ReadTicketList, ReadTicketInstance)
+from .ticket import (CreateTicket, ReadTicketList, ReadTicketInstance,
+                     UpdateTicketUpdateInfo, UpdateTicketAddHistoryEvent,
+                     UpdateTicketAssignUser, UpdateTicketEstimatedTime,
+                     UpdateTicketChangeStatus)
 from .utils import Index, ErrorLanding

@@ -6,17 +6,8 @@ from src.connect import (makeTicket, searchTicket, getTicket,
                          assignToUserTicket, updateEstimatedTimeTicket,
                          changeStatusTicket)
 
-# CREATE: Create new - OK
-# READ: Read all - OK
-# READ: Search by filter - OK
-# READ: Get by ID - OK
-# UPDATE: Edit info (Title, Description, Priority) - TODO
-# UPDATE: Add history item - TODO
-# UPDATE: Assign to user - TODO
-# UPDATE: Change estimated time - TODO
-# UPDATE: Change status ("DELETE": Removed status) - TODO
 
-class MakeTicket(Resource):
+class CreateTicket(Resource):
     """
     Ticket CREATE:
     Create new ticket
@@ -63,8 +54,16 @@ class UpdateTicketUpdateInfo(Resource):
     Ticket UPDATE:
     Change general Ticket information
     """
-    def patch(self, id):
-        pass
+    def post(self, id):
+        try:
+            ticket = updateInfoTicket(id, request.json)
+            if ticket:
+                return redirect("/tickets")
+            else:
+                raise Exception("Ticket not returned correctly.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class UpdateTicketAddHistoryEvent(Resource):
     """
@@ -72,7 +71,15 @@ class UpdateTicketAddHistoryEvent(Resource):
     Add Event to Ticket history
     """
     def post(self, id):
-        pass
+        try:
+            ticket = addHistoryTicket(id, request.json)
+            if ticket:
+                return redirect("/tickets")
+            else:
+                raise Exception("Ticket not returned correctly.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class UpdateTicketAssignUser(Resource):
     """
@@ -80,20 +87,44 @@ class UpdateTicketAssignUser(Resource):
     Assign User to Ticket
     """
     def post(self, id):
-        pass
+        try:
+            ticket = assignToUserTicket(id, request.json)
+            if ticket:
+                return redirect("/tickets")
+            else:
+                raise Exception("Ticket not returned correctly.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class UpdateTicketEstimatedTime(Resource):
     """
     Ticket UPDATE:
     Change Ticket estimated time
     """
-    def patch(self, id):
-        pass
+    def post(self, id):
+        try:
+            ticket = updateEstimatedTimeTicket(id, request.json)
+            if ticket:
+                return redirect("/tickets")
+            else:
+                raise Exception("Ticket not returned correctly.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class UpdateTicketChangeStatus(Resource):
     """
     Ticket UPDATE:
     Chang Ticket status
     """
-    def patch(self, id):
-        pass
+    def post(self, id):
+        try:
+            ticket = changeStatusTicket(id, request.json)
+            if ticket:
+                return redirect("/tickets")
+            else:
+                raise Exception("Ticket not returned correctly.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")

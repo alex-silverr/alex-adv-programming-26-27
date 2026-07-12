@@ -1,20 +1,7 @@
-from flask import (Flask, render_template, make_response, 
-                   request, redirect, jsonify)
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine, select
-from sqlalchemy.orm import Session
+from flask import (Flask)
+from flask_restful import Api
 from src import Base, dbeng
-from src.endpoints import (Index, ErrorLanding, 
-                           ManageThing, ManageThings,
-                           ManageTicket, ManageTickets,
-                           ManageUser, ManageUsers,
-                           ManageEvent, ManageEvents,
-                           PriorityReadList, PriorityReadInstance,
-                           TicketTypeReadList, TicketTypeReadInstance,
-                           TicketStatusReadList, TicketStatusReadInstance,
-                           EventTypeReadList, EventTypeReadInstance,
-                           EditedFieldReadList, EditedFieldReadInstance,
-                           UserRoleReadList, UserRoleReadInstance)
+from src.endpoints import *
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,17 +13,28 @@ Base.metadata.create_all(dbeng)
 api.add_resource(Index, "/")
 api.add_resource(ErrorLanding, "/oops")
 
-# Basic CRUD endpoints for Ticket objects
-api.add_resource(ManageTickets, "/tickets", methods=['GET', 'POST'])
-api.add_resource(ManageTicket, "/ticket/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+# Ticket Endpoints
+api.add_resource(CreateTicket, "/tickets/new", methods=['POST'])
+api.add_resource(ReadTicketList, "/tickets", methods=['GET'])
+api.add_resource(ReadTicketInstance, "/tickets/<int:id>", methods=['GET'])
+api.add_resource(UpdateTicketUpdateInfo, "/tickets/change-info/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketAddHistoryEvent, "/tickets/add-history/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketAssignUser, "/tickets/add-user/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketEstimatedTime, "/tickets/change-time/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketChangeStatus, "/tickets/change-status/<int:id>", methods=['POST'])
 
-# Basic CRUD endpoints for User objects
-api.add_resource(ManageUsers, "/users", methods=['GET', 'POST'])
-api.add_resource(ManageUser, "/user/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
 
-# Basic CRUD endpoints for Event objects
-api.add_resource(ManageEvents, "/events", methods=['GET', 'POST'])
-api.add_resource(ManageEvent, "/event/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+# Basic/Management CRUD endpoints for Ticket objects
+api.add_resource(ManageTickets, "/manage-tickets", methods=['GET', 'POST'])
+api.add_resource(ManageTicket, "/manage-ticket/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+
+# Basic/Management CRUD endpoints for User objects
+api.add_resource(ManageUsers, "/manage-users", methods=['GET', 'POST'])
+api.add_resource(ManageUser, "/manage-user/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+
+# Basic/Management CRUD endpoints for Event objects
+api.add_resource(ManageEvents, "/manage-events", methods=['GET', 'POST'])
+api.add_resource(ManageEvent, "/manage-event/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
 
 # READ endpoints for options
 api.add_resource(PriorityReadList, "/priority", methods=['GET'])
