@@ -27,7 +27,7 @@ class ManageTickets(Resource):
                     select(Ticket)
                     .order_by(Ticket.id)
                 ).all()
-            return jsonify(tickets)
+            return jsonify([ticket.serialize() for ticket in tickets])
         
         except Exception as e:
             current_app.logger.error(e)
@@ -83,7 +83,7 @@ class ManageTicket(Resource):
                 ticket = session.get(
                     Ticket, id
                 )
-            return jsonify(ticket)
+            return jsonify(ticket.serialize())
         
         except Exception as e:
             current_app.logger.error(e)
