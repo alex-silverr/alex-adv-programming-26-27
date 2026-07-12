@@ -4,9 +4,9 @@ from sqlalchemy import (Integer, String, DateTime, Text,
                         ForeignKey, Table, Column, func)
 from sqlalchemy.orm import (DeclarativeBase, Mapped, 
                             mapped_column, relationship,
-                            MappedAsDataclass)
+                            MappedAsDataclass, Session)
 from sqlalchemy.ext.associationproxy import association_proxy
-from ..database import Base
+from ..database import Base, dbeng
 
 class User(Base):
     """
@@ -50,10 +50,12 @@ class User(Base):
     role = association_proxy("r_role", "desc")
 
     def serialize(self):
-        return {
-            "display name": self.display_name,
-            "full name": self.full_name,
-            "e-mail": self.email,
-            "github": self.github,
-            "user role": self.role_id
-        }
+        with Session(dbeng) as session:
+            j = {
+                "display name": self.display_name,
+                "full name": self.full_name,
+                "e-mail": self.email,
+                "github": self.github,
+                "user role": self.role
+            }
+        return j
