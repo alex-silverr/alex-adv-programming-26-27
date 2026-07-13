@@ -8,6 +8,7 @@ def makeUser(args={}):
     User CREATE - aux:
     Creates a new User from passed arguments
     """
+    current_app.logger.debug(args)
 
     # Checks presence of mandatory arguments
     for arg in ["display_name", "full_name", "email",
@@ -22,8 +23,9 @@ def makeUser(args={}):
     with Session(dbeng) as session:
         # Fetching relationed objects and checking validity
 
-        current_app.logger.debug("ping")
         role = session.get(UserRole, args.get("role_id"))
+        current_app.logger.debug("ping")
+
         if not role: raise ValueError("Could not create user: invalid user role")
 
         # Create user
