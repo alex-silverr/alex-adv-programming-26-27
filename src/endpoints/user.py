@@ -1,7 +1,7 @@
 import logging
 from flask import (request, redirect, jsonify, current_app)
 from flask_restful import Resource
-from src.connect import (makeUser, searchUser, getUser)
+from src.connect import (makeUser, searchUser, getUser, updateInfoTicket)
 
 class CreateUser(Resource):
     """
@@ -53,8 +53,11 @@ class UpdateUserInfo(Resource):
     """
     def post(self, id):
         try:
-            # TODO
-            pass
+            user = updateInfoTicket(id, request.json)
+            if user:
+                return redirect("/users")
+            else:
+                raise Exception("User not returned correctly")
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")

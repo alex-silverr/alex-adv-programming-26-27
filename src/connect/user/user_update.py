@@ -1,0 +1,25 @@
+from sqlalchemy.orm import Session
+from src import dbeng
+from src.connect import getUser
+from src.models import UserRole 
+
+def updateInfoTicket(id, args={}):
+    """
+    User UPDATE - aux:
+    Update User info: display name, full name, e-mail, github, role
+    """
+    id = int(id)
+    user = getUser(id)
+
+    with Session(dbeng) as session:
+        if "display_name" in args: user.display_name = args.get("display_name")
+        if "full_name" in args: user.full_name = args.get("full_name")
+        if "email" in args: user.email = args.get("email")
+        if "github" in args: user.github = args.get("github")
+        if "role_id" in args:
+            role = session.get(UserRole, args.get("role_id"))
+            if not role: raise ValueError("Could not update user: invalid role")
+            role.r_role = role
+
+        session.commit()
+    return user

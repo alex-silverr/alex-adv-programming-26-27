@@ -5,7 +5,7 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from src.models import User, UserRole
-from src.connect import (makeUser, getAllUsers, getUser)
+from src.connect import (makeUser, getAllUsers, getUser, updateInfoTicket)
 from src import dbeng
 
 class ManageUsers(Resource):
@@ -66,21 +66,11 @@ class ManageUser(Resource):
         UPDATE one
         """
         try:
-            id = int(id)
-            data = request.json
-            with Session(dbeng) as session:
-                user = session.get(
-                    User, id
-                )
-                if "display_name" in data: user.display_name = data.get("display_name")
-                if "full_name" in data: user.full_name = data.get("full_name")
-                if "email" in data: user.email = data.get("email")
-                if "github" in data: user.github = data.get("github")
-                if "role_id" in data: user.r_role = session.get(
-                    UserRole, data.get("role_id")
-                )
-                session.commit()
-            return redirect("/users")
+            user = updateInfoTicket(id, request.json)
+            if user:
+                return redirect("/users")
+            else:
+                raise Exception("User not returned correctly")
 
         except Exception as e:
             current_app.logger.error(e)
