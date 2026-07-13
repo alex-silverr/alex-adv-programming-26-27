@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-from flask import current_app
 from src import dbeng
 from src.models import User, UserRole
 
@@ -8,7 +7,6 @@ def makeUser(args={}):
     User CREATE - aux:
     Creates a new User from passed arguments
     """
-    current_app.logger.debug(args)
 
     # Checks presence of mandatory arguments
     for arg in ["display_name", "full_name", "email",
@@ -24,23 +22,7 @@ def makeUser(args={}):
         # Fetching relationed objects and checking validity
 
         role = session.get(UserRole, args.get("role_id"))
-        current_app.logger.debug("ping")
-
         if not role: raise ValueError("Could not create user: invalid user role")
-
-        current_app.logger.debug(args)
-        current_app.logger.debug(role.serialize())
-
-        # DEBUG
-        newuser = User(
-            display_name = "display name",
-            full_name = "full name",
-            email = "email",
-            github = "github",
-            role = role
-        )
-        # DEBUG
-        current_app.logger.debug("pong")
 
         # Create user
         newuser = User(
@@ -50,7 +32,6 @@ def makeUser(args={}):
             github = args.get("github"),
             role = role
         )
-        # current_app.logger.debug(newuser)
         session.add(newuser)
         session.commit()
     
