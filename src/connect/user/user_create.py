@@ -10,7 +10,7 @@ def makeUser(args={}):
 
     # Checks presence of mandatory arguments
     for arg in ["display_name", "full_name", "email",
-                "github", "role_id"]:
+                "role_id"]:
         if arg not in args:
             raise ValueError(f"Could not create user: {arg} missing")
         
