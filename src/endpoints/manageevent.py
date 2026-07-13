@@ -6,7 +6,8 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src import dbeng
 # from src.models import Ticket, Event, User, EventType
-from src.connect import getEvent, getAllEvents
+from src.connect import (getEvent, getAllEvents, makeEvent, 
+                         hardDeleteEvent)
 
 class ManageEvents(Resource):
     """
@@ -32,25 +33,11 @@ class ManageEvents(Resource):
         CREATE new
         """
         try:
-            data = request.json
-
-            with Session(dbeng) as session:
-                newevent = Event(
-                    created_by = session.get(
-                        User, data.get("user_id")
-                    ),
-                    ticket = session.get(
-                        Ticket, data.get("ticket_id")
-                    ),
-                    r_event_type = session.get(
-                        EventType, data.get("event_type_id")
-                    ),
-                    description = data.get("description"),
-                )
-                session.add(newevent)
-                session.commit()
-            return redirect("/events")
-
+            newevent = makeEvent(request.json)
+            if newevent:
+                return redirect("/events")
+            else:
+                raise Exception("Event not created.")
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
@@ -107,14 +94,10 @@ class ManageEvent(Resource):
         DELETE one
         """
         try:
-            id = int(id)
-            with Session(dbeng) as session:
-                event = session.get(
-                    Event, id
-                )
-                session.delete(event)
-                session.commit()
-            return redirect ("/events")
+            if hardDeleteEvent(id):
+                return redirect ("/events")
+            else:
+                raise Exception("Event not deleted correctly.")
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
