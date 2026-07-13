@@ -40,8 +40,9 @@
 - [x] READ: Search by filter
 - [x] READ: Get by ID
 - [x] UPDATE: Edit info (Title, Description, Priority)
-- [ ] UPDATE: Add history item
-- [ ] UPDATE: Assign to user
+- [x] UPDATE: Add history item
+- [x] UPDATE: Assign to user
+- [ ] UPDTATE: remove assigned user
 - [x] UPDATE: Change estimated time
 - [x] UPDATE: Change status ("DELETE": Removed status)
 
@@ -162,3 +163,20 @@
 	- Owner
 	- QA
 	- Tester
+
+## Testing Checklist
+- [x] Ticket - create new ticket
+- [ ] Ticket - search tickets
+- [ ] Ticket - get specific ticket
+- [ ] Ticket - edit ticket's basic information
+- [ ] Ticket - assign ticket to user
+- [ ] Ticket - change estimated time
+- [ ] Ticket - change ticket status
+- [x] User - create new user
+- [ ] User - search users
+- [ ] User - get specific user
+- [ ] User - update user information 
+- [ ] User - remove user
+- [ ] Event - make new "history item" event
+- [ ] Event - search events
+- [ ] Event - get specific event
