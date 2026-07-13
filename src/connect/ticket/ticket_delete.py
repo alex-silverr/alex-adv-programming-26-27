@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import getTicket
+import src.connect as ct
 
 def hardDeleteTicket(id):
     """
@@ -9,7 +9,7 @@ def hardDeleteTicket(id):
     WARNING: should not be used in normal circumstances
     """
     id = int(id)
-    ticket = getTicket(id)
+    ticket = ct.getTicket(id)
 
     with Session(dbeng) as session:
         session.delete(ticket)

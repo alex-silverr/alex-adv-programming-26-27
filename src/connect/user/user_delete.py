@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import getTicket
+import src.connect as ct
 
 def deleteUser(id):
     """
@@ -8,7 +8,7 @@ def deleteUser(id):
     Removes an user
     """
     id = int(id)
-    user = getTicket(id)
+    user = ct.getTicket(id)
 
     with Session(dbeng) as session:
         session.delete(user)

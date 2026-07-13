@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import getUser
+import src.connect as ct
 from src.models import (Event, EventType, User, Ticket, TicketStatus) 
 
 def makeEvent(args={}):
@@ -26,7 +26,7 @@ def makeEvent(args={}):
 
             case "User Assigned":
                 args["description"] = f"Ticket assigned to {
-                    getUser(args.get("assign_user_id")).display_name
+                    ct.getUser(args.get("assign_user_id")).display_name
                 }"
 
             case "Estimated Duration Changed":

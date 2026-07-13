@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import getEvent
+import src.connect as ct
 
 def hardDeleteEvent(id):
     """
@@ -10,7 +10,7 @@ def hardDeleteEvent(id):
     WARNING: should not be used in normal circumstances
     """
     id = int(id)
-    event = getEvent(id)
+    event = ct.getEvent(id)
 
     with Session(dbeng) as session:
         session.delete(event)

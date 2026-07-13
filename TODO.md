@@ -20,7 +20,7 @@
 - [x] Create basic CRUD API for Ticket, Event and User
 - [x] Create basic READ API for option tables
 - [x] Create extra entrypoints for Ticket, Event and User
-- [ ] Fix things left on TODO like list relationships
+- [x] Fix things left on TODO like list relationships
 - [ ] Separate option functions in connection and endpoint
 - [ ] Test every endpoint
 - [ ] Create checks for options

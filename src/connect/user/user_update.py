@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import getUser
+import src.connect as ct
 from src.models import UserRole 
 
 def updateInfoTicket(id, args={}):
@@ -9,7 +9,7 @@ def updateInfoTicket(id, args={}):
     Update User info: display name, full name, e-mail, github, role
     """
     id = int(id)
-    user = getUser(id)
+    user = ct.getUser(id)
 
     with Session(dbeng) as session:
         if "display_name" in args: user.display_name = args.get("display_name")

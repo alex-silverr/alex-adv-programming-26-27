@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import getTicket, getUser
+import src.connect as ct
 from src.models import (User, PriorityLevel,
                     TicketType, TicketStatus) 
 
@@ -10,7 +10,7 @@ def updateInfoTicket(id, args={}):
     Update Ticket info: title, description or priority
     """
     id = int(id)
-    ticket = getTicket(id)
+    ticket = ct.getTicket(id)
 
     with Session(dbeng) as session:
         if "title" in args: ticket.title = args.get("title")
@@ -37,9 +37,9 @@ def assignToUserTicket(id, args={}):
     Assign User to Ticket
     """
     id = int(id)
-    ticket = getTicket(id)
+    ticket = ct.getTicket(id)
     if "assign_user_id" in args:
-        user = getUser(args.get("assign_user_id"))
+        user = ct.getUser(args.get("assign_user_id"))
     else:
         raise ValueError("User to assign ticket to not given")
     
@@ -54,7 +54,7 @@ def updateEstimatedTimeTicket(id, args={}):
     Change Ticket's estimated time to completion
     """
     id = int(id)
-    ticket = getTicket(id)
+    ticket = ct.getTicket(id)
 
     with Session(dbeng) as session:
         if "estimated_time" in args: ticket.estimated_time = args.get("estimated_time")
@@ -67,7 +67,7 @@ def changeStatusTicket(id, args={}):
     Change Ticket status
     """
     id = int(id)
-    ticket = getTicket(id)
+    ticket = ct.getTicket(id)
 
     with Session(dbeng) as session:
         if "status_id" in args:
@@ -83,7 +83,7 @@ def generalUpdateTicket(id, args={}):
     Management/general Ticket update function
     """
     id = int(id)
-    ticket = getTicket(id)
+    ticket = ct.getTicket(id)
 
 
     with Session(dbeng) as session:

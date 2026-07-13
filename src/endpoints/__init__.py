@@ -8,7 +8,7 @@ from .readoptions import (PriorityReadList, PriorityReadInstance,
                                     EventTypeReadList, EventTypeReadInstance,
                                     UserRoleReadList, UserRoleReadInstance)
 from .ticket import (CreateTicket, ReadTicketList, ReadTicketInstance,
-                     UpdateTicketUpdateInfo, UpdateTicketAddHistoryEvent,
+                     UpdateTicketUpdateInfo, 
                      UpdateTicketAssignUser, UpdateTicketEstimatedTime,
                      UpdateTicketChangeStatus)
 from .user import (CreateUser, ReadUserList, ReadUserInstance,
