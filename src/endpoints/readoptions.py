@@ -3,8 +3,7 @@ from flask import redirect, jsonify, current_app
 from flask_restful import Resource
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from src.models import (PriorityLevel, TicketType, 
-                        EditedField, TicketStatus, 
+from src.models import (PriorityLevel, TicketType, TicketStatus, 
                         UserRole, EventType)
 from src import dbeng
 
@@ -156,42 +155,6 @@ class EventTypeReadInstance(Resource):
             current_app.logger.error(e)
             return redirect("/oops")
 
-# ------------------------
-# Edited Field
-# ------------------------
-class EditedFieldReadList(Resource):
-    """
-    READ API
-    MODEL: Edited Fields List
-    """
-    def get(self):
-        try:
-            with Session(dbeng) as session:
-                options = session.scalars(
-                    select(EditedField)
-                    .order_by(EditedField.id)
-                ).all()
-            return jsonify([option.serialize() for option in options])
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-class EditedFieldReadInstance(Resource):
-    """
-    READ API
-    MODEL: Edited Fields Instance
-    """
-    def get(self, id):
-        try:
-            id = int(id)
-            with Session(dbeng) as session:
-                option = session.get(
-                    EditedField, id
-                )
-            return jsonify(option.serialize())
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
 
 # ------------------------
 # User Role

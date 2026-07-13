@@ -56,8 +56,6 @@ api.add_resource(TicketStatusReadList, "/ticket-status", methods=['GET'])
 api.add_resource(TicketStatusReadInstance, "/ticket-status/<int:id>", methods=['GET'])
 api.add_resource(EventTypeReadList, "/event-type", methods=['GET'])
 api.add_resource(EventTypeReadInstance, "/event-type/<int:id>", methods=['GET'])
-api.add_resource(EditedFieldReadList, "/edited-field", methods=['GET'])
-api.add_resource(EditedFieldReadInstance, "/edited-field/<int:id>", methods=['GET'])
 api.add_resource(UserRoleReadList, "/role", methods=['GET'])
 api.add_resource(UserRoleReadInstance, "/role/<int:id>", methods=['GET'])
 

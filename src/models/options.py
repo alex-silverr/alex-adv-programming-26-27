@@ -97,28 +97,6 @@ class EventType(Base):
         return {"Event Type" : self.desc}
 
 # -------------------------
-#  Edited Field
-# -------------------------
-class EditedField(Base):
-    """
-    MODEL: EditedField
-    TABLE: edited_fields
-    """
-    __tablename__ = "edited_fields"
-
-    # ID: int, pk, auto generated
-    id = mapped_column(Integer, primary_key=True)
-
-    # Desc: str(200)
-    desc = mapped_column(String(200))
-
-    def serialize(self):
-        """
-        Creates readable text
-        """
-        return {"Edited Field" : self.desc}
-
-# -------------------------
 #  User Role
 # -------------------------
 class UserRole(Base):

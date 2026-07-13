@@ -78,10 +78,6 @@
 - [x] READ: Read all
 - [x] READ: Get by ID
 
-### Edited Field
-- [x] READ: Read all
-- [x] READ: Get by ID
-
 ### User Role
 - [x] READ: Read all
 - [x] READ: Get by ID
@@ -107,7 +103,6 @@
 - Date of (date)
 - Event Type -- *Event Type, one*
 - Description (if type is "New history item")
-- Edited field (if type is not "New history item") -- *Edited Field, one*
 
 ### Priority Level
 - ID (auto generated)
@@ -146,16 +141,6 @@
 	- Change estimated time
 	- Change Status
 	- New history item
-
-### Edited Field
-- ID (auto generated)
-- Description:
-	- Title
-	- Description
-	- Priority
-	- Assigned to
-	- Estimated time
-	- Status
 
 ### User
 - ID (auto generated)
