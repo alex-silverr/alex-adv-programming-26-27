@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from src import dbeng
 # from src.models import Ticket, Event, User, EventType
 from src.connect import (getEvent, getAllEvents, makeEvent, 
-                         hardDeleteEvent)
+                         hardDeleteEvent, updateInfoEvent)
 
 class ManageEvents(Resource):
     """
@@ -65,24 +65,11 @@ class ManageEvent(Resource):
         UPDATE one
         """
         try:
-            id = int(id)
-            data = request.json
-            with Session(dbeng) as session:
-                event = session.get(
-                    Event, id
-                )
-                if "user_id" in data: event.created_by = session.get(
-                    User, data.get("user_id")
-                )
-                if "ticket_id" in data: event.ticket = session.get(
-                    Ticket, data.get("ticket_id")
-                )
-                if "event_type_id" in data: event.r_event_type = session.get(
-                    EventType, data.get("event_type_id")
-                )
-                if "description" in data: event.description = data.get("description")
-                session.commit()
-            return redirect("/events")
+            event = updateInfoEvent(id, request.json)
+            if event:
+                return redirect("/events")
+            else:
+                raise Exception("Event not returned correctly.")
 
         except Exception as e:
             current_app.logger.error(e)

@@ -10,4 +10,5 @@ from .user.user_update import updateInfoTicket
 from .user.user_delete import deleteUser
 from .event.event_create import makeEvent
 from .event.event_read import searchEvent, getAllEvents, getEvent
+from .event.event_update import updateInfoEvent
 from .event.event_delete import hardDeleteEvent
