@@ -30,7 +30,7 @@ def makeUser(args={}):
             full_name = args.get("full_name"),
             email = args.get("email"),
             github = args.get("github"),
-            role = role
+            r_role = role
         )
         session.add(newuser)
         session.commit()
