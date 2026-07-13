@@ -1,28 +1,29 @@
 import logging
 from flask import (request, redirect, jsonify, current_app)
 from flask_restful import Resource
-from src.connect import (searchEvent ,getEvent, getAllEvents)
-
-# CREATE: Create new history item
-# READ: Read all
-# READ: Search by user
-# READ: Get by ID
+from src.connect import (searchEvent ,getEvent, makeEvent)
 
 class CreateEvent(Resource):
     """
     Event CREATE:
     Create new Event
     """
-    # TODO
     def post(self):
-        pass
+        try:
+            newevent = makeEvent(request.json)
+            if newevent:
+                return redirect("/events")
+            else:
+                raise Exception("Event not created.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class ReadEventList(Resource):
     """
     Event READ:
     Search list of Events
     """
-    # TODO
     def get(self):
         try:
             return jsonify(
@@ -37,7 +38,6 @@ class ReadEventInstance(Resource):
     Event READ:
     Get Event instance
     """
-    # TODO
     def get(self, id):
         try:
             return jsonify(getEvent(id).serialize())

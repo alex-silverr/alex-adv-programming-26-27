@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import getTicket
+from src.connect import getTicket, getUser
 from src.models import (User, PriorityLevel,
                     TicketType, TicketStatus) 
 
@@ -23,21 +23,30 @@ def updateInfoTicket(id, args={}):
         session.commit()
     return ticket
 
-def addHistoryTicket(id, args={}):
-    """
-    Ticket UPDATE - aux:
-    Assign Event to Ticket history
-    """
-    # TODO
-    pass
+# if I've set up relationships properly, this is unecessary
+# def addHistoryTicket(id, args={}):
+#     """
+#     Ticket UPDATE - aux:
+#     Assign Event to Ticket history
+#     """
+#     pass
 
 def assignToUserTicket(id, args={}):
     """
     Ticket UPDATE - aux:
     Assign User to Ticket
     """
-    # TODO
-    pass
+    id = int(id)
+    ticket = getTicket(id)
+    if "assign_user_id" in args:
+        user = getUser(args.get("assign_user_id"))
+    else:
+        raise ValueError("User to assign ticket to not given")
+    
+    with Session(dbeng) as session:
+        ticket.assigned_to_user.append(user)
+        session.commit()
+    return ticket
 
 def updateEstimatedTimeTicket(id, args={}):
     """

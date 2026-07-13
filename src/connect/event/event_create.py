@@ -1,6 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src import dbeng
+from src.connect import getUser
 from src.models import (Event, EventType, User, Ticket, TicketStatus) 
 
 def makeEvent(args={}):
@@ -21,11 +22,12 @@ def makeEvent(args={}):
     if not args.get("description"):
         match args.get("event_type"):
             case "Ticket Detail Changed":
-                args["description"] = f"Ticket details edited."
+                args["description"] = f"Ticket details edited"
 
-            # TODO:
-            # case "User Assigned":
-            #     args["description"] =
+            case "User Assigned":
+                args["description"] = f"Ticket assigned to {
+                    getUser(args.get("assign_user_id")).display_name
+                }"
 
             case "Estimated Duration Changed":
                 args["description"] = f"Estimated duration changed to {

@@ -1,7 +1,7 @@
 from sqlalchemy import select, desc
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.models import Ticket
+from src.models import Ticket, User
 
 # CREATE: Create new
 #  UPDATE: Edit info (Title, Description, Priority)
@@ -41,7 +41,13 @@ def searchTicket(args={}):
             Ticket.created_by_user.id == args.get("created_by")
         )
     
-    # TODO: assigned_to
+    # Search by assigned to user
+    if "assigned_to" in args:
+        tickets_query = tickets_query.where(
+            Ticket.assigned_to_user.any(
+                User.display_name == args.get("assigned_to")
+            )
+        )
 
     # Search by priority level
     if "priority" in args:
