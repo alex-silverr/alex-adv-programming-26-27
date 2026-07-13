@@ -6,6 +6,23 @@ from sqlalchemy.orm import Session
 from src.models import (PriorityLevel, TicketType, TicketStatus, 
                         UserRole, EventType)
 from src import dbeng
+from src.connect import (optionGetAll, optionGetById,
+                        optionGetByDesc, optionDelete,
+                        optionCreateIfNotExist)
+
+# ------------------------
+# Temp generic option
+# ------------------------ 
+class OptionReadList(Resource):
+    def get(self, table):
+        try:
+            return jsonify(
+                [option.serialize() for option in optionGetAll(table)]
+            )
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
+
 
 # ------------------------
 # Priority Level

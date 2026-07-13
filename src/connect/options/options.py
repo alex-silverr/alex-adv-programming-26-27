@@ -31,25 +31,47 @@ def optionGetById(table, id):
     Aux Options - 
     Get option by id
     """
-    pass
+    with Session(dbeng) as session:
+        option = session.get(
+            option_tables[table], id
+        )
+    return option
 
 def optionGetByDesc(table, desc):
     """
     Aux Options - 
     Get option by description
     """
-    pass
+    with Session(dbeng) as session:
+        option = session.scalars(
+            select(option_tables[table])
+            .where(
+                option_tables[table].desc == desc
+            ).order_by(
+                option_tables[table].id
+            )).first()
+    return option
 
 def optionCreateIfNotExist(table, desc):
     """
     Aux Options - 
     Create option if it doesn't exist
     """
-    pass
+    if not optionGetByDesc(table, desc):
+        with Session(dbeng) as session:
+            newoption = option_tables[table](desc=desc)
+            session.add(newoption)
+            session.commit()
+        return newoption
+    return True
 
-def optionDelete(table, desc):
+def optionDelete(table, id):
     """
     Aux Options - 
     Delete option
     """
-    pass
+    option = optionGetById(table, id)
+    with Session(dbeng) as session:
+        session.delete(option)
+        session.commit()
+    return True

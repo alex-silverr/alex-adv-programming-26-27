@@ -6,7 +6,8 @@ from .readoptions import (PriorityReadList, PriorityReadInstance,
                                     TicketTypeReadList, TicketTypeReadInstance,
                                     TicketStatusReadList, TicketStatusReadInstance,
                                     EventTypeReadList, EventTypeReadInstance,
-                                    UserRoleReadList, UserRoleReadInstance)
+                                    UserRoleReadList, UserRoleReadInstance,
+                                    OptionReadList)
 from .ticket import (CreateTicket, ReadTicketList, ReadTicketInstance,
                      UpdateTicketUpdateInfo, 
                      UpdateTicketAssignUser, UpdateTicketEstimatedTime,

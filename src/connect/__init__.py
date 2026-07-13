@@ -12,3 +12,6 @@ from .event.event_create import makeEvent
 from .event.event_read import searchEvent, getAllEvents, getEvent
 from .event.event_update import updateInfoEvent
 from .event.event_delete import hardDeleteEvent
+from .options.options import (optionGetAll, optionGetById,
+                              optionGetByDesc, optionDelete,
+                              optionCreateIfNotExist)
