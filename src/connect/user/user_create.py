@@ -29,6 +29,18 @@ def makeUser(args={}):
         if not role: raise ValueError("Could not create user: invalid user role")
 
         current_app.logger.debug(args)
+        current_app.logger.debug(role.serialize())
+
+        # DEBUG
+        newuser = User(
+            display_name = "display name",
+            full_name = "full name",
+            email = "email",
+            github = "github",
+            role = role
+        )
+        # DEBUG
+        current_app.logger.debug("pong")
 
         # Create user
         newuser = User(
