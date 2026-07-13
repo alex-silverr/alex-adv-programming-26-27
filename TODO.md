@@ -45,14 +45,14 @@
 - [x] UPDATE: Change status ("DELETE": Removed status)
 
 ### Event
-- [ ] CREATE: Create new history item
-- [ ] CREATE: Create from editing info (Title, Description, Priority)
-- [ ] CREATE: Create from assign to user
-- [ ] CREATE: Create from change estimated time
-- [ ] CREATE: Create from change status
-- [ ] READ: Read all
-- [ ] READ: Search by user
-- [ ] READ: Get by ID
+- [x] CREATE: Create new history item
+- [x] CREATE: Create from editing info (Title, Description, Priority)
+- [x] CREATE: Create from assign to user
+- [x] CREATE: Create from change estimated time
+- [x] CREATE: Create from change status
+- [x] READ: Read all
+- [x] READ: Search by user
+- [x] READ: Get by ID
 
 ### User
 - [x] CREATE: Create new
