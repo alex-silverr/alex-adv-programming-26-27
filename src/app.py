@@ -28,7 +28,7 @@ api.add_resource(CreateUser, "/users/new", methods=['POST'])
 api.add_resource(ReadUserList, "/users", methods=['GET'])
 api.add_resource(ReadUserInstance, "/users/<int:id>", methods=['GET'])
 api.add_resource(UpdateUserInfo, "/users/change-info/<int:id>", methods=['POST'])
-api.add_resource(DeleteUser, "/users/delete/<int:id>", methods=['POST'])
+api.add_resource(DeleteUser, "/users/delete/<int:id>", methods=['DELETE'])
 
 # Event Endpoints
 api.add_resource(CreateEvent, "/event/new", methods=['POST'])
