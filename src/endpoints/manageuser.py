@@ -5,6 +5,7 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from src.models import User, UserRole
+from src.connect import (makeUser, getAllUsers, getUser)
 from src import dbeng
 
 class ManageUsers(Resource):
@@ -18,12 +19,9 @@ class ManageUsers(Resource):
         READ all
         """
         try:
-            with Session(dbeng) as session:
-                users = session.scalars(
-                    select(User)
-                    .order_by(User.id)
-                ).all()
-            return jsonify([user.serialize() for user in users])
+            return jsonify(
+                [user.serialize() for user in getAllUsers()]
+            )
         
         except Exception as e:
             current_app.logger.error(e)
@@ -35,21 +33,11 @@ class ManageUsers(Resource):
         CREATE new
         """
         try:
-            data = request.json
-
-            with Session(dbeng) as session:
-                newuser = User(
-                    display_name = data.get("display_name"),
-                    full_name = data.get("full_name"),
-                    email = data.get("email"),
-                    github = data.get("github"),
-                    r_role = session.get(
-                        UserRole, data.get("role_id")
-                    )
-                )
-                session.add(newuser)
-                session.commit()
-            return redirect("/users")
+            newuser = makeUser(request.json)
+            if newuser:
+                return redirect("/users")
+            else:
+                raise Exception("User not created.")
 
         except Exception as e:
             current_app.logger.error(e)
@@ -66,12 +54,7 @@ class ManageUser(Resource):
         READ one
         """
         try:
-            id = int(id)
-            with Session(dbeng) as session:
-                user = session.get(
-                    User, id
-                )
-            return jsonify(user.serialize())
+            return jsonify(getUser(id).serialize())
         
         except Exception as e:
             current_app.logger.error(e)

@@ -13,7 +13,7 @@ def makeTicket(args={}):
     for arg in ["title", "user_id", "priority_id", 
                 "ticket_type_id"]:
         if arg not in args:
-            raise ValueError(f"Could not create ticket: {arg} argument missing.")
+            raise ValueError(f"Could not create ticket: {arg} missing.")
         
     # Fills for optoional arguments
     if not args.get("description"): args["description"] = ""

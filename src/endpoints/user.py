@@ -1,29 +1,73 @@
 import logging
 from flask import (request, redirect, jsonify, current_app)
 from flask_restful import Resource
-# from src.connect import () TODO
+from src.connect import (makeUser, searchUser, getUser)
 
 class CreateUser(Resource):
-    # TODO
+    """
+    User CREATE:
+    Create new User
+    """
     def post(self):
-        pass
+        try:
+            newuser = makeUser(request.json)
+            if newuser:
+                return redirect("/users")
+            else:
+                raise Exception("User not created.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class ReadUserList(Resource):
-    # TODO
+    """
+    User READ:
+    Search list of Users
+    """
     def get(self):
-        pass
+        try:
+            return jsonify(
+                [user.serialize() for user in searchUser(request.args)]
+            )
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
+
 
 class ReadUserInstance(Resource):
-    # TODO
+    """
+    User READ:
+    Get User instance
+    """
     def get(self, id):
-        pass
+        try:
+            return jsonify(getUser(id).serialize())
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class UpdateUserInfo(Resource):
-    # TODO
+    """
+    User UPDATE:
+    Change general User information
+    """
     def post(self, id):
-        pass
+        try:
+            # TODO
+            pass
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class DeleteUser(Resource):
-    # TODO
+    """
+    User DELETE:
+    Removes an User
+    """
     def post(self, id):
-        pass
+        try:
+            # TODO
+            pass
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
