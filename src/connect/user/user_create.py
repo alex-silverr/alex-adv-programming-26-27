@@ -32,7 +32,7 @@ def makeUser(args={}):
             github = args.get("github"),
             role = role
         )
-        current_app.logger.debug(newuser)
+        # current_app.logger.debug(newuser)
         session.add(newuser)
         session.commit()
     
