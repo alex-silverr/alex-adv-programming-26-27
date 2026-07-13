@@ -37,9 +37,9 @@ def makeTicket(args={}):
         newticket = Ticket(
             title = args.get("title"),
             description = args.get("description"),
-            # TODO: history?
+            history = [],
             created_by_user = user,
-            # TODO: assigned to?
+            assigned_to_user = [],
             r_priority = priority,
             r_ticket_type = ticket_type,
             estimated_time = args.get("estimated_time"),
