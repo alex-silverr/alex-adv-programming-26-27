@@ -15,6 +15,8 @@ def makeUser(args={}):
         if arg not in args:
             raise ValueError(f"Could not create user: {arg} missing")
         
+    current_app.logger.debug("ping")
+        
     # Fills for optional arguments
     if not args.get("github"): args["github"] = ""
 

@@ -11,7 +11,6 @@ class CreateUser(Resource):
     """
     def post(self):
         try:
-            current_app.logger.debug("ping")
             newuser = makeUser(request.json)
             if newuser:
                 return redirect("/users")
