@@ -15,7 +15,6 @@ def makeUser(args={}):
         if arg not in args:
             raise ValueError(f"Could not create user: {arg} missing")
         
-    current_app.logger.debug("ping")
         
     # Fills for optional arguments
     if not args.get("github"): args["github"] = ""
@@ -23,6 +22,7 @@ def makeUser(args={}):
     with Session(dbeng) as session:
         # Fetching relationed objects and checking validity
 
+        current_app.logger.debug("ping")
         role = session.get(UserRole, args.get("role_id"))
         if not role: raise ValueError("Could not create user: invalid user role")
 
