@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from flask import current_app
 from src import dbeng
 from src.models import User, UserRole
 
@@ -31,6 +32,7 @@ def makeUser(args={}):
             github = args.get("github"),
             role = role
         )
+        current_app.logger.debug(newuser)
         session.add(newuser)
         session.commit()
     
