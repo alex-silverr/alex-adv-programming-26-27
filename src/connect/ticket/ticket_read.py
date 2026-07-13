@@ -97,7 +97,7 @@ def getTicket(id=None):
     id = int(id)
     with Session(dbeng) as session:
         ticket = session.get(
-            Ticket, id
+            "Ticket", id
         )
     
     if not ticket:
