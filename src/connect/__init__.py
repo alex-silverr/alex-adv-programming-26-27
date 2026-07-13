@@ -8,3 +8,4 @@ from .user.user_create import makeUser
 from .user.user_read import searchUser, getAllUsers, getUser
 from .user.user_update import updateInfoTicket
 from .user.user_delete import deleteUser
+from .event.event_read import searchEvent, getAllEvents, getEvent

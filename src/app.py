@@ -31,6 +31,9 @@ api.add_resource(UpdateUserInfo, "/users/change-info/<int:id>", methods=['POST']
 api.add_resource(DeleteUser, "/users/delete/<int:id>", methods=['POST'])
 
 # Event Endpoints
+api.add_resource(CreateEvent, "/event/new", methods=['POST'])
+api.add_resource(ReadEventList, "/event", methods=['GET'])
+api.add_resource(ReadEventInstance, "/event/<int:id>", methods=['GET'])
 
 # Basic/Management CRUD endpoints for Ticket objects
 api.add_resource(ManageTickets, "/manage-tickets", methods=['GET', 'POST'])

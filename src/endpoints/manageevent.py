@@ -5,7 +5,8 @@ from flask_restful import Resource
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.models import Ticket, Event, User, EventType
+# from src.models import Ticket, Event, User, EventType
+from src.connect import getEvent, getAllEvents
 
 class ManageEvents(Resource):
     """
@@ -18,13 +19,9 @@ class ManageEvents(Resource):
         READ all
         """
         try:
-            with Session(dbeng) as session:
-                events = session.scalars(
-                    select(Event)
-                    .order_by(Event.id)
-                ).all()
-            return jsonify([event.serialize() for event in events])
-        
+            return jsonify(
+                [event.serialize() for event in getAllEvents()]
+            )
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
@@ -69,12 +66,7 @@ class ManageEvent(Resource):
         READ one
         """
         try:
-            id = int(id)
-            with Session(dbeng) as session:
-                event = session.get(
-                    Event, id
-                )
-            return jsonify(event.serialize())
+            return jsonify(getEvent(id).serialize())
         
         except Exception as e:
             current_app.logger.error(e)

@@ -38,7 +38,7 @@ def searchTicket(args={}):
     # Search by created by user
     if "created_by" in args:
         tickets_query = tickets_query.where(
-            Ticket.created_by_user_id == args.get("created_by")
+            Ticket.created_by_user.id == args.get("created_by")
         )
     
     # TODO: assigned_to

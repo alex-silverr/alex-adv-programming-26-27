@@ -20,7 +20,12 @@
 - [x] Create basic CRUD API for Ticket, Event and User
 - [x] Create basic READ API for option tables
 - [ ] Create extra entrypoints for Ticket, Event and User
+- [ ] Fix things left on TODO like list relationships
+- [ ] Test every endpoint
+- [ ] Create checks for options
 - [ ] Organize and separate files for better visibility
+- [ ] Remove test remnants
+- [ ] Write better README documentation
 - [ ] OPTIONAL: create frontend
 	- Angular?????
 	- Honestly I don't know. TODO: look into that when I get to it
@@ -42,8 +47,6 @@
 ### Event
 - [ ] CREATE: Create new history item
 - [ ] CREATE: Create from editing info (Title, Description, Priority)
-- [ ] CREATE: Create from adding subtask
-- [ ] CREATE: Create from adding to group task
 - [ ] CREATE: Create from assign to user
 - [ ] CREATE: Create from change estimated time
 - [ ] CREATE: Create from change status
