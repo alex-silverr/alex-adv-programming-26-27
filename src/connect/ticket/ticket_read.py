@@ -45,7 +45,7 @@ def searchTicket(args={}):
     if "assigned_to" in args:
         tickets_query = tickets_query.where(
             Ticket.assigned_to_user.any(
-                User.display_name == args.get("assigned_to")
+                User.id == args.get("assigned_to")
             )
         )
 
