@@ -1,7 +1,8 @@
 import logging
 from flask import (request, redirect, jsonify, current_app)
 from flask_restful import Resource
-from src.connect import (makeUser, searchUser, getUser, updateInfoTicket)
+from src.connect import (makeUser, searchUser, getUser, 
+                         updateInfoTicket, deleteUser)
 
 class CreateUser(Resource):
     """
@@ -69,8 +70,10 @@ class DeleteUser(Resource):
     """
     def post(self, id):
         try:
-            # TODO
-            pass
+            if deleteUser(id):
+                return redirect("/users")
+            else:
+                raise Exception("User not deleted correctly.")
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")

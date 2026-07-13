@@ -57,7 +57,7 @@
 - [x] READ: Search by filter
 - [x] READ: Get by ID
 - [x] UPDATE: Edit info (Display name, Full name, E-mail, GitHub, Role)
-- [ ] DELETE: Delete user by ID
+- [x] DELETE: Delete user by ID
 
 ### Priority Level
 - [x] READ: Read all

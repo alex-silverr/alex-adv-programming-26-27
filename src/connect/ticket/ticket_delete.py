@@ -1,8 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
 from src.connect import getTicket
-from src.models import (User, PriorityLevel,
-                    TicketType, TicketStatus) 
 
 def hardDeleteTicket(id):
     """

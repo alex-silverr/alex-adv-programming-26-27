@@ -76,7 +76,7 @@ class ManageTicket(Resource):
         """
         try:
             if hardDeleteTicket(id):
-                return redirect ("/things")
+                return redirect ("/tickets")
             else:
                 raise Exception("Ticket not deleted correctly.")
         except Exception as e:
