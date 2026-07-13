@@ -18,6 +18,26 @@ class CreateEvent(Resource):
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
+        
+class CreateHistoryEvent(Resource):
+    """
+    Event CREATE:
+    Create new Event
+    """
+    def post(self):
+        try:
+            newevent = makeEvent(
+                request.json | { 
+                    "event_type": "History Entry Added"
+                }
+            )
+            if newevent:
+                return redirect("/events")
+            else:
+                raise Exception("Event not created.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
 
 class ReadEventList(Resource):
     """
