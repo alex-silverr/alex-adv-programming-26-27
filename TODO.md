@@ -19,8 +19,9 @@
 - [x] Create persistent tables
 - [x] Create basic CRUD API for Ticket, Event and User
 - [x] Create basic READ API for option tables
-- [ ] Create extra entrypoints for Ticket, Event and User
+- [x] Create extra entrypoints for Ticket, Event and User
 - [ ] Fix things left on TODO like list relationships
+- [ ] Separate option functions in connection and endpoint
 - [ ] Test every endpoint
 - [ ] Create checks for options
 - [ ] Organize and separate files for better visibility
