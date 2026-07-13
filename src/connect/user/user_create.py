@@ -28,6 +28,8 @@ def makeUser(args={}):
 
         if not role: raise ValueError("Could not create user: invalid user role")
 
+        current_app.logger.debug(args)
+
         # Create user
         newuser = User(
             display_name = args.get("display_name"),
