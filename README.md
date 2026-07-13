@@ -71,3 +71,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://www.geeksforgeeks.org/python/how-to-get-specific-columns-in-sqlalchemy-with-filter/
 - https://stackoverflow.com/questions/10995172/check-if-list-of-keys-exist-in-dictionary
 - https://docs.python.org/2/library/functions.html#all
+- https://docs.python.org/3.10/whatsnew/3.10.html#pep-634-structural-pattern-matching

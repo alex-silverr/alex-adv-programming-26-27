@@ -21,7 +21,6 @@ def updateInfoTicket(id, args={}):
             ticket.r_priority = priority
 
         session.commit()
-        # TODO: Create event
     return ticket
 
 def addHistoryTicket(id, args={}):
@@ -51,7 +50,6 @@ def updateEstimatedTimeTicket(id, args={}):
     with Session(dbeng) as session:
         if "estimated_time" in args: ticket.estimated_time = args.get("estimated_time")
         session.commit()
-        # TODO: Create event
     return ticket
 
 def changeStatusTicket(id, args={}):
@@ -68,7 +66,6 @@ def changeStatusTicket(id, args={}):
             if not status: raise ValueError("Could not update ticket: invalid status.")
             ticket.r_status = status
         session.commit()
-        # TODO: Create event
     return ticket
 
 def generalUpdateTicket(id, args={}):

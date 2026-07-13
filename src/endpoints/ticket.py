@@ -4,7 +4,7 @@ from flask_restful import Resource
 from src.connect import (makeTicket, searchTicket, getTicket,
                          updateInfoTicket, addHistoryTicket,
                          assignToUserTicket, updateEstimatedTimeTicket,
-                         changeStatusTicket)
+                         changeStatusTicket, makeEvent)
 
 
 class CreateTicket(Resource):
@@ -58,6 +58,10 @@ class UpdateTicketUpdateInfo(Resource):
         try:
             ticket = updateInfoTicket(id, request.json)
             if ticket:
+                makeEvent(request.json | {
+                    "ticket_id": ticket.id,
+                    "event_type": "Ticket Detail Changed"
+                })
                 return redirect("/tickets")
             else:
                 raise Exception("Ticket not returned correctly.")
@@ -74,6 +78,10 @@ class UpdateTicketAddHistoryEvent(Resource):
         try:
             ticket = addHistoryTicket(id, request.json)
             if ticket:
+                makeEvent(request.json | {
+                    'ticket_id': ticket.id,
+                    "event_type": "History Entry Added"
+                })
                 return redirect("/tickets")
             else:
                 raise Exception("Ticket not returned correctly.")
@@ -90,6 +98,10 @@ class UpdateTicketAssignUser(Resource):
         try:
             ticket = assignToUserTicket(id, request.json)
             if ticket:
+                makeEvent(request.json | {
+                    'ticket_id': ticket.id,
+                    'event_type': 'User Assigned'
+                })
                 return redirect("/tickets")
             else:
                 raise Exception("Ticket not returned correctly.")
@@ -106,6 +118,10 @@ class UpdateTicketEstimatedTime(Resource):
         try:
             ticket = updateEstimatedTimeTicket(id, request.json)
             if ticket:
+                makeEvent(request.json | {
+                    'ticket_id': ticket.id,
+                    'event_type': 'Estimated Duration Changed'
+                })
                 return redirect("/tickets")
             else:
                 raise Exception("Ticket not returned correctly.")
@@ -122,6 +138,10 @@ class UpdateTicketChangeStatus(Resource):
         try:
             ticket = changeStatusTicket(id, request.json)
             if ticket:
+                makeEvent(request.json | {
+                    'ticket_id': ticket.id,
+                    'event_type': 'Status Changed'
+                })
                 return redirect("/tickets")
             else:
                 raise Exception("Ticket not returned correctly.")

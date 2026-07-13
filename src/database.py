@@ -7,7 +7,7 @@ from sqlalchemy.orm import (DeclarativeBase, Mapped,
                             mapped_column, relationship,
                             MappedAsDataclass)
 from sqlalchemy.ext.associationproxy import association_proxy
-from .settings import SQLALCHEMY_DATABASE_URL
+from src.settings import SQLALCHEMY_DATABASE_URL
 
 # -------------------------------
 # Base from https://docs.sqlalchemy.org/en/20/orm/quickstart.html
