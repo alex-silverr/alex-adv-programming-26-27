@@ -68,7 +68,7 @@ class DeleteUser(Resource):
     User DELETE:
     Removes an User
     """
-    def post(self, id):
+    def delete(self, id):
         try:
             if deleteUser(id):
                 return redirect("/users")
