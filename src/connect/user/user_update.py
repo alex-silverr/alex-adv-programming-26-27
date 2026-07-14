@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from src import dbeng
 import src.connect as ct
 
-def updateInfoTicket(id, args={}):
+def updateInfoUser(id, args={}):
     """
     User UPDATE - aux:
     Update User info: display name, full name, e-mail, github, role

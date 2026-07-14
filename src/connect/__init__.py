@@ -6,7 +6,7 @@ from .ticket.ticket_update import (generalUpdateTicket, updateInfoTicket,
 from .ticket.ticket_delete import hardDeleteTicket
 from .user.user_create import makeUser
 from .user.user_read import searchUser, getAllUsers, getUser
-from .user.user_update import updateInfoTicket
+from .user.user_update import updateInfoUser
 from .user.user_delete import deleteUser
 from .event.event_create import makeEvent
 from .event.event_read import searchEvent, getAllEvents, getEvent
