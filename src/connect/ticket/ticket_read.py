@@ -46,7 +46,8 @@ def searchTicket(args={}):
     # Search by priority level
     if "priority" in args:
         tickets_query = tickets_query.where(
-            Ticket.priority.id == args.get("priority")
+            Ticket.priority.has(id==args.get("priority"))
+            # Ticket.priority.id == args.get("priority")
         )
 
     # Search by ticket type
