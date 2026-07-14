@@ -21,11 +21,11 @@
 - [x] Create basic READ API for option tables
 - [x] Create extra entrypoints for Ticket, Event and User
 - [x] Fix things left on TODO like list relationships
-- [ ] Separate option functions in connection and endpoint
+- [x] Separate option functions in connection and endpoint
 - [ ] Test every endpoint
-- [ ] Create checks for options
-- [ ] Organize and separate files for better visibility
-- [ ] Remove test remnants
+- [x] Create checks for options
+- [x] Organize and separate files for better visibility
+- [x] Remove test remnants
 - [ ] Write better README documentation
 - [ ] OPTIONAL: create frontend
 	- Angular?????

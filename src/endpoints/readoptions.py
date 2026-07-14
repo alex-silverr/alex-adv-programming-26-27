@@ -7,9 +7,6 @@ from src import dbeng
 from src.connect import (optionGetAll, optionGetById,
                         optionDelete, optionCreateIfNotExist)
 
-# ------------------------
-# Temp generic option
-# ------------------------ 
 class OptionReadList(Resource):
     """
     LIST OPTIONS API
