@@ -70,7 +70,7 @@ class Event(Base):
     def serialize(self):
         return {
                 "created on": self.created_on,
-                "created by": self.created_by.display_name,
+                "created by": self.created_by.display_name or None,
                 "ticket": self.ticket.title,
                 "event type": self.event_type,
                 "description": self.description

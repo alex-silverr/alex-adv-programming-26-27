@@ -61,8 +61,8 @@ def makeEvent(args={}):
     with Session(dbeng) as session:
         newevent = Event(
             description = args.get("description"),
-            created_by = user,
-            # ticket = ticket,
+            # created_by = user,
+            ticket = ticket,
             r_event_type = event_type
         )
         # session.expunge(user)
@@ -74,7 +74,7 @@ def makeEvent(args={}):
         session.expunge_all()
 
     with Session(dbeng) as session:
-        newevent.ticket = ticket
+        newevent.user = user
         session.commit()
 
     return newevent
