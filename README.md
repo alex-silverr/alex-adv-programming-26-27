@@ -75,3 +75,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://stackoverflow.com/questions/41176006/how-to-do-a-sqlalchemy-query-using-a-string-variable-as-table-name
 - https://stackoverflow.com/questions/8561470/sqlalchemy-filtering-by-relationship-attribute
 - https://stackoverflow.com/questions/48601123/sqlalchemy-exc-invalidrequesterror-cant-attach-instance-another-instance-with
+- https://stackoverflow.com/questions/73879213/instance-is-not-bound-to-a-session
