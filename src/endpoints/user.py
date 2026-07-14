@@ -2,7 +2,7 @@ import logging
 from flask import (request, redirect, jsonify, current_app)
 from flask_restful import Resource
 from src.connect import (makeUser, searchUser, getUser, 
-                         updateInfoTicket, deleteUser)
+                         updateInfoUser, deleteUser)
 
 class CreateUser(Resource):
     """
@@ -54,7 +54,7 @@ class UpdateUserInfo(Resource):
     """
     def post(self, id):
         try:
-            user = updateInfoTicket(id, request.json)
+            user = updateInfoUser(id, request.json)
             if user:
                 return redirect("/users")
             else:
