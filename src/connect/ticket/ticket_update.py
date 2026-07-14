@@ -36,17 +36,29 @@ def assignToUserTicket(id, args={}):
     Ticket UPDATE - aux:
     Assign User to Ticket
     """
+    current_app.logger.debug("ping")
     id = int(id)
     ticket = ct.getTicket(id)
+
+    current_app.logger.debug("pong")
+    current_app.logger.debug(ticket)
+
     if "assign_user_id" in args:
+        current_app.logger.debug("bing")
         user = ct.getUser(args.get("assign_user_id"))
+        current_app.logger.debug("bong")
+        current_app.logger.debug(user)
     else:
         raise ValueError("User to assign ticket to not given")
     
+    current_app.logger.debug("ting")
     with Session(dbeng) as session:
+        current_app.logger.debug("tang")
         ticket.assigned_to_user.append(user)
+        current_app.logger.debug("zing")
         session.merge(ticket)
         session.commit()
+        current_app.logger.debug("zang")
     return ticket
 
 def updateEstimatedTimeTicket(id, args={}):
