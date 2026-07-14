@@ -190,9 +190,9 @@
 - [ ] User - get specific user
 - [ ] User - update user information 
 - [ ] User - remove user
-- [ ] Event - make new "history item" event
+- [x] Event - make new "history item" event
 - [ ] Event - search events
-  - [ ] Events - search all
+  - [x] Events - search all
   - [ ] Events - search by title
   - [ ] Events - search by created by
   - [ ] Events - search by priority

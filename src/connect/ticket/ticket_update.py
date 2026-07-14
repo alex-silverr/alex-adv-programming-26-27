@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from flask import current_app
 from src import dbeng
 import src.connect as ct 
 
@@ -18,6 +19,7 @@ def updateInfoTicket(id, args={}):
             if not priority: raise ValueError("Could not update ticket: invalid priority level.")
             ticket.r_priority = priority
 
+        current_app.logger.debug(ticket.serialize())
         session.commit()
     return ticket
 
