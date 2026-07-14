@@ -54,9 +54,8 @@ def removeUserAssignment(id, args={}):
     
     with Session(dbeng) as session:
         if "assign_user_id" in args:
-            user = [user for user in 
-                    ticket.assigned_to_user if
-                    user.id == args.get("assign_user_id")]
+            user = [user for user in ticket.assigned_to_user
+                    if user.id == args.get("assign_user_id")][0]
         else:
             raise ValueError("User to assign ticket to not given")
         current_app.logger.debug("ping")
