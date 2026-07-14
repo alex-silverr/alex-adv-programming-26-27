@@ -27,7 +27,7 @@ def updateInfoUser(id, args={}):
             if not role: raise ValueError("Could not update user: invalid role")
             role.r_role = role
         current_app.logger.debug("bong")
-        current_app.logget.debug(user)
+        current_app.logger.debug(user)
 
         session.merge(user)
         session.commit()
