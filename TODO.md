@@ -26,7 +26,7 @@
 - [x] Create checks for options
 - [x] Organize and separate files for better visibility
 - [x] Remove test remnants
-- [ ] Ticket remove assigned user
+- [x] Ticket remove assigned user
 - [ ] Delete ticket's events when ticket is deleted
 - [ ] better docs
 
@@ -41,7 +41,7 @@
 - [x] UPDATE: Edit info (Title, Description, Priority)
 - [x] UPDATE: Add history item
 - [x] UPDATE: Assign to user
-- [ ] UPDTATE: remove assigned user
+- [x] UPDTATE: remove assigned user
 - [x] UPDATE: Change estimated time
 - [x] UPDATE: Change status ("DELETE": Removed status)
 
