@@ -1,7 +1,7 @@
 from sqlalchemy import select, desc
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.models import User
+from src.models import User, UserRole
 
 def searchUser(args={}):
     """
@@ -25,7 +25,9 @@ def searchUser(args={}):
     # Search by role
     if "role" in args:
         users_query = users_query.where(
-            User.role == args.get("role")
+            User.r_role.has(
+                UserRole.id == args.get("role")
+            )
         )
 
     users_query = users_query.order_by(desc(User.registered_on))
