@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from flask import current_app
 from src import dbeng
+from src.models import User
 import src.connect as ct 
 
 def updateInfoTicket(id, args={}):
@@ -50,14 +51,14 @@ def removeUserAssignment(id, args={}):
     """
     id = int(id)
     ticket = ct.getTicket(id)
-
-
-    if "assign_user_id" in args:
-        user = ct.getUser(args.get("assign_user_id"))
-    else:
-        raise ValueError("User to assign ticket to not given")
     
     with Session(dbeng) as session:
+        if "assign_user_id" in args:
+            user = ticket.assigned_to_user.select(User).where(
+                User.id == args.get("assign_user_id")
+            )
+        else:
+            raise ValueError("User to assign ticket to not given")
         current_app.logger.debug("ping")
         current_app.logger.debug(ticket.assigned_to_user)
         current_app.logger.debug(user)
