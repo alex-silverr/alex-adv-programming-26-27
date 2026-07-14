@@ -59,7 +59,7 @@ class Ticket(Base):
     # - on db, only aux table exists
     # - assigned_to_user is the logical field
     assigned_to_user: Mapped[List["User"]] = relationship(
-        secondary="users_to_tickets"
+        secondary="users_to_tickets", lazy="selectin"
     )
 
     # Priority: fk
