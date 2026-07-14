@@ -165,11 +165,6 @@
 	- Tester
 
 ## Testing Checklist
-- [ ] Ticket - CRUD create
-- [ ] Ticket - CRUD read list
-- [ ] Ticket - CRUD read instance
-- [ ] Ticket - CRUD update
-- [ ] Ticket - CRUD delete
 - [x] Ticket - create new ticket
 - [ ] Ticket - search tickets
   - [x] Ticket - search all
@@ -184,24 +179,28 @@
 - [ ] Ticket - assign ticket to user
 - [ ] Ticket - change estimated time
 - [ ] Ticket - change ticket status
-- [ ] User - CRUD create
-- [ ] User - CRUD read list
-- [ ] User - CRUD read instance
-- [ ] User - CRUD update
-- [ ] User - CRUD delete
+- [ ] Ticket - CRUD update
+- [ ] Ticket - CRUD delete
 - [x] User - create new user
 - [ ] User - search users
+  - [ ] User - search all
+  - [ ] User - search by display name
+  - [ ] User - search by email
+  - [ ] User - search by role
 - [ ] User - get specific user
 - [ ] User - update user information 
 - [ ] User - remove user
-- [ ] Event - CRUD create
-- [ ] Event - CRUD read list
-- [ ] Event - CRUD read instance
-- [ ] Event - CRUD update
-- [ ] Event - CRUD delete
 - [ ] Event - make new "history item" event
 - [ ] Event - search events
+  - [ ] Events - search all
+  - [ ] Events - search by title
+  - [ ] Events - search by created by
+  - [ ] Events - search by priority
+  - [ ] Events - search by ticket type
+  - [ ] Events - search by status
 - [ ] Event - get specific event
+- [ ] Event - CRUD update
+- [ ] Event - CRUD delete
 - [ ] Options - get list
 - [ ] Options - get instance
 - [ ] Options - create
