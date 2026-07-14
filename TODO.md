@@ -178,16 +178,15 @@
 - [x] Ticket - edit ticket's basic information
 - [ ] Ticket - assign ticket to user
 - [x] Ticket - change estimated time
-- [ ] Ticket - change ticket status
-- [ ] Ticket - CRUD update
-- [ ] Ticket - CRUD delete
+- [x] Ticket - change ticket status
+- [x] Ticket - CRUD delete
 - [x] User - create new user
-- [ ] User - search users
-  - [ ] User - search all
-  - [ ] User - search by display name
-  - [ ] User - search by email
-  - [ ] User - search by role
-- [ ] User - get specific user
+- [x] User - search users
+  - [x] User - search all
+  - [x] User - search by display name
+  - [x] User - search by email
+  - [x] User - search by role
+- [x] User - get specific user
 - [ ] User - update user information 
 - [ ] User - remove user
 - [x] Event - make new "history item" event
