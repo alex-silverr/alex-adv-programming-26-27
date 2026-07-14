@@ -65,16 +65,7 @@ def makeEvent(args={}):
             ticket = ticket,
             r_event_type = event_type
         )
-        # session.expunge(user)
-
-        # current_app.logger.debug(newevent.serialize())
         session.add(newevent)
-        # session.expunge(user)
-        session.commit()
-        # session.expunge_all()
-
-    with Session(dbeng) as session:
-        newevent.user = user
         session.commit()
 
     return newevent
