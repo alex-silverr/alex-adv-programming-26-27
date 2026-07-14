@@ -8,6 +8,7 @@ def updateInfoTicket(id, args={}):
     Ticket UPDATE - aux:
     Update Ticket info: title, description or priority
     """
+    current_app.logger.debug("ping")
     id = int(id)
     ticket = ct.getTicket(id)
 

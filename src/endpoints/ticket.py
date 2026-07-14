@@ -57,6 +57,7 @@ class UpdateTicketUpdateInfo(Resource):
     def post(self, id):
         try:
             ticket = updateInfoTicket(id, request.json)
+            current_app.logger.debug(request.json)
             if ticket:
                 makeEvent(request.json | {
                     "ticket_id": ticket.id,
