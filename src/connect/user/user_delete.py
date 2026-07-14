@@ -8,7 +8,7 @@ def deleteUser(id):
     Removes an user
     """
     id = int(id)
-    user = ct.getTicket(id)
+    user = ct.getUser(id)
 
     with Session(dbeng) as session:
         session.delete(user)
