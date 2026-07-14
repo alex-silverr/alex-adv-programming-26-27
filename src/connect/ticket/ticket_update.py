@@ -60,6 +60,7 @@ def updateEstimatedTimeTicket(id, args={}):
 
     with Session(dbeng) as session:
         if "estimated_time" in args: ticket.estimated_time = args.get("estimated_time")
+        session.merge(ticket)
         session.commit()
     return ticket
 
