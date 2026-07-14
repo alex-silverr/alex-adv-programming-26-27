@@ -27,7 +27,6 @@
 - [x] Organize and separate files for better visibility
 - [x] Remove test remnants
 - [x] Ticket remove assigned user
-- [ ] Delete ticket's events when ticket is deleted
 - [ ] better docs
 
 # Database

@@ -14,9 +14,6 @@ def hardDeleteTicket(id):
 
     with Session(dbeng) as session:
         ticket.assigned_to_user = []
-        for event in ticket.history:
-            session.delete(event)
         session.delete(ticket)
-
         session.commit()
     return True
