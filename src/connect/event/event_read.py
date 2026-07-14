@@ -1,7 +1,7 @@
 from sqlalchemy import select, desc
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.models import Event
+from src.models import Event, Ticket, User
 
 def searchEvent(args={}):
     """
@@ -13,13 +13,17 @@ def searchEvent(args={}):
     # Search by ticket
     if "ticket_id" in args:
         events_query = events_query.where(
-            Event.ticket.id == args.get("ticket_id")
+            Event.ticket.has(
+                Ticket.id == args.get("ticket_id")
+            )
         )
 
     # Search by creating user
     if "created_by" in args:
         events_query = events_query.where(
-            Event.created_by.id == args.get("created_by_id")
+            Event.created_by_user.has(
+                User.id == args.get("created_by_id")
+            )
         )
 
     # Search by created after date
