@@ -189,14 +189,12 @@
 - [x] User - update user information 
 - [x] User - remove user
 - [x] Event - make new "history item" event
-- [ ] Event - search events
+- [x] Event - search events
   - [x] Events - search all
   - [x] Events - search by ticket id
-  - [ ] Events - search by created by
-- [ ] Event - get specific event
-- [ ] Event - CRUD update
-- [ ] Event - CRUD delete
-- [ ] Options - get list
-- [ ] Options - get instance
-- [ ] Options - create
-- [ ] Options - delete
+  - [x] Events - search by created by
+- [x] Event - get specific event
+- [x] Options - get list
+- [x] Options - get instance
+- [x] Options - create
+- [x] Options - delete
