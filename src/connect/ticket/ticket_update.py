@@ -37,7 +37,7 @@ def assignToUserTicket(id, args={}):
     Assign User to Ticket
     """
     id = int(id)
-    # ticket = ct.getTicket(id)
+    ticket = ct.getTicket(id)
 
 
     if "assign_user_id" in args:
@@ -46,12 +46,11 @@ def assignToUserTicket(id, args={}):
         raise ValueError("User to assign ticket to not given")
     
     with Session(dbeng) as session:
-        ticket = ct.getTicket(id)
         ticket = session.merge(ticket)
         current_app.logger.debug("tang")
         ticket.assigned_to_user.append(user)
         current_app.logger.debug("zing")
-        session.merge(ticket)
+        # session.merge(ticket)
         session.commit()
     return ticket
 
