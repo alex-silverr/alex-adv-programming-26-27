@@ -1,7 +1,7 @@
 from sqlalchemy import select, desc
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.connect import optionGetById
+import src.connect as ct
 from src.models import Ticket, User
 
 
@@ -48,7 +48,7 @@ def searchTicket(args={}):
     if "priority" in args:
         tickets_query = tickets_query.where(
             # Ticket.priority.has(id==args.get("priority"))
-            Ticket.priority == optionGetById(args.get("priority"))
+            Ticket.priority == ct.optionGetById(args.get("priority"))
         )
 
     # Search by ticket type
