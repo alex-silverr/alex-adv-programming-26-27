@@ -47,7 +47,7 @@ api.add_resource(ManageUser, "/manage-user/<int:id>", methods=['GET', 'PATCH', '
 api.add_resource(ManageEvents, "/manage-events", methods=['GET', 'POST'])
 api.add_resource(ManageEvent, "/manage-event/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
 
-# READ endpoints for options
+# Management CRUD endpoints for options
 api.add_resource(OptionReadList, "/options/<table>", methods=['GET', 'POST'])
 api.add_resource(OptionReadList, "/options/<table>/<int:id>", methods=['GET', 'DELETE'])
 
