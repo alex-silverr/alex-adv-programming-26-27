@@ -124,6 +124,7 @@ class Ticket(Base):
                 "created by": self.created_by_user.display_name,
                 "priority": self.priority,
                 "ticket type": self.ticket_type,
+                "assigned to": [u for user in self.assigned_to_user],
                 "estimated_time": self.estimated_time,
                 "status": self.status
             }
