@@ -1,8 +1,9 @@
 from sqlalchemy import select, desc
-from sqlalchemy.orm import Session, selectinload
+from sqlalchemy.orm import Session
 from src import dbeng
 import src.connect as ct
-from src.models import Ticket, User, PriorityLevel
+from src.models import (Ticket, User, PriorityLevel,
+                        TicketType, TicketStatus)
 
 from flask import current_app
 
@@ -35,7 +36,9 @@ def searchTicket(args={}):
     # Search by created by user
     if "created_by" in args:
         tickets_query = tickets_query.where(
-            Ticket.created_by_user_id == args.get("created_by")
+            Ticket.created_by_user.has(
+                User.id == args.get("created_by")
+            )
         )
     
     # Search by assigned to user
@@ -48,9 +51,6 @@ def searchTicket(args={}):
 
     # Search by priority level
     if "priority" in args:
-        # tickets_query = tickets_query.where(
-        #     Ticket.priority_id == args.get("priority")
-        # )
         tickets_query =tickets_query.where(
             Ticket.r_priority.has(
                 PriorityLevel.id == args.get("priority")
@@ -60,13 +60,17 @@ def searchTicket(args={}):
     # Search by ticket type
     if "ticket_type" in args:
         tickets_query = tickets_query.where(
-            Ticket.ticket_type.id == args.get("ticket_type")
+            Ticket.r_ticket_type.has(
+                TicketType.id == args.get("ticket_type")
+            )
         )
 
     # Search by ticket status
     if "status" in args:
         tickets_query = tickets_query.where(
-            Ticket.status.id == args.get("status")
+            Ticket.r_status.has(
+                TicketStatus.id == args.get("status")
+            )
         )
 
     
