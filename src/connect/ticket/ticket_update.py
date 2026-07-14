@@ -20,7 +20,6 @@ def updateInfoTicket(id, args={}):
             if not priority: raise ValueError("Could not update ticket: invalid priority level.")
             ticket.r_priority = priority
 
-        current_app.logger.debug(ticket.serialize())
         session.merge(ticket)
         session.commit()
     return ticket
