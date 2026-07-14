@@ -51,10 +51,6 @@ api.add_resource(ManageEvent, "/manage-event/<int:id>", methods=['GET', 'PATCH',
 api.add_resource(OptionReadList, "/options/<table>", methods=['GET', 'POST'])
 api.add_resource(OptionsReadInstance, "/options/<table>/<int:id>", methods=['GET', 'DELETE'])
 
-# Test CRUD endpoints for "Thing"
-api.add_resource(ManageThings, "/things", methods=['GET', 'POST'])
-api.add_resource(ManageThing, "/thing/<int:index>", methods=['GET', 'PUT', 'DELETE'])
-
 
 
 if __name__ == "__main__":

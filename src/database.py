@@ -19,15 +19,4 @@ class Base(DeclarativeBase):
 
 dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
 
-class Thing(Base):
-    __tablename__= "things" 
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    thing: Mapped[str] = mapped_column(String(200))
-
-    def __repr__(self):
-        return "thing " + str(self.id) + " : " + self.thing
-    
-    def serialize(self):
-        return {"thing" : self.thing}
     

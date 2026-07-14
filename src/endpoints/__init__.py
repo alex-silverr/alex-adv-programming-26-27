@@ -1,4 +1,3 @@
-from .testthing import ManageThing, ManageThings
 from .manageticket import ManageTicket, ManageTickets
 from .manageuser import ManageUser, ManageUsers
 from .manageevent import ManageEvent, ManageEvents
