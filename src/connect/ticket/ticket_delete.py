@@ -13,8 +13,8 @@ def hardDeleteTicket(id):
     ticket = ct.getTicket(id)
 
     with Session(dbeng) as session:
-        event.assigned_to_user = []
-        current_app.logger.debug(event)
+        ticket.assigned_to_user = []
+        current_app.logger.debug(event.serialize())
         current_app.logger.debug(
             ticket.history
         )

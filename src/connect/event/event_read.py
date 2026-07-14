@@ -10,12 +10,9 @@ def searchEvent(args={}):
     Searches Events with optional query arguments
     """
     events_query = select(Event)
-    current_app.logger.debug("ping")
-    current_app.logger.debug(args)
 
     # Search by ticket
     if "ticket_id" in args:
-        current_app.logger.debug("pong")
         events_query = events_query.where(
             Event.ticket.has(
                 Ticket.id == args.get("ticket_id")
