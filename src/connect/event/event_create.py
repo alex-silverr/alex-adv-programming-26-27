@@ -67,9 +67,10 @@ def makeEvent(args={}):
             r_event_type = event_type
 
         )
-        current_app.logger.debug("ping")
+
+        current_app.logger.debug(user)
+        current_app.logger.debug(newevent)
         session.add(newevent)
         session.commit()
-        current_app.logger.debug("pong")
 
     return newevent
