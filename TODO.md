@@ -1,6 +1,6 @@
 # TODO
 ## Structure:
-- [ ] CRUD API on Python container
+- [x] CRUD API on Python container
 - [x] Persistent Postgres database on container
 - [x] Postman
 - [ ] OPTIONAL: Javascript/Angular/some other sort of frontend thing if I have time
