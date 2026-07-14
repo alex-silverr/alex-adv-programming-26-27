@@ -38,7 +38,7 @@ def searchEvent(args={}):
             Event.created_on < args.get("created_end")
         )
 
-    events_query = events_query.order_by(desc(Event.registered_on))
+    events_query = events_query.order_by(desc(Event.created_on))
 
     with Session(dbeng) as session:
         events = session.scalars(events_query).all()
