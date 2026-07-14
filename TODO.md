@@ -180,3 +180,7 @@
 - [ ] Event - make new "history item" event
 - [ ] Event - search events
 - [ ] Event - get specific event
+- [ ] Options - get list
+- [ ] Options - get instance
+- [ ] Options - create
+- [ ] Options - delete
