@@ -61,7 +61,7 @@ def makeEvent(args={}):
     with Session(dbeng) as session:
         newevent = Event(
             description = args.get("description"),
-            created_by_id = user.id,
+            created_by = user,
             ticket = ticket,
             r_event_type = event_type
         )
@@ -69,6 +69,7 @@ def makeEvent(args={}):
 
         current_app.logger.debug(newevent.serialize())
         session.add(newevent)
+        session.expunge(user)
         session.commit()
 
     return newevent
