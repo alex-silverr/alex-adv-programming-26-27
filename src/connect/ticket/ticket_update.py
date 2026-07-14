@@ -51,16 +51,14 @@ def removeUserAssignment(id, args={}):
     """
     id = int(id)
     ticket = ct.getTicket(id)
+
+    if "assign_user_id" in args:
+        user = [user for user in ticket.assigned_to_user
+                if user.id == args.get("assign_user_id")][0]
+    else:
+        raise ValueError("User to assign ticket to not given")
     
     with Session(dbeng) as session:
-        if "assign_user_id" in args:
-            user = [user for user in ticket.assigned_to_user
-                    if user.id == args.get("assign_user_id")][0]
-        else:
-            raise ValueError("User to assign ticket to not given")
-        current_app.logger.debug("ping")
-        current_app.logger.debug(ticket.assigned_to_user)
-        current_app.logger.debug(user)
         ticket.assigned_to_user.remove(user)
         session.merge(ticket)
         session.commit()

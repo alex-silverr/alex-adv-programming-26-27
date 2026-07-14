@@ -25,7 +25,8 @@ startup_options ={
                    "User Assigned", 
                    "Estimated Duration Changed", 
                    "Status Changed", 
-                   "History Entry Added"],
+                   "History Entry Added",
+                   "User Removed"],
 
     "user_role": ["Developer", "Analyst", 
                   "Manager", "Designer", "Owner", 
