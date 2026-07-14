@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
+from flask import current_app
 import src.connect as ct
 
 def hardDeleteTicket(id):
@@ -13,7 +14,12 @@ def hardDeleteTicket(id):
 
     with Session(dbeng) as session:
         event.assigned_to_user = []
+        current_app.logger.debug(event)
+        current_app.logger.debug(
+            ticket.history
+        )
         for event in ticket.history:
+
             session.delete(event)
         session.delete(ticket)
 
