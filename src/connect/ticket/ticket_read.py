@@ -1,5 +1,5 @@
 from sqlalchemy import select, desc
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 from src import dbeng
 import src.connect as ct
 from src.models import Ticket, User
@@ -48,6 +48,7 @@ def searchTicket(args={}):
 
     # Search by priority level
     if "priority" in args:
+        tickets_query.options(selectinload(Ticket.r_priority))
         tickets_query = tickets_query.where(
             current_app.logger.debug(Ticket.r_priority)
             # Ticket.priority.has(id==args.get("priority"))
