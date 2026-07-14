@@ -58,6 +58,7 @@ class UpdateTicketUpdateInfo(Resource):
         try:
             ticket = updateInfoTicket(id, request.json)
             if ticket:
+                current_app.logger.debug("ping")
                 makeEvent(request.json | {
                     "ticket_id": ticket.id,
                     "event_type": "Ticket Detail Changed"
