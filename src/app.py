@@ -60,7 +60,7 @@ api.add_resource(UserRoleReadList, "/role", methods=['GET'])
 api.add_resource(UserRoleReadInstance, "/role/<int:id>", methods=['GET'])
 
 # TESTING
-api.add_resource(OptionReadList, "/options/<str:table>", methods=['GET'])
+api.add_resource(OptionReadList, "/options/<table>", methods=['GET'])
 
 # Test CRUD endpoints for "Thing"
 api.add_resource(ManageThings, "/things", methods=['GET', 'POST'])
