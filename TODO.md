@@ -26,10 +26,9 @@
 - [x] Create checks for options
 - [x] Organize and separate files for better visibility
 - [x] Remove test remnants
-- [ ] Write better README documentation
-- [ ] OPTIONAL: create frontend
-	- Angular?????
-	- Honestly I don't know. TODO: look into that when I get to it
+- [ ] Ticket remove assigned user
+- [ ] Delete ticket's events when ticket is deleted
+- [ ] better docs
 
 # Database
 
@@ -187,16 +186,13 @@
   - [x] User - search by email
   - [x] User - search by role
 - [x] User - get specific user
-- [ ] User - update user information 
-- [ ] User - remove user
+- [x] User - update user information 
+- [x] User - remove user
 - [x] Event - make new "history item" event
 - [ ] Event - search events
   - [x] Events - search all
-  - [ ] Events - search by title
+  - [x] Events - search by ticket id
   - [ ] Events - search by created by
-  - [ ] Events - search by priority
-  - [ ] Events - search by ticket type
-  - [ ] Events - search by status
 - [ ] Event - get specific event
 - [ ] Event - CRUD update
 - [ ] Event - CRUD delete
