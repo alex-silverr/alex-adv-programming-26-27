@@ -14,13 +14,7 @@ def hardDeleteTicket(id):
 
     with Session(dbeng) as session:
         ticket.assigned_to_user = []
-        current_app.logger.debug(ticket.serialize())
-        current_app.logger.debug(
-            ticket.history
-        )
-        raise Exception("this breaks on purpose")
         for event in ticket.history:
-
             session.delete(event)
         session.delete(ticket)
 
