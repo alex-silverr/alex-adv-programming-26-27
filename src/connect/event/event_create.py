@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
+from flask import current_app
 import src.connect as ct
 from src.models import Event
 
@@ -8,6 +9,8 @@ def makeEvent(args={}):
     Event CREATE - aux:
     Makes a Event from passed arguments and created description.
     """
+
+    current_app.logger.debug("ping")
 
     # Checks presence of mandatory arguments
     for arg in ["ticket_id", "user_id", "event_type"]:
@@ -46,18 +49,22 @@ def makeEvent(args={}):
                                 match any known event type. Has a new type been \
                                 added?")
             
+    current_app.logger.debug("pong")
     # Fetching relationed objects and checking validity
     user = ct.getUser(args.get("user_id"))
     if not user: raise ValueError("Could not create event: invalid user.")
 
+    current_app.logger.debug("ting")
     ticket = ct.getTicket(args.get("ticket_id"))
     if not ticket: raise ValueError("Could not create event: invalid ticket.")
 
     event_type = ct.optionGetByDesc("event_type", args.get("event_type"))
     if not event_type: raise ValueError("Could not create event: invalid event type.")
 
+    current_app.logger.debug("tang")
     # Create event
     with Session(dbeng) as session:
+        current_app.logger.debug("bing")
         newevent = Event(
             description = args.get("description"),
             created_by = user,
@@ -65,6 +72,7 @@ def makeEvent(args={}):
             r_event_type = event_type
 
         )
+        current_app.logger.debug("bong")
         session.add(newevent)
         session.commit()
 

@@ -58,12 +58,10 @@ class UpdateTicketUpdateInfo(Resource):
         try:
             ticket = updateInfoTicket(id, request.json)
             if ticket:
-                current_app.logger.debug("ping")
                 makeEvent(request.json | {
                     "ticket_id": ticket.id,
                     "event_type": "Ticket Detail Changed"
                 })
-                current_app.logger.debu("pong")
                 return redirect("/tickets")
             else:
                 raise Exception("Ticket not returned correctly.")
