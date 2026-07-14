@@ -51,8 +51,10 @@ def searchTicket(args={}):
         # tickets_query = tickets_query.where(
         #     Ticket.priority_id == args.get("priority")
         # )
-        tickets_query = Ticket.r_priority.has(
-            PriorityLevel.id == args.get("priority")
+        tickets_query =tickets_query.where(
+            Ticket.r_priority.has(
+                PriorityLevel.id == args.get("priority")
+            )
         )
 
     # Search by ticket type
