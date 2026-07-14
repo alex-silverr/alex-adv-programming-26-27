@@ -67,11 +67,11 @@ def makeEvent(args={}):
         )
         # session.expunge(user)
 
-        current_app.logger.debug(newevent.serialize())
+        # current_app.logger.debug(newevent.serialize())
         session.add(newevent)
         # session.expunge(user)
         session.commit()
-        session.expunge_all()
+        # session.expunge_all()
 
     with Session(dbeng) as session:
         newevent.user = user

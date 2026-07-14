@@ -12,7 +12,7 @@ class CreateEvent(Resource):
         try:
             newevent = makeEvent(request.json)
             if newevent:
-                return redirect("/events")
+                return redirect("/event")
             else:
                 raise Exception("Event not created.")
         except Exception as e:
@@ -32,7 +32,7 @@ class CreateHistoryEvent(Resource):
                 }
             )
             if newevent:
-                return redirect("/events")
+                return redirect("/event")
             else:
                 raise Exception("Event not created.")
         except Exception as e:
