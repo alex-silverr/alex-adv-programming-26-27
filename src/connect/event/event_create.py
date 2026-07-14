@@ -61,7 +61,7 @@ def makeEvent(args={}):
     with Session(dbeng) as session:
         newevent = Event(
             description = args.get("description"),
-            # created_by = user,
+            created_by_id = user.id,
             ticket = ticket,
             r_event_type = event_type
         )
