@@ -2,7 +2,7 @@ from sqlalchemy import select, desc
 from sqlalchemy.orm import Session, selectinload
 from src import dbeng
 import src.connect as ct
-from src.models import Ticket, User
+from src.models import Ticket, User, PriorityLevel
 
 from flask import current_app
 
@@ -35,7 +35,7 @@ def searchTicket(args={}):
     # Search by created by user
     if "created_by" in args:
         tickets_query = tickets_query.where(
-            Ticket.created_by_user.id == args.get("created_by")
+            Ticket.created_by_user_id == args.get("created_by")
         )
     
     # Search by assigned to user
@@ -48,14 +48,11 @@ def searchTicket(args={}):
 
     # Search by priority level
     if "priority" in args:
-        tickets_query.options(selectinload(Ticket.r_priority))
-        tickets_query = tickets_query.where(
-            Ticket.priority_id == args.get("priority")
-            # current_app.logger.debug(Ticket.r_priority)
-            # Ticket.priority.has(id==args.get("priority"))
-            # Ticket.priority == ct.optionGetById(
-            #     "priority_level", args.get("priority")
-            # ).de
+        # tickets_query = tickets_query.where(
+        #     Ticket.priority_id == args.get("priority")
+        # )
+        tickets_query = Ticket.r_priority.has(
+            PriorityLevel.id == args.get("priority")
         )
 
     # Search by ticket type
