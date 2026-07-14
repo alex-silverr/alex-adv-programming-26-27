@@ -47,6 +47,7 @@ def assignToUserTicket(id, args={}):
     
     with Session(dbeng) as session:
         ticket = ct.getTicket(id)
+        ticket = session.merge(ticket)
         current_app.logger.debug("tang")
         ticket.assigned_to_user.append(user)
         current_app.logger.debug("zing")
