@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
+import src.connect as ct
 from src.models import (Ticket, User, PriorityLevel,
                     TicketType, TicketStatus) 
 
@@ -19,21 +20,21 @@ def makeTicket(args={}):
     if not args.get("description"): args["description"] = ""
     if not args.get("estimated_time"): args["estimated_time"] = "Unknown"
 
-    with Session(dbeng) as session:
-        # Fetching relationed objects and checking validity
-        
-        user = session.get(User, args.get("user_id"))
-        if not user: raise ValueError("Could not create ticket: invalid user.")
+    
+    # Fetching relationed objects and checking validity
+    user = ct.getUser(args.get("user_id"))
+    if not user: raise ValueError("Could not create ticket: invalid user.")
 
-        priority = session.get(PriorityLevel, args.get("priority_id"))
-        if not priority: raise ValueError("Could not create ticket: invalid priority level.")
+    priority = ct.optionGetById("priority_level", args.get("priority_id"))
+    if not priority: raise ValueError("Could not create ticket: invalid priority level.")
 
-        ticket_type = session.get(TicketType, args.get("ticket_type_id"))
-        if not ticket_type: raise ValueError("Could not create ticket: invalid ticket type.")
+    ticket_type = ct.optionGetById("ticket_type", args.get("ticket_type_id"))
+    if not ticket_type: raise ValueError("Could not create ticket: invalid ticket type.")
 
-        status = session.get(TicketStatus, 1)
+    status = ct.optionGetByDesc("ticket_status", "New")
 
         # Create ticket
+    with Session(dbeng) as session:
         newticket = Ticket(
             title = args.get("title"),
             description = args.get("description"),

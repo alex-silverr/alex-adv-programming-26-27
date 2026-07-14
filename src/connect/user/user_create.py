@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from src import dbeng
 from src.models import User, UserRole
+import src.connect as ct
 
 def makeUser(args={}):
     """
@@ -18,13 +19,12 @@ def makeUser(args={}):
     # Fills for optional arguments
     if not args.get("github"): args["github"] = ""
 
+    # Fetching relationed objects and checking validity
+    role = ct.optionGetById("user_role", args.get("role_id"))
+    if not role: raise ValueError("Could not create user: invalid user role")
+
+    # Create user
     with Session(dbeng) as session:
-        # Fetching relationed objects and checking validity
-
-        role = session.get(UserRole, args.get("role_id"))
-        if not role: raise ValueError("Could not create user: invalid user role")
-
-        # Create user
         newuser = User(
             display_name = args.get("display_name"),
             full_name = args.get("full_name"),

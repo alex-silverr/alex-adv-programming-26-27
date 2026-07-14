@@ -35,10 +35,9 @@ def makeEvent(args={}):
                 }."
                 
             case "Status Changed":
-                with Session(dbeng) as session:
-                    args["description"] = f"Ticket status changed to {
-                        session.get(TicketStatus, args.get("status_id")).desc
-                    }"
+                args["description"] = f"Ticket status changed to {
+                    ct.optionGetById("ticket_status", args.get("status_id")).desc
+                }"
 
             case "History Entry Added":
                 raise ValueError("An event history must have a description.")
@@ -48,22 +47,18 @@ def makeEvent(args={}):
                                 match any known event type. Has a new type been \
                                 added?")
             
+    # Fetching relationed objects and checking validity
+    user = ct.getUser(args.get("user_id"))
+    if not user: raise ValueError("Could not create event: invalid user.")
+
+    ticket = ct.getTicket(args.get("ticket_id"))
+    if not ticket: raise ValueError("Could not create event: invalid ticket.")
+
+    event_type = ct.optionGetByDesc("event_type", args.get("event_type"))
+    if not event_type: raise ValueError("Could not create event: invalid event type.")
+
+    # Create event
     with Session(dbeng) as session:
-        # Fetching relationed objects and checking validity
-        user = session.get(User, args.get("user_id"))
-        if not user: raise ValueError("Could not create event: invalid user.")
-
-        ticket = session.get(Ticket, args.get("ticket_id"))
-        if not ticket: raise ValueError("Could not create event: invalid ticket.")
-
-        event_type = session.scalars(
-            select(EventType).where(
-                EventType.desc == args.get("event_type")
-            )
-        ).first()
-        if not event_type: raise ValueError("Could not create event: invalid event type.")
-
-        # Create event
         newevent = Event(
             description = args.get("description"),
             created_by = user,

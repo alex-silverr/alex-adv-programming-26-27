@@ -16,7 +16,7 @@ def updateInfoTicket(id, args={}):
         if "title" in args: ticket.title = args.get("title")
         if "description" in args: ticket.description = args.get("description")
         if "priority_id" in args:
-            priority = session.get(PriorityLevel, args.get("priority_id"))
+            priority = ct.optionGetById("priority_level", args.get("priority_id"))
             if not priority: raise ValueError("Could not update ticket: invalid priority level.")
             ticket.r_priority = priority
 
@@ -71,7 +71,7 @@ def changeStatusTicket(id, args={}):
 
     with Session(dbeng) as session:
         if "status_id" in args:
-            status = session.get(TicketStatus, args.get("status_id"))
+            status = ct.optionGetById("ticket_status", args.get("status_id"))
             if not status: raise ValueError("Could not update ticket: invalid status.")
             ticket.r_status = status
         session.commit()
@@ -86,30 +86,29 @@ def generalUpdateTicket(id, args={}):
     ticket = ct.getTicket(id)
 
 
+    # Fetching relationed objects and checking validity
+    if "user_id" in args:
+        user = ct.getUser(args.get("user_id"))
+        if not user: raise ValueError("Could not update ticket: invalid user.")
+        ticket.created_by_user = user
+
+    if "priority_id" in args:
+        priority = ct.optionGetById("priority_level", args.get("priority_id"))
+        if not priority: raise ValueError("Could not update ticket: invalid priority level.")
+        ticket.r_priority = priority
+
+    if "ticket_type_id" in args:
+        ticket_type = ct.optionGetById("ticket_type", args.get("ticket_type_id"))
+        if not ticket_type: raise ValueError("Could not update ticket: invalid ticket type.")
+        ticket.r_ticket_type = ticket_type
+
+    if "status_id" in args:
+        status = ct.optionGetById("ticket_status", args.get("status_id"))
+        if not status: raise ValueError("Could not update ticket: invalid status.")
+        ticket.r_status = status
+    
+    # Updating direct values
     with Session(dbeng) as session:
-        # Fetching relationed objects and checking validity
-
-        if "user_id" in args:
-            user = session.get(User, args.get("user_id"))
-            if not user: raise ValueError("Could not update ticket: invalid user.")
-            ticket.created_by_user = user
-
-        if "priority_id" in args:
-            priority = session.get(PriorityLevel, args.get("priority_id"))
-            if not priority: raise ValueError("Could not update ticket: invalid priority level.")
-            ticket.r_priority = priority
-
-        if "ticket_type_id" in args:
-            ticket_type = session.get(TicketType, args.get("ticket_type_id"))
-            if not ticket_type: raise ValueError("Could not update ticket: invalid ticket type.")
-            ticket.r_ticket_type = ticket_type
-
-        if "status_id" in args:
-            status = session.get(TicketStatus, args.get("status_id"))
-            if not status: raise ValueError("Could not update ticket: invalid status.")
-            ticket.r_status = status
-
-        # Updating direct values
         if "title" in args: ticket.title = args.get("title")
         if "description" in args: ticket.description = args.get("description")
         if "estimated_time" in args: ticket.estimated_time = args.get("estimated_time")

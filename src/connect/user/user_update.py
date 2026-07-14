@@ -17,7 +17,7 @@ def updateInfoTicket(id, args={}):
         if "email" in args: user.email = args.get("email")
         if "github" in args: user.github = args.get("github")
         if "role_id" in args:
-            role = session.get(UserRole, args.get("role_id"))
+            role = ct.optionGetById("user_role", args.get("role_id"))
             if not role: raise ValueError("Could not update user: invalid role")
             role.r_role = role
 
