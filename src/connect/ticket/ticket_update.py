@@ -46,7 +46,7 @@ def assignToUserTicket(id, args={}):
         raise ValueError("User to assign ticket to not given")
     
     with Session(dbeng) as session:
-        ticket = session.merge(ticket)
+        # ticket = session.merge(ticket)
         current_app.logger.debug("tang")
         ticket.assigned_to_user.append(user)
         current_app.logger.debug("zing")
