@@ -46,6 +46,7 @@ def assignToUserTicket(id, args={}):
     
     with Session(dbeng) as session:
         ticket.assigned_to_user.append(user)
+        session.merge(ticket)
         session.commit()
     return ticket
 
@@ -77,6 +78,7 @@ def changeStatusTicket(id, args={}):
             status = ct.optionGetById("ticket_status", args.get("status_id"))
             if not status: raise ValueError("Could not update ticket: invalid status.")
             ticket.r_status = status
+        session.merge(ticket)
         session.commit()
     return ticket
 
@@ -116,5 +118,6 @@ def generalUpdateTicket(id, args={}):
         if "description" in args: ticket.description = args.get("description")
         if "estimated_time" in args: ticket.estimated_time = args.get("estimated_time")
 
+        session.merge(ticket)
         session.commit()
     return ticket

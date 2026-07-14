@@ -177,7 +177,7 @@
 - [x] Ticket - get specific ticket
 - [x] Ticket - edit ticket's basic information
 - [ ] Ticket - assign ticket to user
-- [ ] Ticket - change estimated time
+- [x] Ticket - change estimated time
 - [ ] Ticket - change ticket status
 - [ ] Ticket - CRUD update
 - [ ] Ticket - CRUD delete
