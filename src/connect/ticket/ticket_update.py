@@ -21,6 +21,7 @@ def updateInfoTicket(id, args={}):
             ticket.r_priority = priority
 
         current_app.logger.debug(ticket.serialize())
+        session.merge(ticket)
         session.commit()
     return ticket
 
