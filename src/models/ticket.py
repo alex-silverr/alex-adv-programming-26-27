@@ -33,7 +33,7 @@ class Ticket(Base):
     # - does not actually create a column
     # - can be empty: create empty list as default
     history = relationship(
-        "Event", back_populates="ticket", lazy="selectin"
+        "Event", back_populates="ticket"
     )
     # history = relationship(
     #     "Event", back_populates="ticket",

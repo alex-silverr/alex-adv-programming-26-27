@@ -173,27 +173,27 @@
   - [x] Ticket - search by ticket type
   - [x] Ticket - search by status
 - [x] Ticket - get specific ticket
-- [x] Ticket - edit ticket's basic information
-- [x] Ticket - assign ticket to user
-- [x] Ticket - change estimated time
-- [x] Ticket - change ticket status
-- [x] Ticket - CRUD delete
-- [x] User - create new user
-- [x] User - search users
-  - [x] User - search all
-  - [x] User - search by display name
-  - [x] User - search by email
-  - [x] User - search by role
-- [x] User - get specific user
-- [x] User - update user information 
-- [x] User - remove user
-- [x] Event - make new "history item" event
-- [x] Event - search events
-  - [x] Events - search all
-  - [x] Events - search by ticket id
-  - [x] Events - search by created by
-- [x] Event - get specific event
-- [x] Options - get list
-- [x] Options - get instance
-- [x] Options - create
-- [x] Options - delete
+- [ ] Ticket - edit ticket's basic information
+- [ ] Ticket - assign ticket to user
+- [ ] Ticket - change estimated time
+- [ ] Ticket - change ticket status
+- [ ] Ticket - CRUD delete
+- [ ] User - create new user
+- [ ] User - search users
+  - [ ] User - search all
+  - [ ] User - search by display name
+  - [ ] User - search by email
+  - [ ] User - search by role
+- [ ] User - get specific user
+- [ ] User - update user information 
+- [ ] User - remove user
+- [ ] Event - make new "history item" event
+- [ ] Event - search events
+  - [ ] Events - search all
+  - [ ] Events - search by ticket id
+  - [ ] Events - search by created by
+- [ ] Event - get specific event
+- [ ] Options - get list
+- [ ] Options - get instance
+- [ ] Options - create
+- [ ] Options - delete
