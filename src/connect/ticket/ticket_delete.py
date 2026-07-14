@@ -12,6 +12,7 @@ def hardDeleteTicket(id):
     ticket = ct.getTicket(id)
 
     with Session(dbeng) as session:
+        event.assigned_to_user = []
         for event in ticket.history:
             session.delete(event)
         session.delete(ticket)
