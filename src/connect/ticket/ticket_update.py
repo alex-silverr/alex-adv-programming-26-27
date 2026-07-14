@@ -8,7 +8,6 @@ def updateInfoTicket(id, args={}):
     Ticket UPDATE - aux:
     Update Ticket info: title, description or priority
     """
-    current_app.logger.debug("ping")
     id = int(id)
     ticket = ct.getTicket(id)
 
@@ -55,7 +54,6 @@ def updateEstimatedTimeTicket(id, args={}):
     Ticket UPDATE - aux:
     Change Ticket's estimated time to completion
     """
-    current_app.logger.debug("ping")
     id = int(id)
     ticket = ct.getTicket(id)
 
@@ -73,12 +71,18 @@ def changeStatusTicket(id, args={}):
     id = int(id)
     ticket = ct.getTicket(id)
 
+    current_app.logger.debug("ping")
     with Session(dbeng) as session:
         if "status_id" in args:
+            current_app.logger.debug("pong")
             status = ct.optionGetById("ticket_status", args.get("status_id"))
             if not status: raise ValueError("Could not update ticket: invalid status.")
+            current_app.logger.debug("bing")
+            current_app.logger.debug(ticket)
             ticket.r_status = status
+            current_app.logger.debug(ticket)
         session.merge(ticket)
+        current_app.logger.debug("bong")
         session.commit()
     return ticket
 
