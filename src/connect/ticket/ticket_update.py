@@ -54,6 +54,7 @@ def updateEstimatedTimeTicket(id, args={}):
     Ticket UPDATE - aux:
     Change Ticket's estimated time to completion
     """
+    current_app.logger.debug("ping")
     id = int(id)
     ticket = ct.getTicket(id)
 
