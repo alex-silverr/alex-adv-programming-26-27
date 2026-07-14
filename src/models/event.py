@@ -62,7 +62,6 @@ class Event(Base):
     )
 
     # Description: text
-    # - only when event type is "History item"
     description = mapped_column(Text, nullable=True)
     
     # Edits can be registered in description honestly
@@ -70,7 +69,7 @@ class Event(Base):
     def serialize(self):
         return {
                 "created on": self.created_on,
-                "created by": self.created_by.display_name if self.created_by else None,
+                "created by": self.created_by.display_name,
                 "ticket": self.ticket.title,
                 "event type": self.event_type,
                 "description": self.description
