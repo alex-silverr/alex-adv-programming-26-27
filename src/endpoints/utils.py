@@ -1,8 +1,5 @@
-from flask import (Flask, render_template, make_response, 
-                   request, redirect, jsonify)
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine, select
-from sqlalchemy.orm import Session
+from flask import render_template, make_response
+from flask_restful import Resource
 
 class Index(Resource):
     """

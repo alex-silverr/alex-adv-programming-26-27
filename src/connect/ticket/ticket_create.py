@@ -1,8 +1,7 @@
 from sqlalchemy.orm import Session
 from src import dbeng
 import src.connect as ct
-from src.models import (Ticket, User, PriorityLevel,
-                    TicketType, TicketStatus) 
+from src.models import Ticket
 
 def makeTicket(args={}):
     """

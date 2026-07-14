@@ -1,11 +1,6 @@
 import logging
-from flask import (Flask, render_template, make_response, 
-                   request, redirect, jsonify, current_app)
+from flask import request, redirect, jsonify, current_app
 from flask_restful import Resource
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-from src import dbeng
-# from src.models import Ticket, Event, User, EventType
 from src.connect import (getEvent, getAllEvents, makeEvent, 
                          hardDeleteEvent, updateInfoEvent)
 

@@ -1,8 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
-import src.connect as ct
-from src.models import (User, PriorityLevel,
-                    TicketType, TicketStatus) 
+import src.connect as ct 
 
 def updateInfoTicket(id, args={}):
     """

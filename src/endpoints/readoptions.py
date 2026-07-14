@@ -1,9 +1,6 @@
 import logging
 from flask import request, redirect, jsonify, current_app
 from flask_restful import Resource
-from sqlalchemy import select
-from sqlalchemy.orm import Session
-from src import dbeng
 from src.connect import (optionGetAll, optionGetById,
                         optionDelete, optionCreateIfNotExist)
 

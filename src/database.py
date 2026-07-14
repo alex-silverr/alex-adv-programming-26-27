@@ -1,12 +1,7 @@
 import datetime
 from typing import List
-from sqlalchemy import (Integer, String, DateTime, Text, 
-                        ForeignKey, Table, Column, func,
-                        create_engine)
-from sqlalchemy.orm import (DeclarativeBase, Mapped, 
-                            mapped_column, relationship,
-                            MappedAsDataclass)
-from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase
 from src.settings import SQLALCHEMY_DATABASE_URL
 import src.connect as ct
 

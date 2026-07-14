@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
-from src.models import User, UserRole
+from src.models import User
 import src.connect as ct
 
 def makeUser(args={}):

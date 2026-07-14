@@ -1,7 +1,6 @@
 from sqlalchemy.orm import Session
 from src import dbeng
 import src.connect as ct
-from src.models import UserRole 
 
 def updateInfoTicket(id, args={}):
     """

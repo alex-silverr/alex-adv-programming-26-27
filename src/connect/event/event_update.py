@@ -1,8 +1,6 @@
-from sqlalchemy import select, desc
 from sqlalchemy.orm import Session
 from src import dbeng
 import src.connect as ct
-from src.models import Event
 
 def updateInfoEvent(id, args={}):
     """

@@ -1,10 +1,8 @@
 import logging
-from flask import (Flask, render_template, make_response, 
-                   request, redirect, jsonify, current_app)
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine, select
+from flask import request, redirect, jsonify, current_app
+from flask_restful import Resource
 from sqlalchemy.orm import Session
-from src.models import User, UserRole
+from src.models import User
 from src.connect import (makeUser, getAllUsers, getUser, updateInfoTicket)
 from src import dbeng
 

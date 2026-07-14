@@ -3,12 +3,6 @@ from sqlalchemy.orm import Session
 from src import dbeng
 from src.models import Ticket, User
 
-# CREATE: Create new
-#  UPDATE: Edit info (Title, Description, Priority)
-#  UPDATE: Add history item
-#  UPDATE: Assign to user
-#  UPDATE: Change estimated time
-#  UPDATE: Change status ("DELETE": Removed status)
 
 def searchTicket(args={}):
     """

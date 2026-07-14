@@ -1,10 +1,7 @@
 import datetime
-from typing import List
-from sqlalchemy import (Integer, String, DateTime, Text, 
-                        ForeignKey, Table, Column, func)
-from sqlalchemy.orm import (DeclarativeBase, Mapped, 
-                            mapped_column, relationship,
-                            MappedAsDataclass, Session)
+from sqlalchemy import (Integer, String, DateTime, 
+                        ForeignKey, func)
+from sqlalchemy.orm import mapped_column, relationship
 from sqlalchemy.ext.associationproxy import association_proxy
 from src import Base
 
