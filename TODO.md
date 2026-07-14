@@ -22,7 +22,7 @@
 - [x] Create extra entrypoints for Ticket, Event and User
 - [x] Fix things left on TODO like list relationships
 - [x] Separate option functions in connection and endpoint
-- [ ] Test every endpoint
+- [x] Test every endpoint
 - [x] Create checks for options
 - [x] Organize and separate files for better visibility
 - [x] Remove test remnants
@@ -165,17 +165,17 @@
 
 ## Testing Checklist
 - [x] Ticket - create new ticket
-- [ ] Ticket - search tickets
+- [x] Ticket - search tickets
   - [x] Ticket - search all
   - [x] Ticket - search by title
   - [x] Ticket - search by user that created it
-  - [ ] Ticket - search by assigned to
+  - [x] Ticket - search by assigned to
   - [x] Ticket - search by priority
   - [x] Ticket - search by ticket type
   - [x] Ticket - search by status
 - [x] Ticket - get specific ticket
 - [x] Ticket - edit ticket's basic information
-- [ ] Ticket - assign ticket to user
+- [x] Ticket - assign ticket to user
 - [x] Ticket - change estimated time
 - [x] Ticket - change ticket status
 - [x] Ticket - CRUD delete

@@ -2,7 +2,7 @@ import logging
 from flask import (request, redirect, jsonify, current_app)
 from flask_restful import Resource
 from src.connect import (makeTicket, searchTicket, getTicket,
-                         updateInfoTicket, 
+                         updateInfoTicket, removeUserAssignment,
                          assignToUserTicket, updateEstimatedTimeTicket,
                          changeStatusTicket, makeEvent)
 
@@ -69,27 +69,6 @@ class UpdateTicketUpdateInfo(Resource):
             current_app.logger.error(e)
             return redirect("/oops")
 
-# shouldn't need this if I configured event correctly
-# class UpdateTicketAddHistoryEvent(Resource):
-#     """
-#     Ticket UPDATE:
-#     Add Event to Ticket history
-#     """
-#     def post(self, id):
-#         try:
-#             ticket = addHistoryTicket(id, request.json)
-#             if ticket:
-#                 makeEvent(request.json | {
-#                     'ticket_id': ticket.id,
-#                     "event_type": "History Entry Added"
-#                 })
-#                 return redirect("/tickets")
-#             else:
-#                 raise Exception("Ticket not returned correctly.")
-#         except Exception as e:
-#             current_app.logger.error(e)
-#             return redirect("/oops")
-
 class UpdateTicketAssignUser(Resource):
     """
     Ticket UPDATE:
@@ -102,6 +81,26 @@ class UpdateTicketAssignUser(Resource):
                 makeEvent(request.json | {
                     'ticket_id': ticket.id,
                     'event_type': 'User Assigned'
+                })
+                return redirect("/tickets")
+            else:
+                raise Exception("Ticket not returned correctly.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
+        
+class UpdateTicketRemoveAssignment(Resource):
+    """
+    Ticket UPDATE:
+    Remove User assigned to Ticket
+    """
+    def post(self, id):
+        try:
+            ticket = removeUserAssignment(id, request.json)
+            if ticket:
+                makeEvent(request.json | {
+                    'ticket_id': ticket.id,
+                    'event_type': 'User Removed'
                 })
                 return redirect("/tickets")
             else:

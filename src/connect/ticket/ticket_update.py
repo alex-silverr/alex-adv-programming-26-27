@@ -23,14 +23,6 @@ def updateInfoTicket(id, args={}):
         session.commit()
     return ticket
 
-# if I've set up relationships properly, this is unecessary
-# def addHistoryTicket(id, args={}):
-#     """
-#     Ticket UPDATE - aux:
-#     Assign Event to Ticket history
-#     """
-#     pass
-
 def assignToUserTicket(id, args={}):
     """
     Ticket UPDATE - aux:
@@ -47,6 +39,26 @@ def assignToUserTicket(id, args={}):
     
     with Session(dbeng) as session:
         ticket.assigned_to_user.append(user)
+        session.merge(ticket)
+        session.commit()
+    return ticket
+
+def removeUserAssignment(id, args={}):
+    """
+    Ticket UPDATE - aux:
+    Remove User assignment from Ticket
+    """
+    id = int(id)
+    ticket = ct.getTicket(id)
+
+
+    if "assign_user_id" in args:
+        user = ct.getUser(args.get("assign_user_id"))
+    else:
+        raise ValueError("User to assign ticket to not given")
+    
+    with Session(dbeng) as session:
+        ticket.assigned_to_user.remove(user)
         session.merge(ticket)
         session.commit()
     return ticket

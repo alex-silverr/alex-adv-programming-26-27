@@ -29,6 +29,11 @@ def makeEvent(args={}):
                     ct.getUser(args.get("assign_user_id")).display_name
                 }"
 
+            case "User Removed":
+                args["description"] = f"Ticket no longer assigned to {
+                    ct.getUser(args.get("assign_user_id")).display_name
+                }"
+
             case "Estimated Duration Changed":
                 args["description"] = f"Estimated duration changed to {
                     args.get("estimated_time")
