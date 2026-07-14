@@ -58,6 +58,9 @@ def removeUserAssignment(id, args={}):
         raise ValueError("User to assign ticket to not given")
     
     with Session(dbeng) as session:
+        current_app.logger.debug("ping")
+        current_app.logger.debug(ticket.assigned_to_user)
+        current_app.logger.debug(user)
         ticket.assigned_to_user.remove(user)
         session.merge(ticket)
         session.commit()
