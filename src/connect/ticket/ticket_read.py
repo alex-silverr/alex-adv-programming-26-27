@@ -4,6 +4,8 @@ from src import dbeng
 import src.connect as ct
 from src.models import Ticket, User
 
+from flask import current_app
+
 
 def searchTicket(args={}):
     """
@@ -47,10 +49,12 @@ def searchTicket(args={}):
     # Search by priority level
     if "priority" in args:
         tickets_query = tickets_query.where(
+            current_app.logger.debug(Ticket.r_priority)
+            raise Exception("break")
             # Ticket.priority.has(id==args.get("priority"))
-            Ticket.priority == ct.optionGetById(
-                "priority_level", args.get("priority")
-            )
+            # Ticket.priority == ct.optionGetById(
+            #     "priority_level", args.get("priority")
+            # ).de
         )
 
     # Search by ticket type
