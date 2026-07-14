@@ -68,8 +68,8 @@ def makeEvent(args={}):
 
         )
 
-        current_app.logger.debug(user)
-        current_app.logger.debug(newevent)
+        current_app.logger.debug(user.serialize())
+        current_app.logger.debug(newevent.serialize())
         session.add(newevent)
         session.commit()
 
