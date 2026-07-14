@@ -1,19 +1,19 @@
 import logging
-from flask import redirect, jsonify, current_app
+from flask import request, redirect, jsonify, current_app
 from flask_restful import Resource
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from src.models import (PriorityLevel, TicketType, TicketStatus, 
-                        UserRole, EventType)
 from src import dbeng
 from src.connect import (optionGetAll, optionGetById,
-                        optionGetByDesc, optionDelete,
-                        optionCreateIfNotExist)
+                        optionDelete, optionCreateIfNotExist)
 
 # ------------------------
 # Temp generic option
 # ------------------------ 
 class OptionReadList(Resource):
+    """
+    LIST OPTIONS API
+    """
     def get(self, table):
         try:
             return jsonify(
@@ -22,190 +22,38 @@ class OptionReadList(Resource):
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
-
-
-# ------------------------
-# Priority Level
-# ------------------------
-class PriorityReadList(Resource):
-    """
-    READ API
-    MODEL: Priority Level List
-    """
-    def get(self):
+        
+    def post(self, table):
         try:
-            with Session(dbeng) as session:
-                options = session.scalars(
-                    select(PriorityLevel)
-                    .order_by(PriorityLevel.id)
-                ).all()
-            return jsonify([option.serialize() for option in options])
+            if optionCreateIfNotExist(
+                    table, request.json.get("desc")
+                    ):
+                return redirect(f"/options/{table}")
+            else:
+                raise Exception("Something bad happened.")
+        except Exception as e:
+            current_app.logger.error(e)
+            return redirect("/oops")
+        
+class OptionsReadInstance(Resource):
+    """
+    INSTANCE OPTIONS API
+    """
+    def get(self, table, id):
+        try:
+            return jsonify(
+                optionGetById(table, id).serialize()
+            )
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")
 
-class PriorityReadInstance(Resource):
-    """
-    READ API
-    MODEL: Priority Level Instance
-    """
-    def get(self, id):
+    def delete(self, table, id):
         try:
-            id = int(id)
-            with Session(dbeng) as session:
-                option = session.get(
-                    PriorityLevel, id
-                )
-            return jsonify(option.serialize())
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-# ------------------------
-# Ticket Type
-# ------------------------
-class TicketTypeReadList(Resource):
-    """
-    READ API
-    MODEL: Ticket Type List
-    """
-    def get(self):
-        try:
-            with Session(dbeng) as session:
-                options = session.scalars(
-                    select(TicketType)
-                    .order_by(TicketType.id)
-                ).all()
-            return jsonify([option.serialize() for option in options])
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-class TicketTypeReadInstance(Resource):
-    """
-    READ API
-    MODEL: Ticket Type Instance
-    """
-    def get(self, id):
-        try:
-            id = int(id)
-            with Session(dbeng) as session:
-                option = session.get(
-                    TicketType, id
-                )
-            return jsonify(option.serialize())
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-# ------------------------
-# Ticket Status
-# ------------------------
-class TicketStatusReadList(Resource):
-    """
-    READ API
-    MODEL: Ticket Status List
-    """
-    def get(self):
-        try:
-            with Session(dbeng) as session:
-                options = session.scalars(
-                    select(TicketStatus)
-                    .order_by(TicketStatus.id)
-                ).all()
-            return jsonify([option.serialize() for option in options])
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-class TicketStatusReadInstance(Resource):
-    """
-    READ API
-    MODEL: Ticket Status Instance
-    """
-    def get(self, id):
-        try:
-            id = int(id)
-            with Session(dbeng) as session:
-                option = session.get(
-                    TicketStatus, id
-                )
-            return jsonify(option.serialize())
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-# ------------------------
-# Event Type
-# ------------------------
-class EventTypeReadList(Resource):
-    """
-    READ API
-    MODEL: Event Type List
-    """
-    def get(self):
-        try:
-            with Session(dbeng) as session:
-                options = session.scalars(
-                    select(EventType)
-                    .order_by(EventType.id)
-                ).all()
-            return jsonify([option.serialize() for option in options])
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-class EventTypeReadInstance(Resource):
-    """
-    READ API
-    MODEL: Event Type Instance
-    """
-    def get(self, id):
-        try:
-            id = int(id)
-            with Session(dbeng) as session:
-                option = session.get(
-                    EventType, id
-                )
-            return jsonify(option.serialize())
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-
-# ------------------------
-# User Role
-# ------------------------
-class UserRoleReadList(Resource):
-    """
-    READ API
-    MODEL: User Role List
-    """
-    def get(self):
-        try:
-            with Session(dbeng) as session:
-                options = session.scalars(
-                    select(UserRole)
-                    .order_by(UserRole.id)
-                ).all()
-            return jsonify([option.serialize() for option in options])
-        except Exception as e:
-            current_app.logger.error(e)
-            return redirect("/oops")
-
-class UserRoleReadInstance(Resource):
-    """
-    READ API
-    MODEL: User Role Instance
-    """
-    def get(self, id):
-        try:
-            id = int(id)
-            with Session(dbeng) as session:
-                option = session.get(
-                    UserRole, id
-                )
-            return jsonify(option.serialize())
+            if optionDelete(table, id):
+                return redirect (f"/options/{table}")
+            else:
+                raise Exception("Something bad happened.")
         except Exception as e:
             current_app.logger.error(e)
             return redirect("/oops")

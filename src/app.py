@@ -48,19 +48,8 @@ api.add_resource(ManageEvents, "/manage-events", methods=['GET', 'POST'])
 api.add_resource(ManageEvent, "/manage-event/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
 
 # READ endpoints for options
-api.add_resource(PriorityReadList, "/priority", methods=['GET'])
-api.add_resource(PriorityReadInstance, "/priority/<int:id>", methods=['GET'])
-api.add_resource(TicketTypeReadList, "/ticket-type", methods=['GET'])
-api.add_resource(TicketTypeReadInstance, "/ticket-type/<int:id>", methods=['GET'])
-api.add_resource(TicketStatusReadList, "/ticket-status", methods=['GET'])
-api.add_resource(TicketStatusReadInstance, "/ticket-status/<int:id>", methods=['GET'])
-api.add_resource(EventTypeReadList, "/event-type", methods=['GET'])
-api.add_resource(EventTypeReadInstance, "/event-type/<int:id>", methods=['GET'])
-api.add_resource(UserRoleReadList, "/role", methods=['GET'])
-api.add_resource(UserRoleReadInstance, "/role/<int:id>", methods=['GET'])
-
-# TESTING
-api.add_resource(OptionReadList, "/options/<table>", methods=['GET'])
+api.add_resource(OptionReadList, "/options/<table>", methods=['GET', 'POST'])
+api.add_resource(OptionReadList, "/options/<table>/<int:id>", methods=['GET', 'DELETE'])
 
 # Test CRUD endpoints for "Thing"
 api.add_resource(ManageThings, "/things", methods=['GET', 'POST'])

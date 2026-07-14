@@ -31,6 +31,7 @@ def optionGetById(table, id):
     Aux Options - 
     Get option by id
     """
+    id = int(id)
     with Session(dbeng) as session:
         option = session.get(
             option_tables[table], id
@@ -70,6 +71,7 @@ def optionDelete(table, id):
     Aux Options - 
     Delete option
     """
+    id = int(id)
     option = optionGetById(table, id)
     with Session(dbeng) as session:
         session.delete(option)
