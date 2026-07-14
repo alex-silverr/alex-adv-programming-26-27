@@ -1,130 +1,86 @@
-from flask import (Flask, render_template, make_response, 
-                   request, redirect, jsonify)
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine, select
-from sqlalchemy.orm import Session
-from . import models
-from .settings import SQLALCHEMY_DATABASE_URL
+from flask import (Flask)
+from flask_restful import Api
+from src import Base, dbeng
+from src.endpoints import *
+import src.connect as ct
 
 app = Flask(__name__)
 api = Api(app)
 
-dbeng = create_engine(SQLALCHEMY_DATABASE_URL) 
-models.Base.metadata.create_all(dbeng)
+Base.metadata.create_all(dbeng)
 
-with Session(dbeng) as session:
-    session.add_all([models.Thing(thing="thing 1"), 
-                     models.Thing(thing="thing 2"), 
-                     models.Thing(thing="thing 3")
-                     ])
-    session.commit()
+startup_options ={
+    "ticket_type": ["Error", "Issue", "Vulnerability", 
+                    "Feature", "Requirements"],
 
-class Index(Resource):
-    """
-    Default/placeholder index
-    """
-    def get(self):
-        return make_response(render_template("home.html"))
-    
-class Things(Resource):
-    """
-    Barebones API: list resource
-    """
+    "priority_level": ["Urgent", "High Priority", 
+                       "Medium Priority", "Low Priority", 
+                       "Background Task"],
 
-    def get(self):
-        """
-        Barebones API: list READ
-        Returns all things
-        """
-        with Session(dbeng) as session:
-            things = session.scalars(
-                select(models.Thing)
-                .order_by(models.Thing.id)
-            ).all()
-        return jsonify([t.serialize() for t in things])
-    
-    def post(self):
-        """
-        Barebones API: CREATE
-        Creates new thing
-        """
-        thing = request.json.get("thing")
-        if thing:
-            with Session(dbeng) as session:
-                newthing = models.Thing(thing=thing)
-                session.add(newthing)
-                session.commit()
-        else:
-            app.logger.error("No thing to add")
-            return make_response(render_template("error_placeholder.html"))
-        return redirect("/things")
-    
-class Thing(Resource):
-    """
-    Barebones API: instance resource
-    """
+    "ticket_status": ["New", "Approved", "Assigned", 
+                      "In Progress", "On Hold", 
+                      "Resolved", "Removed"],
 
-    def get(self, index=None):
-        """
-        Barebones API: instance READ
-        Returns a thing
-        """
-        try:
-            index = int(index)
-            with Session(dbeng) as session:
-                thing = session.get(
-                    models.Thing, index
-                )
-            return jsonify(thing.serialize())
-        except Exception as e:
-            app.logger.error(e)
-            return make_response(render_template("error_placeholder.html"))
+    "event_type": ["Ticket Detail Changed", 
+                   "User Assigned", 
+                   "Estimated Duration Changed", 
+                   "Status Changed", 
+                   "History Entry Added",
+                   "User Removed"],
 
-    def put(self, index=None):
-        """
-        Barebones API: UPDATE
-        Changes content of a thing
-        """
-        try:
-            index = int(index)
-            thingv = request.json.get("thing")
-            if not thingv:
-                app.logger.error("No update value for instance given")
-                return make_response(render_template("error_placeholder.html"))
-            else:
-                with Session(dbeng) as session:
-                    thing = session.get(
-                        models.Thing, index
-                    )
-                    thing.thing = thingv
-                    session.commit()
-                return redirect("/things")
-        except Exception as e:
-            app.logger.error(e)
-            return make_response(render_template("error_placeholder.html"))
-        
-    def delete(self, index=None):
-        """
-        Barebones API: DELETE
-        Removes a thing
-        """
-        try:
-            index = int(index)
-            with Session(dbeng) as session:
-                thing = session.get(
-                    models.Thing, index
-                )
-                session.delete(thing)
-                session.commit()
-            return redirect("/things")
-        except Exception as e:
-            app.logger.error(e)
-            return make_response(render_template("error_placeholder.html"))
+    "user_role": ["Developer", "Analyst", 
+                  "Manager", "Designer", "Owner", 
+                  "QA", "Tester"]
+}
+
+for table, options in startup_options.items():
+    for option in options:
+        ct.optionCreateIfNotExist(table, option)
 
 
+
+# Basic or utility endpoints
 api.add_resource(Index, "/")
-api.add_resource(Things, "/things", methods=['GET', 'POST'])
-api.add_resource(Thing, "/thing/<int:index>", methods=['GET', 'PUT', 'DELETE'])
+api.add_resource(ErrorLanding, "/oops")
+
+# Ticket Endpoints
+api.add_resource(CreateTicket, "/tickets/new", methods=['POST'])
+api.add_resource(ReadTicketList, "/tickets", methods=['GET'])
+api.add_resource(ReadTicketInstance, "/tickets/<int:id>", methods=['GET'])
+api.add_resource(UpdateTicketUpdateInfo, "/tickets/change-info/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketAssignUser, "/tickets/add-user/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketRemoveAssignment, "/tickets/remove-user/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketEstimatedTime, "/tickets/change-time/<int:id>", methods=['POST'])
+api.add_resource(UpdateTicketChangeStatus, "/tickets/change-status/<int:id>", methods=['POST'])
+
+# User Endpoints
+api.add_resource(CreateUser, "/users/new", methods=['POST'])
+api.add_resource(ReadUserList, "/users", methods=['GET'])
+api.add_resource(ReadUserInstance, "/users/<int:id>", methods=['GET'])
+api.add_resource(UpdateUserInfo, "/users/change-info/<int:id>", methods=['POST'])
+api.add_resource(DeleteUser, "/users/delete/<int:id>", methods=['DELETE'])
+
+# Event Endpoints
+api.add_resource(CreateHistoryEvent, "/event/history/new", methods=['POST'])
+api.add_resource(ReadEventList, "/event", methods=['GET'])
+api.add_resource(ReadEventInstance, "/event/<int:id>", methods=['GET'])
+
+# Basic/Management CRUD endpoints for Ticket objects
+api.add_resource(ManageTickets, "/manage-tickets", methods=['GET', 'POST'])
+api.add_resource(ManageTicket, "/manage-ticket/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+
+# Basic/Management CRUD endpoints for User objects
+api.add_resource(ManageUsers, "/manage-users", methods=['GET', 'POST'])
+api.add_resource(ManageUser, "/manage-user/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+
+# Basic/Management CRUD endpoints for Event objects
+api.add_resource(ManageEvents, "/manage-events", methods=['GET', 'POST'])
+api.add_resource(ManageEvent, "/manage-event/<int:id>", methods=['GET', 'PATCH', 'DELETE'])
+
+# Management CRUD endpoints for options
+api.add_resource(OptionReadList, "/options/<table>", methods=['GET', 'POST'])
+api.add_resource(OptionsReadInstance, "/options/<table>/<int:id>", methods=['GET', 'DELETE'])
+
 
 
 if __name__ == "__main__":
