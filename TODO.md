@@ -174,7 +174,7 @@
   - [x] Ticket - search by priority
   - [x] Ticket - search by ticket type
   - [x] Ticket - search by status
-- [ ] Ticket - get specific ticket
+- [x] Ticket - get specific ticket
 - [ ] Ticket - edit ticket's basic information
 - [ ] Ticket - assign ticket to user
 - [ ] Ticket - change estimated time
