@@ -169,11 +169,11 @@
 - [ ] Ticket - search tickets
   - [x] Ticket - search all
   - [x] Ticket - search by title
-  - [ ] Ticket - search by user that created it
+  - [x] Ticket - search by user that created it
   - [ ] Ticket - search by assigned to
-  - [ ] Ticket - search by priority
-  - [ ] Ticket - search by ticket type
-  - [ ] Ticket - search by status
+  - [x] Ticket - search by priority
+  - [x] Ticket - search by ticket type
+  - [x] Ticket - search by status
 - [ ] Ticket - get specific ticket
 - [ ] Ticket - edit ticket's basic information
 - [ ] Ticket - assign ticket to user
