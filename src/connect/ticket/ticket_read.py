@@ -50,7 +50,6 @@ def searchTicket(args={}):
     if "priority" in args:
         tickets_query = tickets_query.where(
             current_app.logger.debug(Ticket.r_priority)
-            raise Exception("break")
             # Ticket.priority.has(id==args.get("priority"))
             # Ticket.priority == ct.optionGetById(
             #     "priority_level", args.get("priority")
