@@ -59,7 +59,7 @@ def makeEvent(args={}):
 
     # Create event
     with Session(dbeng) as session:
-        session.flush()
+        session.expunge_all()
         newevent = Event(
             description = args.get("description"),
             created_by = user,

@@ -74,3 +74,4 @@ Alexandre Peres Oliveira da Silva - 20096284
 - https://docs.python.org/3.10/whatsnew/3.10.html#pep-634-structural-pattern-matching
 - https://stackoverflow.com/questions/41176006/how-to-do-a-sqlalchemy-query-using-a-string-variable-as-table-name
 - https://stackoverflow.com/questions/8561470/sqlalchemy-filtering-by-relationship-attribute
+- https://stackoverflow.com/questions/48601123/sqlalchemy-exc-invalidrequesterror-cant-attach-instance-another-instance-with
