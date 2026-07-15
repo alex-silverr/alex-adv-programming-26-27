@@ -1,5 +1,66 @@
 # Advanced Programming CA2 - Python CRUD API
-Alexandre Peres Oliveira da Silva - 20096284
+**Development of an issue and vulnerability (ticket) tracking system**  
+
+
+*Alexandre Peres Oliveira da Silva - 20096284*  
+
+This project is designed to be the backend portion of a ticketing issue/vulnerability tracking system to be used in software development and maintenance. 
+
+## Usage
+The project is designed to run in Docker containers, and was tested mostly using a Google Cloud Virtual Machine. 
+
+**How to run**
+- Fork and/or Clone from git repository
+- Install Docker, if not yet installed
+- Open command line terminal on the project's folder (same folder as `Dockerfile` and `docker-compose.yml` files)
+- Execute `docker compose up --build -d`
+  - `docker compose` calls the `docker-compose.yml` file
+  - `up` executes the action necessary to setup the project containers
+  - `--build` rebuilds image, if an outdated version of the project still exists
+  - `-d` detaches the containers, allowing for the program to run in background
+- To stop execution, run `docker compose down`
+
+## Structure
+The project is composed of different modules and uses several tools and libraries: 
+
+| Functionality | Technology |
+|-------------- | ---------- |
+| Containerization | Docker |
+| Database | Postgres (container "db") |
+| Programming Language | Python (container "app") |
+| Database adapter / interface | psycopg 2 |
+| SQLAlchemy | ORM and queries |
+| API Framework | Flask |
+| Testing API Entrypoints | Postman |
+
+
+
+### Endpoints
+
+The following endpoints observe normal/intended functionality and should be exposed to the normal frontend:
+
+- *"/tickets/new"*: creates a new ticket
+- *"/tickets"*: lists all tickets
+- *"/tickets/(id)"*: fetches ticket with that id
+- *"/tickets/change-info/(id)"*: changes basic information on ticket with that id
+- *"/tickets/user-add/(id)"*: assigns a given user to ticket with that id
+- *"/ticket/remove-user/(id)"*: removes an user from being assigned to the ticket with that id
+-  *"/tickets/change-time/(id)"*: changes the estimated time remaining on ticket with that id
+-  *"/tickets/change-status/(id)"*: changes status of ticket with that id
+-  *"/users/new"*: creates new user
+-  *"/users"*: lists users
+-  *"/users/(id)"*: fetches user with that id
+-  *"/users/change-info/(id)"*: changes information on user of that id
+-  *"/users/delete/(id)"*: deletes user with that id
+
+### Tables
+
+## Future development
+
+- Frontend Design
+- Frontend implementation in Javascript and Angular
+- Database migrations with Alembic
+- Authentication and authorization method
 
 ## References
 - https://auth0.com/blog/developing-restful-apis-with-python-and-flask/
