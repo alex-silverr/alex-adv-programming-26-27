@@ -12,7 +12,10 @@ The project is designed to run in Docker containers, and was tested mostly using
 **How to run**
 - Fork and/or Clone from git repository
 - Install Docker, if not yet installed
-- Open command line terminal on the project's folder (same folder as `Dockerfile` and `docker-compose.yml` files)
+- Go to the project's folder (same folder as `Dockerfile` and `docker-compose.yml` files)
+- Create a file named `.env`
+  - Edit the  `.env` file, including the properties `PG_USER=username-of-your-choice` and `PG_PASSWORD=password-of-your-choice`
+- Open command line terminal on the project's folder 
 - Execute `docker compose up --build -d`
   - `docker compose` calls the `docker-compose.yml` file
   - `up` executes the action necessary to setup the project containers
@@ -29,7 +32,7 @@ The project is composed of different modules and uses several tools and librarie
 | Database | Postgres (container "db") |
 | Programming Language | Python (container "app") |
 | Database adapter / interface | psycopg 2 |
-| SQLAlchemy | ORM and queries |
+| ORM and queries | SQLAlchemy |
 | API Framework | Flask |
 | Testing API Entrypoints | Postman |
 
