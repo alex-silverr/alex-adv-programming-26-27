@@ -87,6 +87,8 @@ The following endpoints observe normal/intended functionality and should be expo
 - UPDATE | PUSH: Assigns Ticket to an User:
     
     - A Ticket can be assigned to multiple users, this adds the new user to list of users assigned to work on the ticket
+
+- UPDATE | PUSH: Un-Assigns a Ticket assigned to an User:
         
 - UPDATE | PUSH: Change estimated time described on the Ticket
     
