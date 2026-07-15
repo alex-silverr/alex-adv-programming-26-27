@@ -39,21 +39,171 @@ The project is composed of different modules and uses several tools and librarie
 
 The following endpoints observe normal/intended functionality and should be exposed to the normal frontend:
 
-- *"/tickets/new"*: creates a new ticket
-- *"/tickets"*: lists all tickets
-- *"/tickets/(id)"*: fetches ticket with that id
-- *"/tickets/change-info/(id)"*: changes basic information on ticket with that id
-- *"/tickets/user-add/(id)"*: assigns a given user to ticket with that id
-- *"/ticket/remove-user/(id)"*: removes an user from being assigned to the ticket with that id
--  *"/tickets/change-time/(id)"*: changes the estimated time remaining on ticket with that id
--  *"/tickets/change-status/(id)"*: changes status of ticket with that id
--  *"/users/new"*: creates new user
--  *"/users"*: lists users
--  *"/users/(id)"*: fetches user with that id
--  *"/users/change-info/(id)"*: changes information on user of that id
--  *"/users/delete/(id)"*: deletes user with that id
+**Tickets**
+- CREATE | POST: Creates new Ticket:
+    
+    - Title, ID of creating user, ID of priority level and ID of ticket type are mandatory
+        
+    - Description and Estimated time to completion are optional fields
+        
+    - History list and Assigned users are empty upon creation
+        
+    - Status is "new" upon creation
+        
+- READ | GET: Search all Tickets, with optional query parameters passed on URI:
+    
+    - Optional query parameters are:
+        
+        - Title
+            
+        - Created after date
+            
+        - Created before date
+            
+        - Created by user
+            
+        - Assigned to user
+            
+        - Priority level
+            
+        - Ticket type
+            
+        - Ticket status
+            
+- READ | GET: Get Ticket by exact ID
+    
+- UPDATE | PUSH: Edits the Ticket's basic intormation:
+    
+    - Fields possible to edit through this method are:
+        
+        - Title
+            
+        - Description
+            
+        - Priority level
+            
+    - Other fields should not be edited in this manner, and have either a dedicated method to do so or should not be edited at all
+        
+- UPDATE | PUSH: Assigns Ticket to an User:
+    
+    - A Ticket can be assigned to multiple users, this adds the new user to list of users assigned to work on the ticket
+        
+- UPDATE | PUSH: Change estimated time described on the Ticket
+    
+- UPDATE | PUSH: Change the Status of the ticket
+    
+    - Ideally, to keep a record, tickets should not be deleted from the database. To "delete" a ticket, its status must be changed to either "Resolved", if work on it was successfully complete and the ticket was closed, or "Removed", if the ticket is no longer being managed, but it did not generate a resolved issue
+
+**User**
+- CREATE | POST: Creates new User:
+    
+    - Display name, full name, e-mail and role are mandatory
+        
+    - GitHub link is optional
+        
+- READ | GET: Search all Users, with optional query parameters passed on URI:
+    
+    - Optional query parameters are:
+        
+        - Display name
+            
+        - E-mail
+            
+        - Role
+            
+- READ | GET: Get User by exact ID
+    
+- UPDATE | PUSH: Edits the User's intormation:
+    
+    - Fields possible to edit through this method are:
+        
+        - Display name
+            
+        - Full name
+            
+        - E-mail
+            
+        - GitHub link
+            
+        - Role
+            
+    - Other fields should not be edited in this manner, and have either a dedicated method to do so or should not be edited at all
+        
+- DELETE | DELETE: Removes user from system
+
+
+**Event**
+- CREATE | POST: Creates new Event of the "new history addition" type:
+    
+    - Ticket, creating user and event type are mandatory for any event, but, for this type, description is also necessary
+        
+    - There are many situations in which an event are created, for each event type, however, _new history type is the only user-facing way to create an event_. Other event-creating events are managed internally and hsould not be user-facing.
+        
+- READ | GET: Search all Events, with optional query parameters passed on URI:
+    
+    - Optional query parameters is the creating user
+        
+    - "Search by ticket" is superfluous as this is already stored on the ticket history field
+        
+- READ | GET: Get Event by exact ID
+    
+
+There are no update or delete methods available for events as they represent a single event happening, and they should not be altered or removed after creation
+
 
 ### Tables
+
+**Ticket**
+- ID (auto generated, not interactible)
+    
+- Title
+    
+- Created on (date of creation, not interactible)
+    
+- Description
+    
+- History: list of Events
+    
+- Created by: one User
+    
+- Assigned to: list of Users
+    
+- Priority: one Priority level option
+    
+- Ticket Type: one Ticket Type option
+    
+- Estimated Time
+    
+- Status: one Ticket Status option
+
+**User**
+
+- ID (auto generated, not interactible)
+    
+- Display name
+    
+- Full name
+    
+- Registered on (date of creation, not interactible)
+    
+- E-mail
+    
+- GitHub
+    
+- Role: one User Role option
+
+**Event**
+- ID (auto generated, not interactible)
+    
+- Created by: one User
+    
+- Ticket: one Ticket
+    
+- Created On (date of creation, not interactible)
+    
+- Event Type: one Event Type option
+    
+- Description (in normal functioning, it can be internally generated)
 
 ## Future development
 
